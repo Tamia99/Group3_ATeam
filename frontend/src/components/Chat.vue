@@ -1,22 +1,21 @@
 <template>
     <div>
-        <h1> This is Chat Page </h1>
+        <h1> This is a Chat Page </h1>
         <div id="message_box">
             <div id="message_show" class="message_show">
-
                 <div v-for="item in myMessages" :key="item.id">
                     <div class="message_time">
                         <span>{{item.time}}</span>
                     </div>
-                    <div class="message_is_me">
+                    <div class="message_is_me" v-if="item.content != null">
                         <div class="col_is_me">
-                            <el-avatar src="http://img.51miz.com/Element/00/77/27/49/25a8e39b_E772749_adadfc75.png!/quality/90/unsharp/true/compress/true/format/png"></el-avatar>
+                            <el-avatar shape="square" src="http://img.51miz.com/Element/00/77/27/49/25a8e39b_E772749_adadfc75.png!/quality/90/unsharp/true/compress/true/format/png"></el-avatar>
                         </div>
                         <div class="message_is_me_content">
                             <span>{{item.content}}</span>
                         </div>
                     </div>
-                    <div class="message_not_me">
+                    <div class="message_not_me" v-if="item.content != null">
                         <div class="col_not_me">
                             <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
                         </div>
@@ -27,7 +26,6 @@
                 </div>
             </div>
             <div id="message_send">
-                <!--<textarea  id="input_box"  style="border:none;outline:none;background: #f4f5f7"></textarea>-->
                 <br/>
                 <el-input
                         type="textarea"
@@ -49,16 +47,12 @@
     export default {
         name: 'Chat.vue',
         mounted () {
-            /* this.$nextTick(() => {
-              this.$refs.main.scrollTop = this.$refs.content.scrollHeight
-            }) */
             this.scrollToBottom()
         },
         data: function () {
             return {
                 textarea: '',
-                // eslint-disable-next-line standard/array-bracket-even-spacing
-                myMessages: [ {time: ''}, {content: 'Test'}],
+                myMessages: [{time: "testtime"}, {content: 'Testcontent'}],
                 messageTime: [],
                 time: 'now'
             }
@@ -83,13 +77,16 @@
                 let ss = new Date().getSeconds() < 10 ? '0' + new Date().getSeconds() : new Date().getSeconds()
                 var time = yy + '-' + mm + '-' + dd + ' ' + hh + ':' + mf + ':' + ss
                 var message = this.textarea
-                /* if (this.textarea !== null) {
-                  this.myMessages.push({ content: message })
-                } */
-                this.messageTime.push({ time: time })
-                /* this.messageTime = [{time: time}] */
-                this.myMessages.push({ content: message })
+                if(message.match(/^[ ]+$/)||message===""){
+                    alert("invalid null message")
+                }
+                else{
+                    this.myMessages.push({ time: time })
+                    this.myMessages.push({ content: message })
+                    
+                }
                 this.textarea = ''
+
             }
         }
     }
