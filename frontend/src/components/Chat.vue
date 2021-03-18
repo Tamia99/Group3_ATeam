@@ -20,7 +20,21 @@
                             <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
-                            <span>auto reply</span>
+                            <!--<span>auto reply{{ randomNumber }}</span>-->
+                            <span>Sorry! I cannot understand.</span>
+                            <!--<span>Can you answer some questions so we can recommend house for you.</span>
+                            <el-button id="ok" size="medium" type="primary">OK</el-button>-->
+                        </div>
+                    </div>
+                    <div class="message_not_me" v-if="item.content != null">
+                        <div class="col_not_me">
+                            <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
+                        </div>
+                        <div class="message_not_me_content">
+                            <!--<span>auto reply{{ randomNumber }}</span>-->
+                           <!-- <span>Sorry! I cannot understand.</span>-->
+                            <span>Can you answer some questions so we can recommend house for you.</span>
+                            <el-button id="ok" size="medium" type="primary" @click="open">OK</el-button>
                         </div>
                     </div>
                 </div>
@@ -44,6 +58,8 @@
 </template>
 
 <script>
+    import axios from 'axios'
+    import Questions from '../components/Questions.vue'
     export default {
         name: 'Chat.vue',
         mounted () {
@@ -54,7 +70,8 @@
                 textarea: '',
                 myMessages: [{time: "testtime"}, {content: 'Testcontent'}],
                 messageTime: [],
-                time: 'now'
+                time: 'now',
+                randomNumber:0
             }
         },
 
@@ -83,10 +100,56 @@
                 else{
                     this.myMessages.push({ time: time })
                     this.myMessages.push({ content: message })
-                    
                 }
                 this.textarea = ''
+                this.randomNumber = this.getRandomFromBackend()
+            },
+            getRandom (){
+                this.randomNumber = this.getRandomFromBackend()
+            },
+            getRandomFromBackend (){
+                const path = 'http://localhost:5000/api/random'
+                axios.get(path)
+                    .then(response => {
+                        this.randomNumber = response.data.randomNumber
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            },
+            open() {
+                const h = this.$createElement;
+                this.$msgbox({
+                    title: '',
+                    message: h('p', null, [
+                        /*h('span', null, '内容可以是 '),
+                        h('Questions', { style: 'color: teal' }, "Questions"),*/
+                        h(Questions)
 
+                    ]),
+                    showCancelButton: true,
+                    confirmButtonText: 'Submit',
+                    cancelButtonText: 'Cancel',
+                    beforeClose: (action, instance, done) => {
+                        if (action === 'confirm') {
+                            instance.confirmButtonLoading = true;
+                            instance.confirmButtonText = 'processing...';
+                            setTimeout(() => {
+                                done();
+                                setTimeout(() => {
+                                    instance.confirmButtonLoading = false;
+                                }, 300);
+                            }, 300);
+                        } else {
+                            done();
+                        }
+                    }
+                }).then(action => {
+                    this.$message({
+                        type: 'info',
+                        message: 'action: ' + action
+                    });
+                });
             }
         }
     }

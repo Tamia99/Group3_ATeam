@@ -1,9 +1,11 @@
 from flask import Flask, render_template, jsonify
+from flask_cors import CORS
 from random import *
 
 app = Flask(__name__,
             static_folder="frontend/dist/static",
             template_folder="frontend/dist")
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route('/', defaults = {'path': ''})
 @app.route('/<path:path>')
