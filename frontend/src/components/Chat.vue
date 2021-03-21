@@ -9,7 +9,7 @@
                     </div>
                     <div class="message_is_me" v-if="item.content != null">
                         <div class="col_is_me">
-                            <el-avatar shape="square" src="http://img.51miz.com/Element/00/77/27/49/25a8e39b_E772749_adadfc75.png!/quality/90/unsharp/true/compress/true/format/png"></el-avatar>
+                            <el-avatar shape="square" icon=el-icon-user-solid></el-avatar>
                         </div>
                         <div class="message_is_me_content">
                             <span>{{item.content}}</span>

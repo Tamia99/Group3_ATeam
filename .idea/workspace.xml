@@ -20,17 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0bc6727c-275c-436f-bc42-ccf0ec598fab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/17610.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Questions.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/RealEstate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RealEstate.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Chat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Chat.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Questions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Questions.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +112,7 @@
       <workItem from="1615734954749" duration="3477000" />
       <workItem from="1615776721218" duration="924000" />
       <workItem from="1615777700153" duration="4112000" />
-      <workItem from="1616039872211" duration="7610000" />
+      <workItem from="1616039872211" duration="10505000" />
     </task>
     <servers />
   </component>
@@ -132,34 +124,35 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="206" y="138" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616038904317">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="206" y="138" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.960@0.0.1500.960" timestamp="1616038904317" />
-    <state width="1458" height="256" key="GridCell.Tab.0.bottom" timestamp="1616049369716">
+    <state width="1458" height="256" key="GridCell.Tab.0.bottom" timestamp="1616302502112">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1616049369716" />
-    <state width="1458" height="256" key="GridCell.Tab.0.center" timestamp="1616049369715">
+    <state width="1458" height="256" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1616302502112" />
+    <state width="1458" height="256" key="GridCell.Tab.0.center" timestamp="1616302502112">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1616049369715" />
-    <state width="1458" height="256" key="GridCell.Tab.0.left" timestamp="1616049369714">
+    <state width="1458" height="256" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1616302502112" />
+    <state width="1458" height="256" key="GridCell.Tab.0.left" timestamp="1616302502112">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1616049369714" />
-    <state width="1458" height="256" key="GridCell.Tab.0.right" timestamp="1616049369716">
+    <state width="1458" height="256" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1616302502112" />
+    <state width="1458" height="256" key="GridCell.Tab.0.right" timestamp="1616302502112">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1616049369716" />
+    <state width="1458" height="256" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1616302502112" />
     <state x="413" y="206" key="search.everywhere.popup" timestamp="1615780503489">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
