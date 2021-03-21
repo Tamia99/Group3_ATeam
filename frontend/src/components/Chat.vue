@@ -34,7 +34,8 @@
                             <!--<span>auto reply{{ randomNumber }}</span>-->
                            <!-- <span>Sorry! I cannot understand.</span>-->
                             <span>Can you answer some questions so we can recommend house for you.</span>
-                            <el-button id="ok" size="medium" type="primary" @click="open">OK</el-button>
+                            <!--<el-button id="ok" size="medium" type="primary" @click="open">OK</el-button>-->
+                            <el-button id="ok" size="medium" type="primary" @click="dialogVisible = true">OK</el-button>
                         </div>
                     </div>
                 </div>
@@ -54,6 +55,19 @@
                 <el-button id="send" size="medium" type="primary" @click="sendMessage()">send</el-button>
             </div>
         </div>
+        <el-dialog
+                title=" "
+                :visible.sync="dialogVisible"
+                width="30%"
+                :before-close="handleClose"
+                fullscreen = true>
+            <!--<span>这是一段信息</span>-->
+            <Questions></Questions>
+            <span slot="footer" class="dialog-footer">
+                        <el-button @click="dialogVisible = false">Cancel</el-button>
+                        <el-button type="primary" @click="dialogVisible = false">Submit</el-button>
+                    </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -62,6 +76,7 @@
     import Questions from '../components/Questions.vue'
     export default {
         name: 'Chat.vue',
+        components: {Questions, Questions},
         mounted () {
             this.scrollToBottom()
         },
@@ -71,7 +86,8 @@
                 myMessages: [{time: "testtime"}, {content: 'Testcontent'}],
                 messageTime: [],
                 time: 'now',
-                randomNumber:0
+                randomNumber:0,
+                dialogVisible: false
             }
         },
 
@@ -117,13 +133,13 @@
                         console.log(error)
                     })
             },
-            open() {
+            /*open() {
                 const h = this.$createElement;
                 this.$msgbox({
                     title: '',
                     message: h('p', null, [
-                        /*h('span', null, '内容可以是 '),
-                        h('Questions', { style: 'color: teal' }, "Questions"),*/
+                        /!*h('span', null, '内容可以是 '),
+                        h('Questions', { style: 'color: teal' }, "Questions"),*!/
                         h(Questions)
 
                     ]),
@@ -150,7 +166,7 @@
                         message: 'action: ' + action
                     });
                 });
-            }
+            }*/
         }
     }
 </script>
