@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import HouseList from "../components/HouseList"
+import Recommend from "../components/Recommend"
 import Chat from "../components/Chat";
+
 
 
 Vue.use(VueRouter)
@@ -29,6 +32,16 @@ const routes = [
     path: '/Chat',
     name: 'Chat',
     component: Chat
+  },
+  {
+    path: '/house',
+    name: 'house',
+    component: HouseList
+  },
+  {
+    path: '/recommend',
+    name: 'recommend',
+    component: Recommend
   }
 ]
 
