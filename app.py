@@ -4,14 +4,18 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from random import *
 import config
+import pymysql
 
 app = Flask(__name__,
             static_folder="frontend/dist/static",
             template_folder="frontend/dist")
 
 app.config.from_object(config)
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+conn = pymysql.connect(host=config.HOST, user=config.USERNAME, password=config.PASSWORD, port=config.PORT, db=config.DATABASE)
+cursor = conn.cursor()
 
 @app.route('/', defaults = {'path': ''})
 @app.route('/<path:path>')
@@ -26,19 +30,23 @@ def random_number():
     return jsonify(response)
 
 
-class Article(db.Model):
-    __tablename__ = 'article'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String(10), nullable=False)
-    content = db.Column(db.Text, nullable=False)
-db.create_all()
+# class Article(db.Model):
+#     __tablename__ = 'article'
+#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     title = db.Column(db.String(10), nullable=False)
+#     content = db.Column(db.Text, nullable=False)
+# db.create_all()
 
 # title = request.args.get("title")
 # content = request.args.get("content")
 #测试数据库连接并新增一条数据
-article = Article(title = "333", content = "jfnsid")
-db.session.add(article)
-db.session.commit()
+# article = Article(title = "333", content = "jfnsid")
+# db.session.add(article)
+# db.session.commit()
+cursor.execute("INSERT INTO article(title,content) VALUES('999','jjjj')")
+conn.commit()
+cursor.close()
+conn.close()
 
 if __name__ == "__main__":
     app.run(debug=True)
