@@ -62,10 +62,11 @@
                 :before-close="handleClose"
                 fullscreen = true>
             <!--<span>这是一段信息</span>-->
-            <Questions></Questions>
+            <Questions ref="questionnaire"></Questions>
             <span slot="footer" class="dialog-footer">
                         <el-button @click="dialogVisible = false">Cancel</el-button>
-                        <el-button type="primary" @click="dialogVisible = false">Submit</el-button>
+                        <!--<el-button type="primary" @click="dialogVisible = false">Submit</el-button>-->
+                        <el-button type="primary" @click= "submit()">Submit</el-button>
                     </span>
         </el-dialog>
     </div>
@@ -76,7 +77,7 @@
     import Questions from '../components/Questions.vue'
     export default {
         name: 'Chat.vue',
-        components: {Questions, Questions},
+        components: {Questions: Questions},
         mounted () {
             this.scrollToBottom()
         },
@@ -119,6 +120,11 @@
                 }
                 this.textarea = ''
                 this.randomNumber = this.getRandomFromBackend()
+            },
+            submit(){
+                /*this.$refs.questionnaire.testmethod();*/
+                this.$refs.questionnaire.recommend();
+                /*this.dialogVisible = false*/
             },
             getRandom (){
                 this.randomNumber = this.getRandomFromBackend()

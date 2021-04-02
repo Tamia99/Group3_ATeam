@@ -26,8 +26,17 @@ def random_number():
     }
     return jsonify(response)
 
+@app.route('/api/recommend',methods=["POST"])
+def recommend():
+    # list = tolist(request.data)
+    d = bytes.decode(request.data)
+    d = d.replace("\"","").replace("[","").replace("]","")
+    list = d.split(",")
+    # print(type(d))
+    # print (list)
+    return list
 
-database.test()
+#database.test()
 
 recommendation.recommendationSysAlgorithm()
 
