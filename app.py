@@ -3,6 +3,7 @@ from flask import Flask, render_template, jsonify, request, json, Response
 from flask_cors import CORS
 from random import *
 import database
+import recommendation
 
 app = Flask(__name__,
             static_folder="frontend/dist/static",
@@ -26,7 +27,10 @@ def random_number():
     return jsonify(response)
 
 
-# database.test()
+database.test()
+
+recommendation.recommendationSysAlgorithm()
+
 conn.close()
 if __name__ == "__main__":
     app.run(debug=True)
