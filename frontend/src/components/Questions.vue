@@ -2,98 +2,38 @@
     <div>
         <h1>Here is the questions page</h1><br>
         <el-form ref="form" :model="form" label-width="80px">
-            <el-form-item label="">
-        <span>Q1 What size of house do you want?</span>
-        <el-input v-model="form.inputSize" placeholder="please enter"></el-input>
-            </el-form-item>
-            <el-form-item label="">
-        <span>Q2 Do you want an air conditioner? If yes,what kind of air conditioner do you want?</span><br>
-        <el-cascader
-                :options="form.airConditioner"
-                :props="{ checkStrictly: true }"
-                placeholder="please choose"
-                clearable></el-cascader>
-            </el-form-item>
-            <el-form-item label="">
-        <span>Q3 What type of architectural style do you want?</span><br>
-        <el-select v-model="form.architecture" placeholder="please choose">
-            <el-option
-                    v-for="item in form.architectures"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
-            </el-option>
-        </el-select>
-            </el-form-item>
-            <el-form-item label="">
-        <span>Q4 What size of basement do you want?</span><br>
-        <el-input v-model="form.inputBasement" placeholder="please enter"></el-input>
-            </el-form-item>
-            <el-form-item >
-        <span>Q5 What kind of bathroom do you want?</span><br>
-        <el-select v-model="form.bathroom" placeholder="please choose">
-            <el-option
-                    v-for="item in form.bathrooms"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
-            </el-option>
-        </el-select>
-            </el-form-item>
-            <el-form-item >
-        <span>Q6 How many bedroom do you want?</span><br>
-        <el-input-number v-model="form.bedroom" @change="handleChange" :min="0" :max="20" label="bedroom"></el-input-number>
-            </el-form-item>
-            <el-form-item >
-            <span>Q7 What type of building class do you want?</span><br>
-            <el-select v-model="form.buildingClass" placeholder="please choose">
-                <el-option
-                        v-for="item in form.buildingClasses"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                </el-option>
-            </el-select>
-            </el-form-item>
-            <el-form-item >
-            <span>Q8 What building quality do you want?(1 for the best)</span><br>
-            <el-slider v-model="form.quality" :min="1" :max="12"></el-slider>
-            </el-form-item>
-            <el-form-item >
-            <span>Q10 Do you want a deck?</span><br>
-            <el-select v-model="form.deck" placeholder="please choose">
-                <el-option
-                        v-for="item in form.decks"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                </el-option>
-            </el-select>
-            </el-form-item>
             <el-form-item>
-            <span>Q11 How many fire places do you want?</span><br>
-            <el-input-number v-model="form.fire" @change="handleChange" :min="0" :max="9" label="fire place"></el-input-number>
-            </el-form-item>
-            <el-form-item>
-            <span>Q12 How many garages do you want?</span><br>
-            <el-input-number v-model="form.garage" @change="handleChange" :min="0" :max="25" label="garage"></el-input-number>
-            </el-form-item>
-            <el-form-item>
-            <span>Q13 Do you want a spa hot tub?</span><br>
-            <el-select v-model="form.spa" placeholder="please choose">
-                <el-option
-                        v-for="item in form.spas"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                </el-option>
-            </el-select>
-            </el-form-item>
-            <el-form-item>
-                <span>Q14 What type of heating or system do you want?</span><br>
-                <el-select v-model="form.heating" placeholder="please choose">
+                <span>Q1 Please identifies the general zoning classification.</span><br>
+                <el-select v-model="form.classification" placeholder="please choose">
                     <el-option
-                            v-for="item in form.heatings"
+                            v-for="item in form.classifications"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="">
+                <span>Q2 What size of house do you want?</span>
+                <el-input v-model="form.inputSize" placeholder="please enter"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <span>Q3 Please choose the flatness property.</span><br>
+                <el-select v-model="form.flatness" placeholder="please choose">
+                    <el-option
+                            v-for="item in form.flatnessP"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+
+            <el-form-item>
+                <span>Q4 Please choose type of utilities.</span><br>
+                <el-select v-model="form.utility" placeholder="please choose">
+                    <el-option
+                            v-for="item in form.utilities"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value">
@@ -101,10 +41,10 @@
                 </el-select>
             </el-form-item>
             <el-form-item>
-                <span>Q15 What type of property land use do you want?</span><br>
-                <el-select v-model="form.property" placeholder="please choose">
+                <span>Q5 Please choose the neighborhood.</span><br>
+                <el-select v-model="form.neighborhood" placeholder="please choose">
                     <el-option
-                            v-for="item in form.properties"
+                            v-for="item in form.neighborhoods"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value">
@@ -112,14 +52,10 @@
                 </el-select>
             </el-form-item>
             <el-form-item>
-                <span>Q16 How many rooms do you want?</span><br>
-                <el-input v-model="form.room" placeholder="please enter"></el-input>
-            </el-form-item>
-            <el-form-item>
-                <span>Q17 What type of construction do you want?</span><br>
-                <el-select v-model="form.construction" placeholder="please choose">
+                <span>Q6 Please choose the style of dwelling.</span><br>
+                <el-select v-model="form.style" placeholder="please choose">
                     <el-option
-                            v-for="item in form.constructions"
+                            v-for="item in form.styles"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value">
@@ -127,22 +63,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item>
-                <span>Q18 How many units do you want?</span><br>
-                <el-input v-model="form.unit" placeholder="please enter"></el-input>
-            </el-form-item>
-            <el-form-item >
-                <span>Q19 Do you want a yard?</span><br>
-                <el-select v-model="form.yard" placeholder="please choose">
-                    <el-option
-                            v-for="item in form.yards"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                    </el-option>
-                </el-select>
-            </el-form-item>
-            <el-form-item>
-                <span>Q20 Which year do you prefer the house had been built?</span><br>
+                <span>Q7 Which year do you prefer the house had been built?</span><br>
                 <el-date-picker
                         v-model="form.year"
                         type="year"
@@ -152,218 +73,481 @@
                 </el-date-picker>
             </el-form-item>
             <el-form-item>
-                <span>Q12 How many stories do you want?</span><br>
-                <el-input-number v-model="form.story" @change="handleChange" :min="1" :max="41" label="story"></el-input-number>
+                <span>Q8 Please choose the type of roof.</span><br>
+                <el-select v-model="form.roof" placeholder="please choose">
+                    <el-option
+                            v-for="item in form.roofs"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
             </el-form-item>
-        <!--<span>Q1 What kind of house do you want?</span>-->
-        <!--<el-select v-model="value" placeholder="please choose">
-            <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-            </el-option>
-        </el-select>
-        <br>
-        <el-input-number v-model="num" @change="handleChange" :min="0" :max="10" label="描述文字"></el-input-number>-->
+            <el-form-item>
+                <span>Q9 Please choose the type of masonry veneer.</span><br>
+                <el-select v-model="form.vaneer" placeholder="please choose">
+                    <el-option
+                            v-for="item in form.vaneers"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item>
+                <span>Q10 Please choose the type of foundation.</span><br>
+                <el-select v-model="form.foundation" placeholder="please choose">
+                    <el-option
+                            v-for="item in form.foundations"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="">
+                <span>Q11 What size of basement do you want?</span>
+                <el-input v-model="form.basement" placeholder="please enter"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <span>Q12 Please choose the type of heating.</span><br>
+                <el-select v-model="form.heating" placeholder="please choose">
+                    <el-option
+                            v-for="item in form.heatings"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item >
+                <span>Q13 Do you want a central air conditioning?</span><br>
+                <el-select v-model="form.air" placeholder="please choose">
+                    <el-option
+                            v-for="item in form.airs"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item >
+                <span>Q14 Please choose the type of electrical system.</span><br>
+                <el-select v-model="form.electrical" placeholder="please choose">
+                    <el-option
+                            v-for="item in form.electricals"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="">
+                <span>Q15 What size of above grade (ground) living area do you want?</span>
+                <el-input v-model="form.living" placeholder="please enter"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <span>Q16 How many full bathrooms do you want?</span><br>
+                <el-input-number v-model="form.fullbath" @change="handleChange" :min="0" :max="10" label="full bathroom"></el-input-number>
+            </el-form-item>
+            <el-form-item>
+                <span>Q17 How many half bathrooms do you want?</span><br>
+                <el-input-number v-model="form.halfbath" @change="handleChange" :min="0" :max="10" label="half bathroom"></el-input-number>
+            </el-form-item>
+            <el-form-item>
+                <span>Q18 How many bedrooms(above ground) do you want?</span><br>
+                <el-input-number v-model="form.bedroom" @change="handleChange" :min="0" :max="10" label="bedroom"></el-input-number>
+            </el-form-item>
+            <el-form-item>
+                <span>Q19 How many kitchens(above ground) do you want?</span><br>
+                <el-input-number v-model="form.kitchen" @change="handleChange" :min="0" :max="10" label="kitchen"></el-input-number>
+            </el-form-item>
+            <el-form-item>
+                <span>Q20 How many rooms(total rooms above ground) do you want?</span><br>
+                <el-input-number v-model="form.room" @change="handleChange" :min="0" :max="30" label="room"></el-input-number>
+            </el-form-item>
+            <el-form-item>
+                <span>Q21 How many fire places do you want?</span><br>
+                <el-input-number v-model="form.fire" @change="handleChange" :min="0" :max="5" label="fire"></el-input-number>
+            </el-form-item>
+            <el-form-item label="">
+                <span>Q22 What size of garage in car capacity do you want?</span><br>
+                <el-input-number v-model="form.garage" @change="handleChange" :min="0" :max="10" label="garage"></el-input-number>
+            </el-form-item>
+            <el-form-item >
+                <span>Q23 Do you want a wood deck?</span><br>
+                <el-select v-model="form.deck" placeholder="please choose">
+                    <el-option
+                            v-for="item in form.decks"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item >
+                <span>Q24 Do you want a pool?</span><br>
+                <el-select v-model="form.pool" placeholder="please choose">
+                    <el-option
+                            v-for="item in form.pools"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="">
+                <span>Q25 What price of house do you prefer?</span>
+                <el-input v-model="form.price" placeholder="please enter"></el-input>
+            </el-form-item>
         </el-form>
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         name: "Questions.vue",
         data() {
             return {
                 form: {
+                    classification:"",
                     inputSize: '',
-                    num: 0,
-                    architecture:"",
-                    inputBasement:"",
-                    bathroom:"",
+                    flatness:"",
+                    utility:"",
+                    neighborhood:"",
+                    style:"",
+                    year:"",
+                    roof:"",
+                    vaneer:"",
+                    foudation:"",
+                    basement:"",
+                    heating:"",
+                    air:"",
+                    electrical:"",
+                    living:"",
+                    fullbath:"",
+                    halfbath:"",
                     bedroom:"",
-                    buildingClass:"",
-                    quality:1,
-                    deck:"",
+                    kitchen:"",
+                    room:"",
                     fire:"",
                     garage:"",
-                    spa:"",
-                    heating:"",
-                    property:"",
-                    room:"",
-                    unit:"",
-                    year:"",
-                    story:"",
-                    airConditioner: [{
-                        value: '13',
-                        label: 'Yes',
-                        children: [{
-                            value: '1',
-                            label: 'Central',
-                        }, {
-                            value: '3',
-                            label: 'Evaporative Cooler',
-                        }, {
-                            value: '9',
-                            label: 'Refrigeration',
-                        }, {
-                            value: '11',
-                            label: 'Wall Unit',
-                        }, {
-                            value: '12',
-                            label: 'Window Unit',
-                        }],
-                    },
-                        {
-                            value: '5',
-                            label: 'None',
-                        },
-                    ],
-                    architectures: [{
-                        value: '2',
-                        label: 'Bungalow'
-                    }, {
-                        value: '3',
-                        label: 'Cape Cod'
-                    }, {
-                        value: '5',
-                        label: 'Colonial'
-                    }, {
-                        value: '7',
-                        label: 'Contemporary'
-                    }, {
-                        value: '8',
-                        label: 'Conventional'
+                    deck:"",
+                    pool:"",
+                    price:"",
+                    classifications: [{
+                        value: -1,
+                        label: 'It does not matter'
                     },{
-                        value: '10',
-                        label: 'French Provincial'
+                        value: 'A',
+                        label: 'Agriculture'
+                    }, {
+                        value: 'C',
+                        label: 'Commercial'
+                    }, {
+                        value: 'FV',
+                        label: 'Floating Village Residential'
+                    }, {
+                        value: 'I',
+                        label: 'Industrial'
+                    }, {
+                        value: 'RH',
+                        label: 'Residential High Density'
                     },{
-                        value: '21',
-                        label: 'Ranch/Rambler'
+                        value: 'RL',
+                        label: 'Residential Low Density'
                     },{
-                        value: '27',
-                        label: 'Victorian'
+                        value: 'RP',
+                        label: 'Residential Low Density Park'
+                    },{
+                        value: 'RM',
+                        label: 'Residential Medium Density'
                     },
                     ],
-                    bathrooms: [{
-                        value: 'nobathroom',
-                        label: 'No bathroom'
+                    flatnessP: [{
+                        value: -1,
+                        label: 'It does not matter'
+                    },{
+                        value: 'Lvl',
+                        label: 'Near Flat/Level'
                     }, {
-                        value: 'fullbathroom',
-                        label: 'Full bathroom'
+                        value: 'Bnk',
+                        label: 'Banked - Quick and significant rise from street grade to building'
                     }, {
-                        value: 'threequarterbathroom',
-                        label: 'Three quarter bathroom'
+                        value: 'HLF',
+                        label: 'Hillside - Significant slope from side to side'
                     }, {
-                        value: 'bothbathroom',
-                        label: 'Both bathroom'
+                        value: 'Low',
+                        label: 'Depression'
                     },
                     ],
-                    buildingClasses: [{
-                        value: '1',
-                        label: 'Buildings having fireproofed structural steel frames carrying all wall, floor and roof loads. Wall, floor and roof structures are built of non-combustible materials.'
+                    utilities: [{
+                        value: -1,
+                        label: 'It does not matter'
+                    },{
+                        value: 'AllPub',
+                        label: 'All public Utilities (E,G,W,& S)'
                     }, {
-                        value: '2',
-                        label: 'Buildings having fireproofed reinforced concrete frames carrying all wall floor and roof loads which are all non-combustible.'
+                        value: 'NoSewr',
+                        label: 'Electricity, Gas, and Water (Septic Tank)'
                     }, {
-                        value: '3',
-                        label: 'Buildings having exterior walls built of a non-combustible material such as brick, concrete, block or poured concrete. Interior partitions and roof structures are built of combustible materials. Floor may be concrete or wood frame.'
+                        value: 'NoSeWa',
+                        label: 'Electricity and Gas Only'
                     }, {
-                        value: '4',
-                        label: 'Buildings having wood or wood and steel frames'
+                        value: 'ELO',
+                        label: 'Electricity only'
+                    },
+                    ],
+                    neighborhoods: [{
+                        value: -1,
+                        label: 'It does not matter'
+                    },{
+                        value: 'Blmngtn',
+                        label: 'Bloomington Heights'
                     }, {
-                        value: '5',
-                        label: 'Specialized buildings that do not fit in any of the above categories'
+                        value: 'Blueste',
+                        label: 'Bluestem'
+                    }, {
+                        value: 'BrDale',
+                        label: 'Briardale'
+                    }, {
+                        value: 'BrkSide',
+                        label: 'Brookside'
+                    },{
+                        value: 'ClearCr',
+                        label: 'Clear Creek'
+                    }, {
+                        value: 'CollgCr',
+                        label: 'College Creek'
+                    }, {
+                        value: 'Crawfor',
+                        label: 'Crawford'
+                    }, {
+                        value: 'Edwards',
+                        label: 'Edwards'
+                    },{
+                        value: 'Gilbert',
+                        label: 'Gilbert'
+                    }, {
+                        value: 'IDOTRR',
+                        label: 'Iowa DOT and Rail Road'
+                    }, {
+                        value: 'MeadowV',
+                        label: 'Meadow Village'
+                    }, {
+                        value: 'Mitchel',
+                        label: 'Mitchell'
+                    },{
+                        value: 'Names',
+                        label: 'North Ames'
+                    }, {
+                        value: 'NoRidge',
+                        label: 'Northridge'
+                    }, {
+                        value: 'NPkVill',
+                        label: 'Northpark Villa'
+                    }, {
+                        value: 'NridgHt',
+                        label: 'Northridge Heights'
+                    },{
+                        value: 'NWAmes',
+                        label: 'Northwest Ames'
+                    }, {
+                        value: 'OldTown',
+                        label: 'Old Town'
+                    }, {
+                        value: 'SWISU',
+                        label: 'South & West of Iowa State University'
+                    }, {
+                        value: 'Sawyer',
+                        label: 'Sawyer'
+                    },{
+                        value: 'SawyerW',
+                        label: 'Sawyer West'
+                    }, {
+                        value: 'Somerst',
+                        label: 'Somerset'
+                    }, {
+                        value: 'StoneBr',
+                        label: 'Stone Brook'
+                    }, {
+                        value: 'Timber',
+                        label: 'Timberland'
+                    },{
+                        value: 'Veenker',
+                        label: 'Veenker'
+                    },
+                    ],
+                    styles: [{
+                        value: -1,
+                        label: 'It does not matter'
+                    },{
+                        value: '1Story',
+                        label: 'One Story'
+                    }, {
+                        value: '1.5Fin',
+                        label: 'One and one-half story: 2nd level finished'
+                    }, {
+                        value: '1.5Unf',
+                        label: 'One and one-half story: 2nd level unfinished'
+                    }, {
+                        value: '2Story',
+                        label: 'Two story'
+                    }, {
+                        value: '2.5Fin',
+                        label: 'Two and one-half story: 2nd level finished'
+                    },{
+                        value: '2.5Unf',
+                        label: 'Two and one-half story: 2nd level unfinished'
+                    },{
+                        value: 'SFoyer',
+                        label: 'Split Foyer'
+                    },{
+                        value: 'SLvl',
+                        label: 'Split Level'
+                    },
+                    ],
+                    roofs: [{
+                        value: -1,
+                        label: 'It does not matter'
+                    },{
+                        value: 'Flat',
+                        label: 'Flat'
+                    }, {
+                        value: 'Gable',
+                        label: 'Gable'
+                    }, {
+                        value: 'Gambrel',
+                        label: 'Gabrel (Barn)'
+                    }, {
+                        value: 'Hip',
+                        label: 'Hip'
+                    }, {
+                        value: 'Mansard',
+                        label: 'Mansard'
+                    },{
+                        value: 'Shed',
+                        label: 'Shed'
+                    },
+                    ],
+                    vaneers: [{
+                        value: -1,
+                        label: 'It does not matter'
+                    },{
+                        value: 'BrkCmn',
+                        label: 'Brick Common'
+                    }, {
+                        value: 'BrkFace',
+                        label: 'Brick Face'
+                    }, {
+                        value: 'CBlock',
+                        label: 'Cinder Block'
+                    }, {
+                        value: 'None',
+                        label: 'None'
+                    }, {
+                        value: 'Stone',
+                        label: 'Stone'
+                    },
+                    ],
+                    foundations: [{
+                        value: -1,
+                        label: 'It does not matter'
+                    },{
+                        value: 'BrkTil',
+                        label: 'Brick & Tile'
+                    }, {
+                        value: 'CBlock',
+                        label: 'Cinder Block'
+                    }, {
+                        value: 'PConc',
+                        label: 'Poured Contrete'
+                    }, {
+                        value: 'Slab',
+                        label: 'Slab'
+                    }, {
+                        value: 'Stone',
+                        label: 'Stone'
+                    },{
+                        value: 'Wood',
+                        label: 'Wood'
+                    },
+                    ],
+                    heatings: [{
+                        value: -1,
+                        label: 'It does not matter'
+                    },{
+                        value: 'Floor',
+                        label: 'Floor Furnace'
+                    }, {
+                        value: 'GasA',
+                        label: 'Gas forced warm air furnace'
+                    }, {
+                        value: 'GasW',
+                        label: 'Gas hot water or steam heat'
+                    }, {
+                        value: 'Grav',
+                        label: 'Gravity furnace'
+                    }, {
+                        value: 'OthW',
+                        label: 'Hot water or steam heat other than gas'
+                    },{
+                        value: 'Wall',
+                        label: 'Wall furnace'
+                    },
+                    ],
+                    airs: [{
+                        value: -1,
+                        label: 'It does not matter'
+                    },{
+                        value: 0,
+                        label: 'No'
+                    }, {
+                        value: 1,
+                        label: 'Yes'
+                    },
+                    ],
+                    electricals: [{
+                        value: -1,
+                        label: 'It does not matter'
+                    },{
+                        value: 'SBrkr',
+                        label: 'Standard Circuit Breakers & Romex'
+                    }, {
+                        value: 'FuseA',
+                        label: 'Fuse Box over 60 AMP and all Romex wiring (Average)'
+                    }, {
+                        value: 'FuseF',
+                        label: '60 AMP Fuse Box and mostly Romex wiring (Fair)'
+                    }, {
+                        value: 'FuseP',
+                        label: '60 AMP Fuse Box and mostly knob & tube wiring (poor)'
+                    }, {
+                        value: 'Mix',
+                        label: 'Mixed'
                     },
                     ],
                     decks: [{
-                        value: 'hasdeck',
-                        label: 'Yes'
-                    }, {
-                        value: ' ',
+                        value: -1,
+                        label: 'It does not matter'
+                    },{
+                        value: 0,
                         label: 'No'
-                    },
-                    ],
-                    spas: [{
-                        value: 'homespahothub',
-                        label: 'Home spa hot hub'
                     }, {
-                        value: 'poolspahothub',
-                        label: 'Pool spa hot hub'
-                    }, {
-                        value: 'poolnospahothub',
-                        label: 'Pool no spa hot hub'
-                    },
-                        {
-                            value: '0',
-                            label: 'I do not want'
-                        },
-                    ],
-                    heatings: [{
-                        value: '1',
-                        label: 'Baseboard'
-                    }, {
-                        value: '2',
-                        label: 'Central'
-                    }, {
-                        value: '6',
-                        label: 'Forced air'
-                    }, {
-                        value: '7',
-                        label: 'Floor/Wall'
-                    }, {
-                        value: '10',
-                        label: 'Gravity'
-                    },
-                    ],
-                    properties: [{
-                        value: '31',
-                        label: 'Commercial/Office/Residential Mixed Used'
-                    }, {
-                        value: '47',
-                        label: 'Store/Office (Mixed Use)'
-                    }, {
-                        value: '246',
-                        label: 'Duplex (2 Units, Any Combination)'
-                    }, {
-                        value: '247',
-                        label: 'Triplex (3 Units, Any Combination)'
-                    }, {
-                        value: '248',
-                        label: 'Quadruplex (4 Units, Any Combination)'
-                    },
-                        {
-                            value: '0',
-                            label: 'Not clear'
-                        },
-                    ],
-                    constructions: [{
-                        value: '4',
-                        label: 'Concrete'
-                    }, {
-                        value: '6',
-                        label: 'Frame'
-                    }, {
-                        value: '10',
-                        label: 'Metal'
-                    }, {
-                        value: '11',
-                        label: 'Manufactured'
-                    }, {
-                        value: '13',
-                        label: 'Masonry'
-                    },
-                        {
-                            value: '0',
-                            label: 'Not clear'
-                        },
-                    ],
-                    yards: [{
-                        value: 'hasyard',
+                        value: 1,
                         label: 'Yes'
-                    }, {
-                        value: ' ',
+                    },
+                    ],
+                    pools: [{
+                        value: -1,
+                        label: 'It does not matter'
+                    },{
+                        value: 0,
                         label: 'No'
+                    }, {
+                        value: 1,
+                        label: 'Yes'
                     },
                     ],
                 },
@@ -372,6 +556,24 @@
         methods: {
             handleChange(value) {
                 console.log(value);
+            },
+            recommend(){
+                let data = [this.form.classification,this.form.inputSize,this.form.flatness,this.form.utility,this.form.neighborhood,
+                            this.form.style,this.form.year,this.form.roof,this.form.vaneer,this.form.foudation,this.form.basement,
+                            this.form.heating,this.form.air,this.form.electrical,this.form.living,this.form.fullbath,this.form.halfbath,
+                            this.form.bedroom,this.form.kitchen,this.form.room,this.form.fire,this.form.garage,this.form.deck,
+                            this.form.pool,this.form.price]
+               /* alert(data)*/
+                const path = 'http://localhost:5000/api/recommend'
+                axios.post(path, data)
+                    .then(() => {
+                        alert("successful submission")
+                    })
+                    .catch((error) => {
+                        // eslint-disable-next-line
+                        console.log(error)
+
+                    })
             }
         }
     }

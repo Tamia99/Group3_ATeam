@@ -8,20 +8,18 @@ import database
 def recommendationSysAlgorithm():
     # User information
     test = [['RL', 5000, 'Lvl', 'AllPub', 'NAmes', '1Story', 2004, 'Flat', 'None', 'Slab', 200, 'GasA', 0, 'SBrkr',
-            1700, 2, 1, 3, 2, 6, 0, 1, 0, 0, 0, 0, 0, 0, 100000]]
+            1700, 2, 1, 3, 2, 6, 0, 1, 0, 0, 100000]]
     recommendation = database.getAllRecommendations()
     headers1 = ["Id", "MSZoning", "LotArea", "LandContour", "Utilities", "Neighborhood",
               "HouseStyle", "YearBuilt", "RoofStyle", "MasVnrType", "Foundation",
               "TotalBsmtSF", "Heating", "CentralAir", "Electrical", "GrLivArea",
               "TotalFullBath", "TotalHalfBath", "BedroomAbvGr", "KitchenAbvGr",
-              "TotRmsAbvGrd", "Fireplaces", "GarageCars", "WoodDeckSF", "OpenPorchSF",
-              "EnclosedPorch", "ThreeSsnPorch", "ScreenPorch", "Pool", "SalePrice"]
+              "TotRmsAbvGrd", "Fireplaces", "GarageCars", "WoodDeckSF","Pool", "SalePrice"]
     headers2 = ["MSZoning", "LotArea", "LandContour", "Utilities", "Neighborhood",
                "HouseStyle", "YearBuilt", "RoofStyle", "MasVnrType", "Foundation",
                "TotalBsmtSF", "Heating", "CentralAir", "Electrical", "GrLivArea",
                "TotalFullBath", "TotalHalfBath", "BedroomAbvGr", "KitchenAbvGr",
-               "TotRmsAbvGrd", "Fireplaces", "GarageCars", "WoodDeckSF", "OpenPorchSF",
-               "EnclosedPorch", "ThreeSsnPorch", "ScreenPorch", "Pool", "SalePrice"]
+               "TotRmsAbvGrd", "Fireplaces", "GarageCars", "WoodDeckSF", "Pool", "SalePrice"]
     data = pd.DataFrame(list(recommendation), columns = headers1)
     data_id = pd.DataFrame(data["Id"])
     data.drop("Id", axis=1, inplace=True)
