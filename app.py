@@ -5,6 +5,7 @@ from random import *
 import database
 import recommendation
 
+
 app = Flask(__name__,
             static_folder="frontend/dist/static",
             template_folder="frontend/dist")
@@ -29,17 +30,21 @@ def random_number():
 @app.route('/api/recommend',methods=["POST"])
 def recommend():
     # list = tolist(request.data)
-    d = bytes.decode(request.data)
-    d = d.replace("\"","").replace("[","").replace("]","")
-    list = d.split(",")
-    # print(type(d))
-    # print (list)
-    return list
+    #d = bytes.decode(request.data)
+    list = eval(str(request.data, encoding='utf-8'))
+    #print(request.data)
+    #print(type(request.data))
+    print(list)
+    print(type(list))
+    #d = d.replace("\"","").replace("[","").replace("]","")
+    #print(d)
+    #list = d.split(",")
+    recommendation.recommendationSysAlgorithm(list)
+    #return list
 
 #database.test()
+#recommendation.recommendationSysAlgorithm()
 
-recommendation.recommendationSysAlgorithm()
-
-conn.close()
+#conn.close()
 if __name__ == "__main__":
     app.run(debug=True)
