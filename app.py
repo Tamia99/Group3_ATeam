@@ -29,18 +29,11 @@ def random_number():
 
 @app.route('/api/recommend',methods=["POST"])
 def recommend():
-    # list = tolist(request.data)
-    #d = bytes.decode(request.data)
     list = eval(str(request.data, encoding='utf-8'))
-    #print(request.data)
-    #print(type(request.data))
-    print(list)
-    print(type(list))
-    #d = d.replace("\"","").replace("[","").replace("]","")
-    #print(d)
-    #list = d.split(",")
+    # print(list)
+    # print(type(list))
     recommendation.recommendationSysAlgorithm(list)
-    #return list
+    return "1"
 
 #database.test()
 #recommendation.recommendationSysAlgorithm()

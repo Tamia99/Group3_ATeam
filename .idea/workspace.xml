@@ -22,13 +22,8 @@
     <list default="true" id="0bc6727c-275c-436f-bc42-ccf0ec598fab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recommendation.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommendation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Chat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Chat.vue" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,18 +64,6 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="npm.serve">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -186,22 +169,22 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="531" y="238" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1616760440181" />
-    <state width="1458" height="256" key="GridCell.Tab.0.bottom" timestamp="1617378787191">
+    <state width="1458" height="256" key="GridCell.Tab.0.bottom" timestamp="1617773825185">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1617378787191" />
-    <state width="1458" height="256" key="GridCell.Tab.0.center" timestamp="1617378787191">
+    <state width="1458" height="256" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1617773825185" />
+    <state width="1458" height="256" key="GridCell.Tab.0.center" timestamp="1617773825184">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1617378787191" />
-    <state width="1458" height="256" key="GridCell.Tab.0.left" timestamp="1617378787191">
+    <state width="1458" height="256" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1617773825184" />
+    <state width="1458" height="256" key="GridCell.Tab.0.left" timestamp="1617773825183">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1617378787191" />
-    <state width="1458" height="256" key="GridCell.Tab.0.right" timestamp="1617378787191">
+    <state width="1458" height="256" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1617773825183" />
+    <state width="1458" height="256" key="GridCell.Tab.0.right" timestamp="1617773825184">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1617378787191" />
+    <state width="1458" height="256" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1617773825184" />
     <state x="252" y="124" key="SettingsEditor" timestamp="1616315288451">
       <screen x="0" y="0" width="1500" height="960" />
     </state>

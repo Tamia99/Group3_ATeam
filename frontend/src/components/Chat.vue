@@ -122,9 +122,8 @@
                 this.randomNumber = this.getRandomFromBackend()
             },
             submit(){
-                /*this.$refs.questionnaire.testmethod();*/
                 this.$refs.questionnaire.recommend();
-                /*this.dialogVisible = false*/
+                this.dialogVisible = false
             },
             getRandom (){
                 this.randomNumber = this.getRandomFromBackend()
