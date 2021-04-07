@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1> This is a Chat Page </h1>
+        <!-- <h1> This is a Chat Page </h1> -->
         <div id="message_box">
             <div id="message_show" class="message_show">
                 <div v-for="item in myMessages" :key="item.id">
