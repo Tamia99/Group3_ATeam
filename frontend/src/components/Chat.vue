@@ -123,7 +123,7 @@
             },
             submit(){
                 this.$refs.questionnaire.recommend();
-                this.dialogVisible = false
+                /*this.dialogVisible = false*/
             },
             getRandom (){
                 this.randomNumber = this.getRandomFromBackend()

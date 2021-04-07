@@ -35,6 +35,16 @@ def recommend():
     recommendation.recommendationSysAlgorithm(list)
     return "1"
 
+@app.route('/api/allHouses')
+def getAll():
+    houses = list(database.getAllHouses())
+    # houses = database.getAllHouses()
+    response = {
+        "house": houses
+        # "house" : "houduanshuju"
+    }
+    return jsonify(response)
+
 #database.test()
 #recommendation.recommendationSysAlgorithm()
 

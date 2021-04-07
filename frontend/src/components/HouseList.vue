@@ -15,17 +15,34 @@
                 </el-select> -->
             <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
-        
+        <br>
+        <span>{{houses}}</span>
     </div>
     
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     data() {
-        return {}
+        return {
+            houses:"test"
+        }
     },
-    created() {},
+
+    created:function(){
+        /*this.houses = "house"*/
+        const path = 'http://localhost:5000/api/allHouses'
+        axios.get(path)
+            .then(response => {
+                /*this.houses = "house"*/
+                this.houses = response.data.house
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    },
     methods: {}
 }
 </script>
