@@ -15,8 +15,55 @@
                 </el-select> -->
             <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
-        <br>
-        <span>{{houses}}</span>
+
+        <!--<br>
+        <span>{{houses}}</span>-->
+        <el-table
+                :data="tableData"
+                border
+                stripe
+                height="500"
+                >
+            <el-table-column
+                    fixed
+                    prop="id"
+                    label="id"
+                    width="80"
+                    >
+            </el-table-column>
+            <el-table-column
+                    fixed
+                    prop="price"
+                    label="Price"
+                    >
+            </el-table-column>
+            <el-table-column
+                    fixed
+                    prop="room"
+                    label="Room Count"
+                    >
+            </el-table-column>
+            <el-table-column
+                    fixed
+                    prop="area"
+                    label="Area"
+                    >
+            </el-table-column>
+            <el-table-column
+                    fixed
+                    prop="neighborhood"
+                    label="Neighborhood"
+                   >
+            </el-table-column>
+            <el-table-column
+                    fixed="right"
+                    label="Actions"
+                    width="100">
+                <template slot-scope="scope">
+                    <el-button @click="handleClick(scope.row)" type="text" size="small">View Detail</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
     </div>
     
 </template>
@@ -27,17 +74,29 @@ import axios from "axios";
 export default {
     data() {
         return {
-            houses:"test"
+            houses:"test",
+            tableData: [{
+                id: "id",
+                price: "p",
+                room: "r",
+                area: "a",
+                neighborhood: "n"
+            }]
         }
     },
 
     created:function(){
-        /*this.houses = "house"*/
         const path = 'http://localhost:5000/api/allHouses'
         axios.get(path)
             .then(response => {
-                /*this.houses = "house"*/
-                this.houses = response.data.house
+                let all = response.data.house;
+                this.tableData.push({id:response.data.house[0][0],price:response.data.house[0][80],room:response.data.house[0][54],area:response.data.house[0][4],neighborhood:response.data.house[0][12]})
+                let i = 0;
+                while (i< all.length){
+                    this.tableData.push({id:all[i][0],price:all[i][80],room:all[i][54],area:all[i][4],neighborhood:all[i][12]})
+                    i++
+                }
+
             })
             .catch(error => {
                 console.log(error)
