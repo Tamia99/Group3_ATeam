@@ -19,22 +19,16 @@
         <!--<br>
         <span>{{houses}}</span>-->
         <el-table
-                :data="tableData"
+                :data="tableData.slice((currentPage - 1) * pageSize, currentPage*pageSize)"
                 border
                 stripe
-                height="500"
+                :default-sort = "{prop: 'price', order: 'descending'}"
                 >
-            <el-table-column
-                    fixed
-                    prop="id"
-                    label="id"
-                    width="80"
-                    >
-            </el-table-column>
             <el-table-column
                     fixed
                     prop="price"
                     label="Price"
+                    sortable
                     >
             </el-table-column>
             <el-table-column
@@ -56,6 +50,12 @@
                    >
             </el-table-column>
             <el-table-column
+                    fixed
+                    prop="type"
+                    label="Sale Type"
+            >
+            </el-table-column>
+            <el-table-column
                     fixed="right"
                     label="Actions"
                     width="100">
@@ -64,6 +64,15 @@
                 </template>
             </el-table-column>
         </el-table>
+        <el-pagination
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="currentPage"
+                :page-sizes="[10, 20, 30, 40]"
+                :page-size="10"
+                layout="total, sizes, prev, pager, next, jumper"
+                :total="currentTotal">
+        </el-pagination>
     </div>
     
 </template>
@@ -74,35 +83,44 @@ import axios from "axios";
 export default {
     data() {
         return {
-            houses:"test",
-            tableData: [{
-                id: "id",
-                price: "p",
-                room: "r",
-                area: "a",
-                neighborhood: "n"
-            }]
+            currentTotal: 0,
+            currentPage: 1,
+            pageSize: 10,
+            tableData: []
         }
     },
 
     created:function(){
-        const path = 'http://localhost:5000/api/allHouses'
-        axios.get(path)
-            .then(response => {
-                let all = response.data.house;
-                this.tableData.push({id:response.data.house[0][0],price:response.data.house[0][80],room:response.data.house[0][54],area:response.data.house[0][4],neighborhood:response.data.house[0][12]})
-                let i = 0;
-                while (i< all.length){
-                    this.tableData.push({id:all[i][0],price:all[i][80],room:all[i][54],area:all[i][4],neighborhood:all[i][12]})
-                    i++
-                }
+        this.getList()
 
-            })
-            .catch(error => {
-                console.log(error)
-            })
     },
-    methods: {}
+    methods: {
+        async getList(){
+            const path = 'http://localhost:5000/api/allHouses'
+            axios.get(path)
+                .then(response => {
+                    let all = response.data.house;
+                    this.currentTotal = all.length
+                    let i = 0;
+                    while (i< all.length){
+                        this.tableData.push({price:all[i][80],room:all[i][54],area:all[i][4],neighborhood:all[i][12],type:all[i][2]})
+                        i++
+                    }
+
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+        handleSizeChange(val) {
+            this.pageSize = val
+            console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+            this.currentPage = val
+            console.log(`当前页: ${val}`);
+        }
+    }
 }
 </script>
 
