@@ -1,5 +1,4 @@
 <template>
-    
     <div>
         <!-- <header class="header"><img src="./header.png"></header> -->
         <div id="message_box">

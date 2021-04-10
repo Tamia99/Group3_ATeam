@@ -16,9 +16,10 @@
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
-                background-color="#545c64"
+                background-color="#003A44"
                 text-color="#fff"
                 active-text-color="#ffd04b">
+                <!-- 545c64 -->
                 <!-- <el-menu-item index="1" disabled> -->
                   
                   
@@ -50,10 +51,11 @@
               <router-view/>
               </div>
           </el-main>
-            <el-footer>Footer</el-footer>
+            <!-- <el-footer><img src="./assets/footer.png"></el-footer> -->
           </el-container>
+          
         </el-container>
-      
+      <el-footer><img src="./assets/footer.png"></el-footer>
 
       
   </el-container>
@@ -88,7 +90,7 @@
 }
 
 .el-menu-vertical-demo{
-  height: 800px!important;
+  height: 600px!important;
   /* padding-left: -20%!important; */
 }
 
@@ -111,6 +113,12 @@
   justify-content: space-between;
   padding-left: 0%!important;
   height: 5%!important;
+}
+
+.el-footer{
+  /* height: 120%!important; */
+  padding-top: 0.1%!important;
+  padding-left: 0%!important;
 }
 
 /* .el-aside{
