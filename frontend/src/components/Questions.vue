@@ -576,16 +576,21 @@
                 const path = 'http://localhost:5000/api/recommend'
                 axios.post(path, data)
                     .then(response => {
-                        alert("successful submission")
+                       /* alert("successful submission")*/
+
                         let all = response.data.result
                         this.$store.commit("newRecommendation",all)
+                        this.$store.commit("newStatus","0")
+                        /*alert(this.$store.state.status)*/
                         console.log(this.$store.state.recommendation)
+                        /*alert("successful submission")*/
                     })
                     .catch((error) => {
                         // eslint-disable-next-line
                         console.log(error)
 
                     })
+
             }
         }
     }

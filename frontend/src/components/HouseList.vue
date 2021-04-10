@@ -16,8 +16,7 @@
             <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
 
-        <!--<br>
-        <span>{{houses}}</span>-->
+        <el-divider></el-divider>
         <el-table
                 :data="tableData.slice((currentPage - 1) * pageSize, currentPage*pageSize)"
                 border
