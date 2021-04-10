@@ -201,11 +201,15 @@
                 <el-input v-model="form.price" placeholder="please enter"></el-input>
             </el-form-item>
         </el-form>
+        <p>
+            Copyright&nbsp;&copy;&nbsp;{{author}} - 2016 All rights reserved
+        </p>
     </div>
 </template>
 
 <script>
     import axios from 'axios'
+
     export default {
         name: "Questions.vue",
         data() {
@@ -553,6 +557,11 @@
                 },
             }
         },
+        computed: {
+            author () {
+                return this.$store.state.author
+            }
+        },
         methods: {
             handleChange(value) {
                 console.log(value);
@@ -566,8 +575,11 @@
                /* alert(data)*/
                 const path = 'http://localhost:5000/api/recommend'
                 axios.post(path, data)
-                    .then(() => {
+                    .then(response => {
                         alert("successful submission")
+                        let all = response.data.result
+                        this.$store.commit("newRecommendation",all)
+                        console.log(this.$store.state.recommendation)
                     })
                     .catch((error) => {
                         // eslint-disable-next-line

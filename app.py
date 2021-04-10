@@ -30,24 +30,21 @@ def random_number():
 @app.route('/api/recommend',methods=["POST"])
 def recommend():
     list = eval(str(request.data, encoding='utf-8'))
-    # print(list)
-    # print(type(list))
-    recommendation.recommendationSysAlgorithm(list)
-    return "1"
+    resultId = recommendation.recommendationSysAlgorithm(list)
+    result = database.getHouseById(resultId)
+    response = {
+        "result": result
+    }
+    return jsonify(response)
 
 @app.route('/api/allHouses')
 def getAll():
     houses = list(database.getAllHouses())
-    # houses = database.getAllHouses()
     response = {
         "house": houses
-        # "house" : "houduanshuju"
     }
     return jsonify(response)
 
-#database.test()
-#recommendation.recommendationSysAlgorithm()
 
-#conn.close()
 if __name__ == "__main__":
     app.run(debug=True)

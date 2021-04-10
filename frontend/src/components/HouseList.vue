@@ -92,7 +92,6 @@ export default {
 
     created:function(){
         this.getList()
-
     },
     methods: {
         async getList(){
