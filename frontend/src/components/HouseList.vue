@@ -15,8 +15,64 @@
                 </el-select> -->
             <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
-        <br>
-        <span>{{houses}}</span>
+
+        <!--<br>
+        <span>{{houses}}</span>-->
+        <el-table
+                :data="tableData.slice((currentPage - 1) * pageSize, currentPage*pageSize)"
+                border
+                stripe
+                :default-sort = "{prop: 'price', order: 'descending'}"
+                >
+            <el-table-column
+                    fixed
+                    prop="price"
+                    label="Price"
+                    sortable
+                    >
+            </el-table-column>
+            <el-table-column
+                    fixed
+                    prop="room"
+                    label="Room Count"
+                    >
+            </el-table-column>
+            <el-table-column
+                    fixed
+                    prop="area"
+                    label="Area"
+                    >
+            </el-table-column>
+            <el-table-column
+                    fixed
+                    prop="neighborhood"
+                    label="Neighborhood"
+                   >
+            </el-table-column>
+            <el-table-column
+                    fixed
+                    prop="type"
+                    label="Sale Type"
+            >
+            </el-table-column>
+            <el-table-column
+                    fixed="right"
+                    label="Actions"
+                    width="100">
+                <template slot-scope="scope">
+                    <el-button @click="handleClick(scope.row)" type="text" size="small">View Detail</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <el-pagination
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="currentPage"
+                :page-sizes="[10, 20, 30, 40]"
+                :page-size="10"
+                layout="total, sizes, prev, pager, next, jumper"
+                :total="currentTotal">
+        </el-pagination>
     </div>
     
 </template>
@@ -27,23 +83,52 @@ import axios from "axios";
 export default {
     data() {
         return {
-            houses:"test"
+            currentTotal: 0,
+            currentPage: 1,
+            pageSize: 10,
+            tableData: []
         }
     },
 
     created:function(){
-        /*this.houses = "house"*/
-        const path = 'http://localhost:5000/api/allHouses'
-        axios.get(path)
-            .then(response => {
-                /*this.houses = "house"*/
-                this.houses = response.data.house
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        this.getList()
+
     },
-    methods: {}
+    methods: {
+        async getList(){
+            const path = 'http://localhost:5000/api/allHouses'
+            axios.get(path)
+                .then(response => {
+                    let all = response.data.house;
+                    this.currentTotal = all.length
+                    let i = 0;
+                    while (i< all.length){
+                        let p = all[i][80]
+                        let r = all[i][54]
+                        let a = all[i][4]
+                        let n = all[i][12]
+                        let t = all[i][2]
+                        if (n == "CollgCr"){
+                            n = "College Creek"
+                        }
+                        this.tableData.push({price:p,room:r,area:a,neighborhood:n,type:t})
+                        i++
+                    }
+
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+        handleSizeChange(val) {
+            this.pageSize = val
+            console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+            this.currentPage = val
+            console.log(`当前页: ${val}`);
+        }
+    }
 }
 </script>
 
