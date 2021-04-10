@@ -1,50 +1,17 @@
+
+
 <template>
 
-  
-  
-    <!-- <el-header>
-      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b">
-        <el-menu-item index="1" @click="route1">Smart Chatting</el-menu-item>
-        <el-menu-item index="2" @click="route2">Recommendation</el-menu-item>
-        <el-menu-item index="3" @click="route3">House Resources</el-menu-item>
-      </el-menu>
-      <div class="line"></div>
-    </el-header> -->
-
-    <!-- <el-container>
-      <el-main>
-        <div id="app"> -->
-            <!-- <div id="nav">
-              <router-link to="/">Home</router-link> |
-              
-            </div> -->
-          <!-- <router-view/>
-        </div>
-      </el-main>
-    </el-container> -->
-    <!-- <el-header>
-        <el-menu :default-active="activeIndex" class="el-menu-demo" @select="handleSelect"
-            background-color="#545c64"
-            text-color="#fff"
-            active-text-color="#ffd04b"
-            >
-
-        </el-menu>
-        
-      </el-header> -->
-
     <el-container>
-        <el-header>header</el-header>
-
-      
+        <!-- <el-header class='el-header-horizontal'><img src="./assets/header.png" class='header'></el-header> -->
+        <el-header>
+          <img src="./assets/header.png">
+        </el-header>
         <el-container>
-          <el-aside width="200px">
+
+          <el-aside width="200px" class="aside">
             <el-col :span="50">
               <el-menu
-              
                 default-active="2"
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
@@ -52,24 +19,10 @@
                 background-color="#545c64"
                 text-color="#fff"
                 active-text-color="#ffd04b">
-                <!-- <el-submenu index="1">
-                  <template slot="title">
-                    <i class="el-icon-location"></i>
-                    <span>导航一</span>
-                  </template> -->
-                  <!-- <el-menu-item-group>
-                    <template slot="title">分组一</template>
-                    <el-menu-item index="1-1">选项1</el-menu-item>
-                    <el-menu-item index="1-2">选项2</el-menu-item>
-                  </el-menu-item-group>
-                  <el-menu-item-group title="分组2">
-                    <el-menu-item index="1-3">选项3</el-menu-item>
-                  </el-menu-item-group>
-                  <el-submenu index="1-4">
-                    <template slot="title">选项4</template>
-                    <el-menu-item index="1-4-1">选项1</el-menu-item> -->
-                  <!-- </el-submenu> -->
-                <!-- </el-submenu> -->
+                <!-- <el-menu-item index="1" disabled> -->
+                  
+                  
+                <!-- </el-menu-item> -->
                 <el-menu-item index="1" @click="route1">
                   <i class="el-icon-chat-square"></i>
                   Smart Chatting
@@ -97,7 +50,7 @@
               <router-view/>
               </div>
           </el-main>
-            <!-- <el-footer>Footer</el-footer> -->
+            <el-footer>Footer</el-footer>
           </el-container>
         </el-container>
       
@@ -135,12 +88,38 @@
 }
 
 .el-menu-vertical-demo{
-  height: 600px!important;
+  height: 800px!important;
+  /* padding-left: -20%!important; */
 }
 
 .main-part{
   margin-top: -2%;
 }
+
+.header{
+  height:200%;
+  width: 100%;
+  padding-left: -100%;
+  /* display: flex; */
+}
+
+.el-menu-demo{
+  padding-left: -100%!important;
+}
+
+.el-header{
+  justify-content: space-between;
+  padding-left: 0%!important;
+  height: 5%!important;
+}
+
+/* .el-aside{
+  position: absolute;
+}
+
+.el-main{
+  position: absolute;
+} */
 
 
 </style>
