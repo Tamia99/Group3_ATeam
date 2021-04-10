@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0bc6727c-275c-436f-bc42-ccf0ec598fab" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HouseList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HouseList.vue" afterDir="false" />
-    </list>
+    <list default="true" id="0bc6727c-275c-436f-bc42-ccf0ec598fab" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,8 +155,16 @@
       <workItem from="1617505244637" duration="4465000" />
       <workItem from="1617521790620" duration="90000" />
       <workItem from="1617521891595" duration="10716000" />
-      <workItem from="1618045217143" duration="1566000" />
+      <workItem from="1618045217143" duration="1734000" />
     </task>
+    <task id="LOCAL-00001" summary="change tags in house list">
+      <created>1618047005652</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1618047005652</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,42 +183,28 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="change tags in house list" />
+    <option name="LAST_COMMIT_MESSAGE" value="change tags in house list" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="206" y="138" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616312891109">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state x="206" y="138" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.960@0.0.1500.960" timestamp="1616312891109" />
-    <state x="531" y="238" key="FileChooserDialogImpl" timestamp="1616760440181">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state x="531" y="238" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1616760440181" />
-    <state width="1458" height="256" key="GridCell.Tab.0.bottom" timestamp="1617773825185">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1617773825185" />
-    <state width="1458" height="256" key="GridCell.Tab.0.center" timestamp="1617773825184">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1617773825184" />
-    <state width="1458" height="256" key="GridCell.Tab.0.left" timestamp="1617773825183">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1617773825183" />
-    <state width="1458" height="256" key="GridCell.Tab.0.right" timestamp="1617773825184">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1617773825184" />
-    <state x="252" y="124" key="SettingsEditor" timestamp="1616315288451">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state x="252" y="124" key="SettingsEditor/0.0.1500.960@0.0.1500.960" timestamp="1616315288451" />
-    <state x="343" y="216" key="Vcs.Push.Dialog.v2" timestamp="1618044590420">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state x="343" y="216" key="Vcs.Push.Dialog.v2/0.0.1500.960@0.0.1500.960" timestamp="1618044590420" />
-    <state x="414" y="207" width="672" height="678" key="search.everywhere.popup" timestamp="1617366241298">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state x="414" y="207" width="672" height="678" key="search.everywhere.popup/0.0.1500.960@0.0.1500.960" timestamp="1617366241298" />
+    <state x="206" y="138" key="#com.intellij.execution.impl.EditConfigurationsDialog" />
+    <state x="206" y="138" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.960@0.0.1500.960" />
+    <state x="531" y="238" key="FileChooserDialogImpl" />
+    <state x="531" y="238" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" />
+    <state width="1458" height="256" key="GridCell.Tab.0.bottom" />
+    <state width="1458" height="256" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" />
+    <state width="1458" height="256" key="GridCell.Tab.0.center" />
+    <state width="1458" height="256" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" />
+    <state width="1458" height="256" key="GridCell.Tab.0.left" />
+    <state width="1458" height="256" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" />
+    <state width="1458" height="256" key="GridCell.Tab.0.right" />
+    <state width="1458" height="256" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" />
+    <state x="252" y="124" key="SettingsEditor" />
+    <state x="252" y="124" key="SettingsEditor/0.0.1500.960@0.0.1500.960" />
+    <state x="343" y="216" key="Vcs.Push.Dialog.v2" />
+    <state x="343" y="216" key="Vcs.Push.Dialog.v2/0.0.1500.960@0.0.1500.960" />
+    <state x="414" y="207" width="672" height="678" key="search.everywhere.popup" />
+    <state x="414" y="207" width="672" height="678" key="search.everywhere.popup/0.0.1500.960@0.0.1500.960" />
   </component>
 </project>
