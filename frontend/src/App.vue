@@ -90,7 +90,7 @@
 }
 
 .el-menu-vertical-demo{
-  height: 600px!important;
+  height: 800px!important;
   /* padding-left: -20%!important; */
 }
 
