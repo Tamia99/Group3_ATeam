@@ -180,7 +180,6 @@
                     else if (t == "RM") {
                         t = "Residential Medium Density"
                     }
-
                     this.tableData.push({id:all[i][0],price:p,room:r,area:a,neighborhood:n,type:t})
                     i++
                 }

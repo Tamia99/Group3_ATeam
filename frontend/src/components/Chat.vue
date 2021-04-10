@@ -39,6 +39,15 @@
                             <el-button id="ok" size="medium" type="primary" @click="dialogVisible = true">OK</el-button>
                         </div>
                     </div>
+                    <div class="message_not_me" v-if="status ==='0'&& item.content != null">
+                        <div class="col_not_me">
+                            <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
+                        </div>
+                        <div class="message_not_me_content">
+                            <!--<el-link href="/recommend">Click to see our recommendation for you.</el-link>-->
+                            <router-link to="/recommend">Click to see our recommendation for you.</router-link>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="message_send">
@@ -79,6 +88,7 @@
     export default {
         name: 'Chat.vue',
         components: {Questions: Questions},
+        status:"1",
         mounted () {
             this.scrollToBottom()
         },
@@ -93,7 +103,9 @@
             }
         },
 
-        updated: function () { this.scrollToBottom() },
+        updated: function () {
+            this.scrollToBottom()
+        },
 
         methods: {
             // 滚动条自动保持在底部
@@ -118,13 +130,24 @@
                 else{
                     this.myMessages.push({ time: time })
                     this.myMessages.push({ content: message })
+                    this.status = "1"
+                    this.$store.commit("newStatus",this.status)
                 }
                 this.textarea = ''
                 this.randomNumber = this.getRandomFromBackend()
+
             },
             submit(){
                 this.$refs.questionnaire.recommend();
-                /*this.dialogVisible = false*/
+
+                this.status = "0"
+                this.dialogVisible = false
+            },
+            changeStatus(){
+                if(this.$store.state.status=="0"){
+                    this.status = this.$store.state.status
+                    this.dialogVisible = false
+                }
             },
             getRandom (){
                 this.randomNumber = this.getRandomFromBackend()
@@ -139,40 +162,7 @@
                         console.log(error)
                     })
             },
-            /*open() {
-                const h = this.$createElement;
-                this.$msgbox({
-                    title: '',
-                    message: h('p', null, [
-                        /!*h('span', null, '内容可以是 '),
-                        h('Questions', { style: 'color: teal' }, "Questions"),*!/
-                        h(Questions)
 
-                    ]),
-                    showCancelButton: true,
-                    confirmButtonText: 'Submit',
-                    cancelButtonText: 'Cancel',
-                    beforeClose: (action, instance, done) => {
-                        if (action === 'confirm') {
-                            instance.confirmButtonLoading = true;
-                            instance.confirmButtonText = 'processing...';
-                            setTimeout(() => {
-                                done();
-                                setTimeout(() => {
-                                    instance.confirmButtonLoading = false;
-                                }, 300);
-                            }, 300);
-                        } else {
-                            done();
-                        }
-                    }
-                }).then(action => {
-                    this.$message({
-                        type: 'info',
-                        message: 'action: ' + action
-                    });
-                });
-            }*/
         }
     }
 </script>
