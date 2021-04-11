@@ -4,21 +4,26 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "preinstall": "npx npm-force-resolutions"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "build": "^0.1.4",
-    "core-js": "^3.6.5",
+    "core-js": "^3.10.1",
     "element-ui": "^2.15.1",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
+    "vue": "^2.6.12",
+    "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "vue-template-compiler": "^2.6.11"
+    "@vue/cli-plugin-babel": "~4.5.12",
+    "@vue/cli-plugin-router": "~4.5.12",
+    "@vue/cli-service": "~4.5.12",
+    "element-theme-chalk": "^2.15.1",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "resolutions": {
+    "graceful-fs": "4.2.3"
   }
 }

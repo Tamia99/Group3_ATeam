@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id = "all">
         <!-- <header class="header"><img src="./header.png"></header> -->
         <div id="message_box">
             <div id="message_show" class="message_show">
@@ -69,9 +69,10 @@
                 :visible.sync="dialogVisible"
                 width="30%"
                 :before-close="handleClose"
-                fullscreen = true>
+                fullscreen = true
+                id="q">
             <!--<span>这是一段信息</span>-->
-            <Questions ref="questionnaire"></Questions>
+            <Questions  ref="questionnaire"></Questions>
             <span slot="footer" class="dialog-footer">
                         <el-button @click="dialogVisible = false">Cancel</el-button>
                         <!--<el-button type="primary" @click="dialogVisible = false">Submit</el-button>-->
@@ -167,6 +168,13 @@
 </script>
 
 <style scoped>
+    /*.el-button{
+        background-color: #66A4AC;
+
+    }*/
+    /*#all{
+        background: #C2DDE4;
+    }*/
     #message_box{
         border: 1px solid #d7dae2;
         border-radius: 4px ;
@@ -199,7 +207,7 @@
         margin: 10px;
         padding: 10px;
         border-radius: 8px 0px 8px 8px ;
-        background: #409EFF;
+        background: #06565B;
         max-width: 70%;
         width: fit-content;
         word-wrap: break-word;
@@ -241,4 +249,5 @@
         float: right;
         margin-top: 20px;
     }
+
 </style>

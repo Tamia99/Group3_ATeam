@@ -188,3 +188,11 @@
         }
     }
 </script>
+<style scoped>
+    .el-table{
+        color: #66A4AC !important;
+    }
+    .el-button{
+        color: #003A44!important;
+    }
+</style>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id = "q">
         <h1>Here is the questions page</h1><br>
         <el-form ref="form" :model="form" label-width="80px">
             <el-form-item>
@@ -202,7 +202,7 @@
             </el-form-item>
         </el-form>
         <p>
-            Copyright&nbsp;&copy;&nbsp;{{author}} - 2016 All rights reserved
+            Copyright&nbsp;&copy;&nbsp;{{author}} - 2021 All rights reserved
         </p>
     </div>
 </template>
@@ -597,5 +597,9 @@
 </script>
 
 <style scoped>
+.el-select{
+    background: #ffffff !important;
+    color: #ffffff !important;
+}
 
 </style>

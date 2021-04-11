@@ -2,20 +2,20 @@
     <!-- <h1>This is the houseList page</h1> -->
     
     <div>
-        <el-breadcrumb separator-class="el-icon-arrow-right">
-            <!-- <el-breadcrumb-item>All Resources</el-breadcrumb-item> -->
+        <!--<el-breadcrumb separator-class="el-icon-arrow-right">
+            &lt;!&ndash; <el-breadcrumb-item>All Resources</el-breadcrumb-item> &ndash;&gt;
         </el-breadcrumb>
 
         
         <el-input placeholder="Please input your key words">
-                <!-- <el-select v-model="select" slot="prepend" placeholder="请选择">
+                &lt;!&ndash; <el-select v-model="select" slot="prepend" placeholder="请选择">
                     <el-option label="餐厅名" value="1"></el-option>
                     <el-option label="订单号" value="2"></el-option>
                     <el-option label="用户电话" value="3"></el-option>
-                </el-select> -->
+                </el-select> &ndash;&gt;
             <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
-
+-->
         <el-divider></el-divider>
         <el-table
                 :data="tableData.slice((currentPage - 1) * pageSize, currentPage*pageSize)"
@@ -70,7 +70,8 @@
                 :page-sizes="[10, 20, 30, 40]"
                 :page-size="10"
                 layout="total, sizes, prev, pager, next, jumper"
-                :total="currentTotal">
+                :total="currentTotal"
+                background = "true">
         </el-pagination>
     </div>
     
@@ -228,10 +229,45 @@ export default {
 }
 </script>
 
+<style>
+   /* .el-pagination {
+    background: #66A4AC;
+    color:#ffffff !important;
+}*/
+    .el-select ,
+    .el-pagination__sizes .el-input .el-input__inner:hover,
+    .el-select .el-input__inner:focus {
+        border-color: #ffffff !important;
+        background:#66A4AC !important;
+    }
+
+    .el-pager li,
+    .el-pagination button {
+        background: #66A4AC !important;
+    }
+
+    .el-pager li.active,.el-pager li:hover,
+    .el-pagination button:hover {
+        background: #ffffff !important;
+        color: #66A4AC !important;
+    }
+
+
+</style>
 <style scoped>
 .el-input {
     width: 500px;
     padding-right: 50%;
 
 }
+.el-table{
+    color: #66A4AC !important;
+}
+.el-button{
+    color: #003A44!important;
+}
+
+
+
+
 </style>

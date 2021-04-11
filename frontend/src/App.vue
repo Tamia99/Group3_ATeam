@@ -63,6 +63,9 @@
 </template>
 
 <style>
+  .el-container{
+    background:  #66A4AC;
+  }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -113,6 +116,7 @@
   justify-content: space-between;
   padding-left: 0%!important;
   height: 5%!important;
+  width: 200px!important;
 }
 
 .el-footer{
@@ -121,13 +125,17 @@
   padding-left: 0%!important;
 }
 
-/* .el-aside{
-  position: absolute;
+.el-main{
+  padding-top: 4%!important;
 }
 
-.el-main{
-  position: absolute;
-} */
+.el-aside{
+  margin-top: -0.2%!important;
+}
+
+/*.el-main{*/
+/*  position: absolute;*/
+/*} */
 
 
 </style>
