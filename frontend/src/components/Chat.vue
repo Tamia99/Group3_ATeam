@@ -95,7 +95,8 @@
         data: function () {
             return {
                 textarea: '',
-                myMessages: [{time: "testtime"}, {content: 'Testcontent'}],
+                // myMessages: [{time: "testtime"}, {content: 'Testcontent'}],
+                myMessages: [],
                 messageTime: [],
                 time: 'now',
                 randomNumber:0,

@@ -20,7 +20,6 @@
     "@vue/cli-plugin-babel": "~4.5.12",
     "@vue/cli-plugin-router": "~4.5.12",
     "@vue/cli-service": "~4.5.12",
-    "element-theme-chalk": "^2.15.1",
     "vue-template-compiler": "^2.6.12"
   },
   "resolutions": {

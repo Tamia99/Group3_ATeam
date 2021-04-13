@@ -2,10 +2,59 @@
 
 <template>
 
+<el-container>
+  <el-header>
+
+    <!-- <el-menu
+      :default-active="activeIndex2"
+      class="el-menu-demo"
+      mode="horizontal"
+      @select="handleSelect">
+      <img height=70px src="./assets/teamlogo.png" style="padding-left:20px">
+      
+      </el-menu> -->
+    <el-menu
+      :default-active="activeIndex2"
+      class="el-menu-demo"
+      mode="horizontal"
+      @select="handleSelect"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+      style="height:62px">
+      <!-- background-color="#545c64" -->
+        <!-- <img src="./assets/teamlogo.png"> -->
+        <img height=57px src="./assets/teamlogo.png" style="padding-left:630px">
+        <el-menu-item index="1" @click="route4"><i class="el-icon-s-home"></i></el-menu-item>
+        <el-menu-item index="2" @click="route1"><i class="el-icon-chat-square"></i>Assistant</el-menu-item>
+          
+        <el-menu-item index="3" @click="route2"><i class="el-icon-aim"></i>Recommendations</el-menu-item>
+        <el-menu-item index="4" @click="route3"><i class="el-icon-house"></i>Houses</el-menu-item>
+
+        
+      </el-menu>
+      
+  </el-header>
+      <el-main class="main-part">
+        <div id="app">
+            
+          <router-view/>
+        </div>
+      </el-main>
+      <el-footer>
+        
+      </el-footer>
+  <!-- <el-footer><img src="./assets/footer.png"></el-footer> -->
+</el-container>
+    
+    
+    
+
+<!-- 
     <el-container>
-        <!-- <el-header class='el-header-horizontal'><img src="./assets/header.png" class='header'></el-header> -->
+        
         <el-header>
-          <img src="./assets/header.png">
+          <img src="./assets/header2.png">
         </el-header>
         <el-container>
 
@@ -19,11 +68,7 @@
                 background-color="#003A44"
                 text-color="#fff"
                 active-text-color="#ffd04b">
-                <!-- 545c64 -->
-                <!-- <el-menu-item index="1" disabled> -->
-                  
-                  
-                <!-- </el-menu-item> -->
+                
                 <el-menu-item index="1" @click="route1">
                   <i class="el-icon-chat-square"></i>
                   Smart Chatting
@@ -44,26 +89,23 @@
           <el-container>
             <el-main class="main-part">
               <div id="app">
-            <!-- <div id="nav">
-              <router-link to="/">Home</router-link> |
-              
-            </div> -->
+            
               <router-view/>
               </div>
           </el-main>
-            <!-- <el-footer><img src="./assets/footer.png"></el-footer> -->
+            
           </el-container>
           
         </el-container>
       <el-footer><img src="./assets/footer.png"></el-footer>
 
       
-  </el-container>
+  </el-container> -->
   
 </template>
 
 <style>
-  .el-container{
+  /* .el-container{
     background:  #66A4AC;
   }
 #app {
@@ -94,7 +136,6 @@
 
 .el-menu-vertical-demo{
   height: 800px!important;
-  /* padding-left: -20%!important; */
 }
 
 .main-part{
@@ -105,7 +146,6 @@
   height:200%;
   width: 100%;
   padding-left: -100%;
-  /* display: flex; */
 }
 
 .el-menu-demo{
@@ -120,7 +160,6 @@
 }
 
 .el-footer{
-  /* height: 120%!important; */
   padding-top: 0.1%!important;
   padding-left: 0%!important;
 }
@@ -132,11 +171,26 @@
 .el-aside{
   margin-top: -0.2%!important;
 }
+*/
 
-/*.el-main{*/
-/*  position: absolute;*/
-/*} */
+.el-footer{
+  padding-top: 0.1%!important;
+  padding-left: 0%!important;
+  padding-right: 0%!important;
+  
+}
 
+.el-header{
+  
+  padding-left: 0%!important;
+  padding-right: 0%!important;
+  /* height: 120px!important; */
+}
+
+.el-menu-item{
+  font-size: 14px!important;
+  /* display: flex; */
+}
 
 </style>
 
@@ -147,13 +201,16 @@ export default{
   
   methods: {
     route1 () {
-      this.$router.push('/chat')
+      this.$router.push('/Chat')
     },
     route2 () {
       this.$router.push('/recommend')
     },
     route3 () {
       this.$router.push('/house')
+    },
+    route4 () {
+      this.$router.push('/welcome')
     }
 
   }
