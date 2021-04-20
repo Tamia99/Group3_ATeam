@@ -45,7 +45,15 @@ def getAll():
     }
     return jsonify(response)
 
-print(nlp.preprocessing())
+@app.route('/api/nlp',methods=["POST"])
+def process():
+    m = eval(str(request.data, encoding='utf-8'))
+    print("message=",m)
+    reply = nlp.preprocessing(m[0])
+    print(reply)
+    return "1"
+
+# print(nlp.preprocessing())
 
 if __name__ == "__main__":
     app.run(debug=True)

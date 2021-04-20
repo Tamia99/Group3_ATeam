@@ -131,11 +131,25 @@
                 else{
                     this.myMessages.push({ time: time })
                     this.myMessages.push({ content: message })
+                    this.process(message)
                     this.status = "1"
                     this.$store.commit("newStatus",this.status)
                 }
                 this.textarea = ''
                 this.randomNumber = this.getRandomFromBackend()
+
+            },
+            process(message){
+                const path = 'http://localhost:5000/api/nlp'
+                let data = [message]
+                axios.post(path, data)
+                    .then(response => {
+
+                    })
+                    .catch((error) => {
+                        console.log(error)
+
+                    })
 
             },
             submit(){
@@ -150,7 +164,7 @@
                     this.dialogVisible = false
                 }
             },
-            getRandom (){
+            /*getRandom (){
                 this.randomNumber = this.getRandomFromBackend()
             },
             getRandomFromBackend (){
@@ -162,7 +176,7 @@
                     .catch(error => {
                         console.log(error)
                     })
-            },
+            },*/
 
         }
     }

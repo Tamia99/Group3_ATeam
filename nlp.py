@@ -9,9 +9,9 @@ def readStopword():
         for line in f:
             stopwords.add(line.rstrip())
 
-def preprocessing():
+def preprocessing(data):
     readStopword()
-    data = "All work and no play makes jack a dull boy, all work and no play"
+    #data = "All work and no play makes jack a dull boy, all work and no play"
     words = word_tokenize(data)
     wordsList = []
     for w in words:

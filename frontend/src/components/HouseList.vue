@@ -2,21 +2,8 @@
     <!-- <h1>This is the houseList page</h1> -->
     
     <div>
-        <!--<el-breadcrumb separator-class="el-icon-arrow-right">
-            &lt;!&ndash; <el-breadcrumb-item>All Resources</el-breadcrumb-item> &ndash;&gt;
-        </el-breadcrumb>
-
-        
-        <el-input placeholder="Please input your key words">
-                &lt;!&ndash; <el-select v-model="select" slot="prepend" placeholder="请选择">
-                    <el-option label="餐厅名" value="1"></el-option>
-                    <el-option label="订单号" value="2"></el-option>
-                    <el-option label="用户电话" value="3"></el-option>
-                </el-select> &ndash;&gt;
-            <el-button slot="append" icon="el-icon-search"></el-button>
-        </el-input>
--->
-        <el-divider></el-divider>
+       <HouseItem ref="houseArea"></HouseItem>
+        <!--<el-divider></el-divider>
         <el-table
                 :data="tableData.slice((currentPage - 1) * pageSize, currentPage*pageSize)"
                 border
@@ -72,26 +59,28 @@
                 layout="total, sizes, prev, pager, next, jumper"
                 :total="currentTotal"
                 background = "true">
-        </el-pagination>
+        </el-pagination>-->
     </div>
     
 </template>
 
 <script>
 import axios from "axios";
+import HouseItem from "./HouseItem";
 
 export default {
+    components: {HouseItem:HouseItem},
     data() {
         return {
-            currentTotal: 0,
+            /*currentTotal: 0,
             currentPage: 1,
             pageSize: 10,
-            tableData: []
+            tableData: []*/
         }
     },
 
     created:function(){
-        this.getList()
+       /* this.getList()*/
     },
     methods: {
         async getList(){
@@ -230,27 +219,7 @@ export default {
 </script>
 
 <style>
-   /* .el-pagination {
-    background: #66A4AC;
-    color:#ffffff !important;
-}*/
-    .el-select ,
-    .el-pagination__sizes .el-input .el-input__inner:hover,
-    .el-select .el-input__inner:focus {
-        border-color: #ffffff !important;
-        background:#66A4AC !important;
-    }
 
-    .el-pager li,
-    .el-pagination button {
-        background: #66A4AC !important;
-    }
-
-    .el-pager li.active,.el-pager li:hover,
-    .el-pagination button:hover {
-        background: #ffffff !important;
-        color: #66A4AC !important;
-    }
 
 
 </style>
