@@ -4,7 +4,7 @@ from flask_cors import CORS
 from random import *
 import database
 import recommendation
-
+import nlp
 
 app = Flask(__name__,
             static_folder="frontend/dist/static",
@@ -45,6 +45,7 @@ def getAll():
     }
     return jsonify(response)
 
+print(nlp.preprocessing())
 
 if __name__ == "__main__":
     app.run(debug=True)
