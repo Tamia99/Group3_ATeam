@@ -15,6 +15,7 @@ def preprocessing(data):
     words = word_tokenize(data)
     wordsList = []
     for w in words:
+        w = w.lower()
         if w not in stopwords:
             wordsList.append(w)
     return wordsList
