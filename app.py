@@ -5,7 +5,6 @@ from random import *
 import database
 import recommendation
 import nlp
-import robot
 
 app = Flask(__name__,
             static_folder="frontend/dist/static",
@@ -50,8 +49,8 @@ def getAll():
 def process():
     m = eval(str(request.data, encoding='utf-8'))
     print("message=",m)
-    #reply = nlp.preprocessing(m[0])
-    reply = robot.getRespond(m[0])
+    reply = nlp.preprocessing(m[0])
+    #reply = robot.getRespond(m[0])
     print(reply)
     return "1"
 
