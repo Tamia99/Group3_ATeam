@@ -1,88 +1,57 @@
 <template>
-    <!-- <h1>This is the houseList page</h1> -->
-    
-    <div>
-       <HouseItem ref="houseArea"></HouseItem>
-        <!--<el-divider></el-divider>
-        <el-table
-                :data="tableData.slice((currentPage - 1) * pageSize, currentPage*pageSize)"
-                border
-                stripe
-                :default-sort = "{prop: 'price', order: 'descending'}"
-                >
-            <el-table-column
-                    fixed
-                    prop="price"
-                    label="Price"
-                    sortable
-                    >
-            </el-table-column>
-            <el-table-column
-                    fixed
-                    prop="room"
-                    label="Room Count"
-                    >
-            </el-table-column>
-            <el-table-column
-                    fixed
-                    prop="area"
-                    label="Area"
-                    >
-            </el-table-column>
-            <el-table-column
-                    fixed
-                    prop="neighborhood"
-                    label="Neighborhood"
-                   >
-            </el-table-column>
-            <el-table-column
-                    fixed
-                    prop="type"
-                    label="Sale Type"
-            >
-            </el-table-column>
-            <el-table-column
-                    fixed="right"
-                    label="Actions"
-                    width="100">
-                <template slot-scope="scope">
-                    <el-button @click="handleClick(scope.row)" type="text" size="small">View Detail</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
-        <el-pagination
+  <div>
+    <el-row gutter="20" >
+      <el-col :span="6" v-for="item in houses.slice((currentPage - 1) * pageSize, currentPage*pageSize)" :key="item.id">
+            <el-card :body-style="{ padding: '20px' }" shadow ="hover">
+                <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
+                <div style="padding: 14px;">
+                    <!--<h2>Price: $2000</h2>
+                    <span>1 bd, 1 ba, 288 sqft</span>
+                    <br>
+                    <span>neighborhood</span>-->
+                    <h2>{{item.price}}</h2>
+                    <span>{{ item.room }}</span>
+                    <br>
+                    <span>{{ item.neighborhood }}</span>
+                    <br>
+                    <span>{{ item.type }}</span>
+                    <div class="bottom clearfix">
+                        <el-button type="text" class="button">View Details</el-button>
+                    </div>
+                </div>
+            </el-card>
+        </el-col>
+    </el-row>
+  <el-pagination
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
                 :current-page="currentPage"
-                :page-sizes="[10, 20, 30, 40]"
-                :page-size="10"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="currentTotal"
-                background = "true">
-        </el-pagination>-->
-    </div>
+                :page-size="12"
+                :page-sizes="[12, 24, 36, 48]"
+                layout="total,sizes, prev, pager, next, jumper"
+                :total="currentTotal">
+        </el-pagination>
+</div>
     
 </template>
-
 <script>
-import axios from "axios";
-import HouseItem from "./HouseItem";
+    import axios from "axios";
 
-export default {
-    components: {HouseItem:HouseItem},
-    data() {
-        return {
-            /*currentTotal: 0,
+    export default {
+      name: "houseItem.vue",
+      data(){
+          return{
+            currentTotal: 0,
             currentPage: 1,
-            pageSize: 10,
-            tableData: []*/
-        }
-    },
-
-    created:function(){
-       /* this.getList()*/
-    },
-    methods: {
+            pageSize: 12,
+            /*houses:['All', 'work', 'play', 'makes', 'jack', 'dull', 'boy', ',', 'work', 'play'],*/
+            houses:[]
+          }
+      },
+      created:function(){
+        this.getList()
+      },
+      methods:{
         async getList(){
             const path = 'http://localhost:5000/api/allHouses'
             axios.get(path)
@@ -92,10 +61,25 @@ export default {
                     let i = 0;
                     while (i< all.length){
                         let p = all[i][80]
-                        let r = all[i][54]
-                        let a = all[i][4]
+                        let a = all[i][4]/*mianji*/
                         let n = all[i][12]
                         let t = all[i][2]
+                        let bd = all[i][51]/*bedroom*/
+                        let ba = all[i][50]*0.5+all[i][49]/*bathroom*/
+                        let r = a.toString() + " sqft"
+                        if (ba == 1){
+                            r = ba.toString() + " ba " + r
+                        }
+                        else{
+                          r = ba.toString() + " bas " + r
+                        }
+                        if (bd == 1){
+                            r = bd.toString() + " bd " + r
+                        }
+                        else{
+                          r = bd.toString() + " bds " + r
+                        }
+
                         if (n == "Blmngtn"){
                             n = "Bloomington Heights"
                         }
@@ -196,8 +180,8 @@ export default {
                         else if (t == "RM") {
                             t = "Residential Medium Density"
                         }
-
-                        this.tableData.push({price:p,room:r,area:a,neighborhood:n,type:t})
+                        p = "$"+p
+                        this.houses.push({price:p,room:r,neighborhood:n,type:t})
                         i++
                     }
 
@@ -214,29 +198,26 @@ export default {
             this.currentPage = val
             console.log(`当前页: ${val}`);
         }
+      }
     }
-}
 </script>
 
-<style>
-
-
-
-</style>
 <style scoped>
-.el-input {
-    width: 500px;
-    padding-right: 50%;
+.image {
+    width: 100%;
+    display: block;
+  }
 
-}
-.el-table{
-    color: #66A4AC !important;
-}
-.el-button{
-    color: #003A44!important;
-}
+.el-row {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap
+  }
 
-
-
+.el-card {
+    min-width: 100%;
+    height: 100%;
+  }
 
 </style>
+

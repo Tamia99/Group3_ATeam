@@ -1,6 +1,10 @@
 
 
 <template>
+  <div>
+
+
+
 
 <el-container>
   <el-header>
@@ -26,7 +30,7 @@
         <!-- <img src="./assets/teamlogo.png"> -->
         <img height=57px src="./assets/teamlogo.png" style="padding-left:630px">
         <el-menu-item index="1" @click="route4"><i class="el-icon-s-home"></i></el-menu-item>
-        <el-menu-item index="2" @click="route1"><i class="el-icon-chat-square"></i>Assistant</el-menu-item>
+        <el-menu-item index="2" @click="route1 "><i class="el-icon-chat-square"></i>Assistant</el-menu-item>
           
         <el-menu-item index="3" @click="route2"><i class="el-icon-aim"></i>Recommendations</el-menu-item>
         <el-menu-item index="4" @click="route3"><i class="el-icon-house"></i>Houses</el-menu-item>
@@ -37,8 +41,10 @@
   </el-header>
       <el-main class="main-part">
         <div id="app">
-            
-          <router-view/>
+          <keep-alive>
+            <router-view v-if="$route.meta.keepAlive"></router-view>
+          </keep-alive>
+            <router-view v-if="!$route.meta.keepAlive"></router-view>
         </div>
       </el-main>
       <el-footer>
@@ -101,7 +107,8 @@
 
       
   </el-container> -->
-  
+
+  </div>
 </template>
 
 <style>

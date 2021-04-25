@@ -1,6 +1,5 @@
 <template>
     <div id = "all">
-        <!-- <header class="header"><img src="./header.png"></header> -->
         <div id="message_box">
             <div id="message_show" class="message_show">
                 <div v-for="item in myMessages" :key="item.id">
@@ -15,26 +14,20 @@
                             <span>{{item.content}}</span>
                         </div>
                     </div>
-                    <div class="message_not_me" v-if="item.content != null">
+                    <div class="message_not_me" v-if="item.content === 'Testcontent'">
                         <div class="col_not_me">
                             <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
-                            <!--<span>auto reply{{ randomNumber }}</span>-->
                             <span>Sorry! I cannot understand.</span>
-                            <!--<span>Can you answer some questions so we can recommend house for you.</span>
-                            <el-button id="ok" size="medium" type="primary">OK</el-button>-->
                         </div>
                     </div>
-                    <div class="message_not_me" v-if="item.content != null">
+                    <div class="message_not_me" v-if="item.content === 'Testcontent'">
                         <div class="col_not_me">
                             <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
-                            <!--<span>auto reply{{ randomNumber }}</span>-->
-                           <!-- <span>Sorry! I cannot understand.</span>-->
                             <span>Can you answer some questions so we can recommend house for you.</span>
-                            <!--<el-button id="ok" size="medium" type="primary" @click="open">OK</el-button>-->
                             <el-button id="ok" size="medium" type="primary" @click="dialogVisible = true">OK</el-button>
                         </div>
                     </div>
@@ -43,8 +36,15 @@
                             <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
-                            <!--<el-link href="/recommend">Click to see our recommendation for you.</el-link>-->
                             <router-link to="/recommend">Click to see our recommendation for you.</router-link>
+                        </div>
+                    </div>
+                  <div class="message_not_me" v-if="item.reply != null">
+                        <div class="col_not_me">
+                            <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
+                        </div>
+                        <div class="message_not_me_content">
+                            <span>{{item.reply}}</span>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,6 @@
                 :before-close="handleClose"
                 fullscreen = true
                 id="q">
-            <!--<span>这是一段信息</span>-->
             <Questions  ref="questionnaire"></Questions>
             <span slot="footer" class="dialog-footer">
                         <el-button @click="dialogVisible = false">Cancel</el-button>
@@ -95,8 +94,8 @@
         data: function () {
             return {
                 textarea: '',
-                // myMessages: [{time: "testtime"}, {content: 'Testcontent'}],
-                myMessages: [],
+                myMessages: [{time: "testtime"}, {content: 'Testcontent'}],
+                /*myMessages: [],*/
                 messageTime: [],
                 time: 'now',
                 randomNumber:0,
@@ -131,6 +130,7 @@
                 else{
                     this.myMessages.push({ time: time })
                     this.myMessages.push({ content: message })
+                    /*this.myMessages.push({ reply: message })*/
                     this.process(message)
                     this.status = "1"
                     this.$store.commit("newStatus",this.status)
@@ -144,7 +144,9 @@
                 let data = [message]
                 axios.post(path, data)
                     .then(response => {
-
+                      let re = response.data.reply
+                      let rep = re[0]
+                      this.myMessages.push({ reply: rep })
                     })
                     .catch((error) => {
                         console.log(error)

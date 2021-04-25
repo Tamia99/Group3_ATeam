@@ -49,10 +49,12 @@ def getAll():
 def process():
     m = eval(str(request.data, encoding='utf-8'))
     print("message=",m)
-    reply = nlp.preprocessing(m[0])
-    #reply = robot.getRespond(m[0])
+    reply = [nlp.preprocessing(m[0])]
     print(reply)
-    return "1"
+    response = {
+        "reply": reply
+    }
+    return jsonify(response)
 
 # print(nlp.preprocessing())
 

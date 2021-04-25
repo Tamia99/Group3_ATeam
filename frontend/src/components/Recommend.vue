@@ -1,56 +1,37 @@
 <template>
     <div>
         <h1>Here to see recommendations for you</h1>
-        <el-table
-                :data= tableData
-                border
-                stripe
-        >
-            <el-table-column
-                    fixed
-                    prop="id"
-                    label="id"
-            >
-            </el-table-column>
-            <el-table-column
-                    fixed
-                    prop="price"
-                    label="Price"
-            >
-            </el-table-column>
-            <el-table-column
-                    fixed
-                    prop="room"
-                    label="Room Count"
-            >
-            </el-table-column>
-            <el-table-column
-                    fixed
-                    prop="area"
-                    label="Area"
-            >
-            </el-table-column>
-            <el-table-column
-                    fixed
-                    prop="neighborhood"
-                    label="Neighborhood"
-            >
-            </el-table-column>
-            <el-table-column
-                    fixed
-                    prop="type"
-                    label="Sale Type"
-            >
-            </el-table-column>
-            <el-table-column
-                    fixed="right"
-                    label="Actions"
-                    width="100">
-                <template slot-scope="scope">
-                    <el-button @click="handleClick(scope.row)" type="text" size="small">View Detail</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
+        <el-row gutter="20" >
+      <el-col :span="6" v-for="item in houses.slice((currentPage - 1) * pageSize, currentPage*pageSize)" :key="item.id">
+            <el-card :body-style="{ padding: '20px' }" shadow ="hover">
+                <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
+                <div style="padding: 14px;">
+                    <!--<h2>Price: $2000</h2>
+                    <span>1 bd, 1 ba, 288 sqft</span>
+                    <br>
+                    <span>neighborhood</span>-->
+                    <h2>{{item.price}}</h2>
+                    <span>{{ item.room }}</span>
+                    <br>
+                    <span>{{ item.neighborhood }}</span>
+                    <br>
+                    <span>{{ item.type }}</span>
+                    <div class="bottom clearfix">
+                        <el-button type="text" class="button">View Details</el-button>
+                    </div>
+                </div>
+            </el-card>
+        </el-col>
+    </el-row>
+  <el-pagination
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="currentPage"
+                :page-size="12"
+                :page-sizes="[12, 24, 36, 48]"
+                layout="total,sizes, prev, pager, next, jumper"
+                :total="currentTotal">
+        </el-pagination>
     </div>
 
 </template>
@@ -60,26 +41,43 @@
     export default{
         data() {
             return {
-                tableData: []
+              currentTotal: 0,
+              currentPage: 1,
+              pageSize: 12,
+              houses: [],
             }
         },
         created:function(){
-            this.setTable()
+            this.getList()
         },
         computed: {
 
         },
         methods:{
-            setTable(){
+            getList(){
                 /*this.tableData.push({id:"all[i][0]",price:"p",room:"r",area:"a",neighborhood:"n",type:"t"})*/
                 let all = this.$store.state.recommendation
                 let i = 0
                 while (i<all.length){
                     let p = all[i][80]
-                    let r = all[i][54]
-                    let a = all[i][4]
+                    let a = all[i][4]/*mianji*/
                     let n = all[i][12]
                     let t = all[i][2]
+                    let bd = all[i][51]/*bedroom*/
+                    let ba = all[i][50]*0.5+all[i][49]/*bathroom*/
+                    let r = a.toString() + " sqft"
+                    if (ba == 1){
+                        r = ba.toString() + " ba " + r
+                    }
+                    else{
+                        r = ba.toString() + " bas " + r
+                    }
+                    if (bd == 1){
+                        r = bd.toString() + " bd " + r
+                    }
+                    else{
+                        r = bd.toString() + " bds " + r
+                    }
                     if (n == "Blmngtn"){
                         n = "Bloomington Heights"
                     }
@@ -180,7 +178,8 @@
                     else if (t == "RM") {
                         t = "Residential Medium Density"
                     }
-                    this.tableData.push({id:all[i][0],price:p,room:r,area:a,neighborhood:n,type:t})
+                    p = "$"+p
+                    this.houses.push({price:p,room:r,neighborhood:n,type:t})
                     i++
                 }
 
@@ -189,10 +188,19 @@
     }
 </script>
 <style scoped>
-    .el-table{
-        color: #66A4AC !important;
-    }
-    .el-button{
-        color: #003A44!important;
-    }
+.image {
+    width: 100%;
+    display: block;
+  }
+
+.el-row {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap
+  }
+
+.el-card {
+    min-width: 100%;
+    height: 100%;
+  }
 </style>

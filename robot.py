@@ -38,6 +38,7 @@ def prepare():
 def getRespond(data):
     robot = prepare()
     response = robot.respond(data)  # 机器人应答
-    print(response)
+    # print(response)
+    return response
 
 # Reference: https://www.jb51.net/article/195347.htm

@@ -33,7 +33,10 @@ const routes = [
   {
     path: '/Chat',
     name: 'Chat',
-    component: Chat
+    component: Chat,
+    meta:{
+      keepAlive:true
+    }
   },
   // {
   //   path: '/Chat',
@@ -43,12 +46,16 @@ const routes = [
   {
     path: '/house',
     name: 'house',
-    component: HouseList
+    component: HouseList,
+    meta:{
+      keepAlive:true
+    }
   },
   {
     path: '/recommend',
     name: 'recommend',
-    component: Recommend
+    component: Recommend,
+
   }
 ]
 
