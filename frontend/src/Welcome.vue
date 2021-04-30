@@ -1,13 +1,14 @@
 <template>
 <div>
-    <el-card shadow="hover" class="card1">
+    <!-- <el-card shadow="hover" class="card1">
     <div class="text1">
       Welcome to Smart Recommendation! <br>
     </div>
       <i class="el-icon-phone"></i>
       Phone abc-000000 to Express More Emergency Needs
-    </el-card>
-    <el-divider></el-divider>
+    </el-card> -->
+    <!-- <el-divider></el-divider> -->
+    <!-- style="{ height: clientHeight-194 + 'px' }" -->
     <el-carousel>
       <el-carousel-item v-for="item in imgList" :key="item.name" style="height:600px">
         <img :src="item.src" style="height:100%;width:100%;" alt="图片丢失了" :title="item.title" />
@@ -85,38 +86,64 @@
 <script>
     export default {
         
-    data() {
-        return {
-            imgList: [
-                {
-                name: "1",
-                src: require("@/assets/zmd-3.jpg"),
-                title: "Comfortable Environment"
-                },
-                {
-                name: "2",
-                src: require("@/assets/zmd-2.jpg"),
-                title: "Convenient to Work"
-                },
-                {
-                name: "3",
-                src: require("@/assets/zmd-1.jpg"),
-                title: "Safe and Assured"
-                },
-                {
-                name: "4",
-                src: require("@/assets/zmd-4.jpg"),
-                title: "Prosperous Surroundings"
-                },
-                {
-                name: "5",
-                src: require("@/assets/zmd-5.jpg"),
-                title: "Flexible Decoration Style"
-                }
-            ]
-        };
+      data() {
+          return {
+              imgList: [
+                  {
+                  name: "1",
+                  src: require("@/assets/zmd-3.jpg"),
+                  title: "Comfortable Environment"
+                  },
+                  {
+                  name: "2",
+                  src: require("@/assets/zmd-2.jpg"),
+                  title: "Convenient to Work"
+                  },
+                  {
+                  name: "3",
+                  src: require("@/assets/zmd-1.jpg"),
+                  title: "Safe and Assured"
+                  },
+                  {
+                  name: "4",
+                  src: require("@/assets/zmd-4.jpg"),
+                  title: "Prosperous Surroundings"
+                  },
+                  {
+                  name: "5",
+                  src: require("@/assets/zmd-5.jpg"),
+                  title: "Flexible Decoration Style"
+                  }
+              ],
+              clientWidth: document.body.clientWidth
+          };
+          
+      },
+      mounted() {
+          const that = this
+          window.onresize = () => {
+            return (() => {
+              window.screenWidth = document.body.clientWidth
+              that.clientWidth = window.screenWidth
+            })()
+          }
+        },
+      watch: {
+        clientWidth(val) {
+          // 为了避免频繁触发resize函数导致页面卡顿，使用定时器
+          if (!this.timer) {
+            // 一旦监听到的screenWidth值改变，就将其重新赋给data里的screenWidth
+            this.clientWidth = val
+            this.timer = true
+            let that = this
+            setTimeout(function() {
+              // 打印screenWidth变化的值
+              console.log(that.clientWidth)
+              that.timer = false
+            }, 400)
+          }
+        }
     }
     }
-
     
 </script>

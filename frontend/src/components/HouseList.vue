@@ -2,7 +2,7 @@
   <div>
     <el-row gutter="20" >
       <el-col :span="6" v-for="item in houses.slice((currentPage - 1) * pageSize, currentPage*pageSize)" :key="item.id">
-            <el-card :body-style="{ padding: '20px' }" shadow ="hover">
+            <el-card :body-style="{ paddingLeft: '20px'}" shadow ="hover" @click.native="dialogVisible = true">
                 <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
                 <div style="padding: 14px;">
                     <!--<h2>Price: $2000</h2>
@@ -15,14 +15,15 @@
                     <span>{{ item.neighborhood }}</span>
                     <br>
                     <span>{{ item.type }}</span>
-                    <div class="bottom clearfix">
-                        <el-button type="text" class="button">View Details</el-button>
-                    </div>
+                   
+                    <!-- <div class="bottom clearfix">
+                        <el-button type="text" class="button" @click="dialogVisible = true">View Details</el-button>
+                    </div> -->
                 </div>
             </el-card>
         </el-col>
     </el-row>
-  <el-pagination
+    <el-pagination
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
                 :current-page="currentPage"
@@ -30,7 +31,22 @@
                 :page-sizes="[12, 24, 36, 48]"
                 layout="total,sizes, prev, pager, next, jumper"
                 :total="currentTotal">
-        </el-pagination>
+    </el-pagination>
+
+    <el-dialog
+        :visible.sync="dialogVisible"
+        width="80%"
+        height="60%"
+        :before-close="handleClose">
+        <div style="width:500px">
+        <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
+        </div>
+        <span>这是一段信息</span>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span>
+    </el-dialog>    
 </div>
     
 </template>
@@ -45,7 +61,8 @@
             currentPage: 1,
             pageSize: 12,
             /*houses:['All', 'work', 'play', 'makes', 'jack', 'dull', 'boy', ',', 'work', 'play'],*/
-            houses:[]
+            houses:[],
+            dialogVisible: false
           }
       },
       created:function(){
@@ -218,6 +235,10 @@
     min-width: 100%;
     height: 100%;
   }
+
+/* .el-dialog{
+    height: 100px!important;
+} */
 
 </style>
 

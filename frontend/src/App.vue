@@ -22,8 +22,8 @@
       class="el-menu-demo"
       mode="horizontal"
       @select="handleSelect"
-      background-color="#545c64"
-      text-color="#fff"
+      
+      text-color="#545c64"
       active-text-color="#ffd04b"
       style="height:62px">
       <!-- background-color="#545c64" -->
