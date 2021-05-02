@@ -2,13 +2,14 @@
   <div>
     <el-row gutter="20" >
       <el-col :span="6" v-for="item in houses.slice((currentPage - 1) * pageSize, currentPage*pageSize)" :key="item.id">
-            <el-card :body-style="{ paddingLeft: '20px'}" shadow ="hover" @click.native="dialogVisible = true">
+            <el-card :body-style="{ paddingLeft: '20px'}" shadow ="hover" @click.native = "openDetail(item.id)">
                 <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
                 <div style="padding: 14px;">
                     <!--<h2>Price: $2000</h2>
                     <span>1 bd, 1 ba, 288 sqft</span>
                     <br>
                     <span>neighborhood</span>-->
+                    <h2>{{item.id}}</h2>
                     <h2>{{item.price}}</h2>
                     <span>{{ item.room }}</span>
                     <br>
@@ -21,6 +22,22 @@
                     </div> -->
                 </div>
             </el-card>
+            <el-dialog
+                :visible.sync="dialogVisible"
+                width="80%"
+                height="60%"
+                :before-close="handleClose">
+                <!--<div style="width:500px">
+                <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
+                </div>
+                <span>这是一段信息</span>-->
+                <Detail :message = "houseId"></Detail>
+
+                <!--<span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                </span>-->
+            </el-dialog>
         </el-col>
     </el-row>
     <el-pagination
@@ -33,28 +50,16 @@
                 :total="currentTotal">
     </el-pagination>
 
-    <el-dialog
-        :visible.sync="dialogVisible"
-        width="80%"
-        height="60%"
-        :before-close="handleClose">
-        <div style="width:500px">
-        <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
-        </div>
-        <span>这是一段信息</span>
-        <span slot="footer" class="dialog-footer">
-            <el-button @click="dialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-        </span>
-    </el-dialog>    
+
 </div>
     
 </template>
 <script>
     import axios from "axios";
-
+    import HouseDetail from "@/components/HouseDetail";
     export default {
       name: "houseItem.vue",
+      components: {Detail: HouseDetail},
       data(){
           return{
             currentTotal: 0,
@@ -62,13 +67,18 @@
             pageSize: 12,
             /*houses:['All', 'work', 'play', 'makes', 'jack', 'dull', 'boy', ',', 'work', 'play'],*/
             houses:[],
-            dialogVisible: false
+            dialogVisible: false,
+            houseId:0,
           }
       },
       created:function(){
         this.getList()
       },
       methods:{
+        openDetail(id){
+          this.houseId = id
+          this.dialogVisible = true
+        },
         async getList(){
             const path = 'http://localhost:5000/api/allHouses'
             axios.get(path)
@@ -77,6 +87,7 @@
                     this.currentTotal = all.length
                     let i = 0;
                     while (i< all.length){
+                        let ID = all[i][0]
                         let p = all[i][80]
                         let a = all[i][4]/*mianji*/
                         let n = all[i][12]
@@ -198,7 +209,7 @@
                             t = "Residential Medium Density"
                         }
                         p = "$"+p
-                        this.houses.push({price:p,room:r,neighborhood:n,type:t})
+                        this.houses.push({id:ID,price:p,room:r,neighborhood:n,type:t})
                         i++
                     }
 

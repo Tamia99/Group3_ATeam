@@ -31,7 +31,7 @@ def random_number():
 def recommend():
     list = eval(str(request.data, encoding='utf-8'))
     resultId = recommendation.recommendationSysAlgorithm(list)
-    result = database.getHouseById(resultId)
+    result = database.getHouseByIds(resultId)
     response = {
         "result": result
     }
@@ -42,6 +42,17 @@ def getAll():
     houses = list(database.getAllHouses())
     response = {
         "house": houses
+    }
+    return jsonify(response)
+
+@app.route('/api/houseDetail',methods=["POST"])
+def getDetail():
+    d = eval(str(request.data, encoding='utf-8'))
+    print(type(d[0]))
+    detail = list(database.getHouseById(d[0]))
+    print(detail)
+    response = {
+        "detail": detail
     }
     return jsonify(response)
 

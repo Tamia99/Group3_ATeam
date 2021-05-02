@@ -22,13 +22,22 @@ def getAllRecommendations():
     cursor.close()
     return recommendations
 
-def getHouseById(ids):
+def getHouseByIds(ids):
     cursor = conn.cursor()
     result = []
     for i in ids:
         statement = "SELECT * FROM House WHERE id = " + i
         cursor.execute(statement)
         result.append(list(cursor.fetchone()))
+    conn.commit()
+    cursor.close()
+    return result
+
+def getHouseById(id):
+    cursor = conn.cursor()
+    statement = "SELECT * FROM House "
+    cursor.execute(statement)
+    result = cursor.fetchone()
     conn.commit()
     cursor.close()
     return result
