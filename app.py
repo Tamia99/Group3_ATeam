@@ -45,16 +45,7 @@ def getAll():
     }
     return jsonify(response)
 
-@app.route('/api/houseDetail',methods=["POST"])
-def getDetail():
-    d = eval(str(request.data, encoding='utf-8'))
-    print(type(d[0]))
-    detail = list(database.getHouseById(d[0]))
-    print(detail)
-    response = {
-        "detail": detail
-    }
-    return jsonify(response)
+
 
 @app.route('/api/nlp',methods=["POST"])
 def process():

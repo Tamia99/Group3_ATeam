@@ -33,11 +33,3 @@ def getHouseByIds(ids):
     cursor.close()
     return result
 
-def getHouseById(id):
-    cursor = conn.cursor()
-    statement = "SELECT * FROM House "
-    cursor.execute(statement)
-    result = cursor.fetchone()
-    conn.commit()
-    cursor.close()
-    return result

@@ -9,7 +9,7 @@
                     <span>1 bd, 1 ba, 288 sqft</span>
                     <br>
                     <span>neighborhood</span>-->
-                    <h2>{{item.id}}</h2>
+                    <!--<h2>{{item.id}}</h2>-->
                     <h2>{{item.price}}</h2>
                     <span>{{ item.room }}</span>
                     <br>
@@ -31,7 +31,7 @@
                 <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
                 </div>
                 <span>这是一段信息</span>-->
-                <Detail :message = "houseId"></Detail>
+                <Detail :message = "thisHouse"></Detail>
 
                 <!--<span slot="footer" class="dialog-footer">
                 <el-button @click="dialogVisible = false">取 消</el-button>
@@ -69,6 +69,8 @@
             houses:[],
             dialogVisible: false,
             houseId:0,
+            details:[],
+            thisHouse:[],
           }
       },
       created:function(){
@@ -77,6 +79,13 @@
       methods:{
         openDetail(id){
           this.houseId = id
+          let i = 0
+          while(i<this.details.length){
+            if (id == this.details[i][0]){
+              this.thisHouse = this.details[i]
+            }
+            i++
+          }
           this.dialogVisible = true
         },
         async getList(){
@@ -84,6 +93,7 @@
             axios.get(path)
                 .then(response => {
                     let all = response.data.house;
+                    this.details = all
                     this.currentTotal = all.length
                     let i = 0;
                     while (i< all.length){
