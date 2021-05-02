@@ -2,7 +2,7 @@
     <div>
         <h1>Here to see recommendations for you</h1>
         <el-row gutter="20" >
-      <el-col :span="6" v-for="item in houses.slice((currentPage - 1) * pageSize, currentPage*pageSize)" :key="item.id">
+          <el-col :span="6" v-for="item in houses" :key="item.id">
             <el-card :body-style="{ padding: '20px' }" shadow ="hover">
                 <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
                 <div style="padding: 14px;">
@@ -22,8 +22,8 @@
                 </div>
             </el-card>
         </el-col>
-    </el-row>
-  <el-pagination
+      </el-row>
+      <!--<el-pagination
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
                 :current-page="currentPage"
@@ -31,7 +31,15 @@
                 :page-sizes="[12, 24, 36, 48]"
                 layout="total,sizes, prev, pager, next, jumper"
                 :total="currentTotal">
-        </el-pagination>
+      </el-pagination>-->
+      <div v-if="this.houses.length!=0">
+        <p>Please rate for the recommendation</p>
+        <el-rate
+          v-model="value"
+          :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
+        </el-rate>
+      </div>
+
     </div>
 
 </template>
@@ -45,6 +53,8 @@
               currentPage: 1,
               pageSize: 12,
               houses: [],
+              value: null,
+              iconClasses: ['icon-rate-face-1', 'icon-rate-face-2', 'icon-rate-face-3'], // 等同于 { 2: 'icon-rate-face-1', 4: { value: 'icon-rate-face-2', excluded: true }, 5: 'icon-rate-face-3' }
             }
         },
         created:function(){
