@@ -52,7 +52,7 @@ def process():
     m = eval(str(request.data, encoding='utf-8'))
     print("message=",m)
     print("type",type(m[1]))
-    reply = [nlp.preprocessing(m[0])]
+    reply = nlp.NaturalLanguageProcess(m[0],m[1],m[2])
     print(reply)
     response = {
         "reply": reply
