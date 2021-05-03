@@ -11,7 +11,7 @@
                             <el-avatar shape="square" icon=el-icon-user-solid></el-avatar>
                         </div>
                         <div class="message_is_me_content">
-                            <span>{{item.content}}</span>
+                            <span v-html="item.content"></span>
                         </div>
                     </div>
                     <div class="message_not_me" v-if="item.content === 'Testcontent'">
@@ -44,7 +44,7 @@
                             <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
-                            <span>{{item.reply}}</span>
+                            <span v-html="item.reply"></span>
                         </div>
                     </div>
                 </div>
@@ -124,6 +124,10 @@
                     container.scrollTop = container.scrollHeight
                 })
             },
+          //处理文本换行
+            preText (pretext) {
+              return pretext.replace(/\r\n/g, '<br/>').replace(/\n/g, '<br/>')
+            },
             sendMessage () {
                 let yy = new Date().getFullYear()
                 let mm = new Date().getMonth() + 1
@@ -132,7 +136,7 @@
                 let mf = new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()
                 let ss = new Date().getSeconds() < 10 ? '0' + new Date().getSeconds() : new Date().getSeconds()
                 var time = yy + '-' + mm + '-' + dd + ' ' + hh + ':' + mf + ':' + ss
-                var message = this.textarea
+                var message =  this.preText(this.textarea)
                 if(message.match(/^[ ]+$/)||message===""){
                     alert("invalid null message")
                 }
@@ -154,7 +158,9 @@
                 axios.post(path, data)
                     .then(response => {
                       let re = response.data.reply
-                      let rep = re[0]
+                      let rep = this.preText(re[0] )
+                      this.processNumber = re[1]
+                      this.currentProcess = re[2]
                       this.myMessages.push({ reply: rep })
                     })
                     .catch((error) => {

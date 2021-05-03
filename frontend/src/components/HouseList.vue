@@ -3,19 +3,19 @@
     <el-row>
       <el-col :span="8">
         <el-input type="text" size="small" id="" placeholder="search for your house" ></el-input>
-  	    <el-button @click="btn">搜索</el-button>
+  	    <el-button @click="btn">Search</el-button>
       </el-col>
       <el-col :span="8"></el-col>
       <el-col :span="8">
         <p>Sort by</p>
-        <el-select v-model="value" placeholder="please choose">
+        <el-select v-model="values" placeholder="please choose" @change="sort()">
           <el-option
             v-for="item in options"
             :key="item.value"
             :label="item.label"
             :value="item.value">
           </el-option>
-  </el-select>
+        </el-select>
       </el-col>
     </el-row>
     <el-divider></el-divider>
@@ -90,29 +90,46 @@
             houseId:0,
             details:[],
             thisHouse:[],
+            values:"",
             options: [{
-              value: 'price',
-              label: 'price'
+              value: '1',
+              label: 'price(High to low)'
             }, {
-              value: 'size',
-              label: 'size'
+              value: '2',
+              label: 'size(High to low)'
             }, {
-              value: 'bedroom count',
-              label: 'bedroom count'
+              value: '3',
+              label: 'bedroom count(High to low)'
             }, {
-              value: 'bathroom count',
-              label: 'bathroom count'
+              value: '4',
+              label: 'bathroom count(High to low)'
+            },{
+              value: '5',
+              label: 'price(Low to High)'
             }, {
-              value: 'neighbourhood',
+              value: '6',
+              label: 'size(Low to High)'
+            }, {
+              value: '7',
+              label: 'bedroom count(Low to High)'
+            }, {
+              value: '8',
+              label: 'bathroom count(Low to High)'
+            }, {
+              value: '9',
               label: 'neighbourhood'
             }],
-            value: '',
           }
       },
       created:function(){
         this.getList()
+        this.values = this.options[8].value
       },
       methods:{
+        sort(){
+          alert(this.values)
+          this.getList()
+        },
         openDetail(id){
           this.houseId = id
           let i = 0

@@ -9,7 +9,7 @@ def test():
     cursor.close()
 def getAllHouses():
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM House")
+    cursor.execute("SELECT * FROM House ORDER BY Neighborhood")
     houses = cursor.fetchall()
     conn.commit()
     cursor.close()
