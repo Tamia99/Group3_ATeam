@@ -51,6 +51,7 @@ def getAll():
 def process():
     m = eval(str(request.data, encoding='utf-8'))
     print("message=",m)
+    print("type",type(m[1]))
     reply = [nlp.preprocessing(m[0])]
     print(reply)
     response = {

@@ -94,12 +94,21 @@
         data: function () {
             return {
                 textarea: '',
-                myMessages: [{time: "testtime"}, {content: 'Testcontent'}],
+                myMessages: [
+                  {time: "testtime"},
+                  {content: 'Testcontent'},
+                  {reply:"Welcome to the Smart House Recommendation Assistant"},
+                  {reply: "Do you need us to recommend suitable housing information for you?"}],
                 /*myMessages: [],*/
                 messageTime: [],
                 time: 'now',
                 randomNumber:0,
-                dialogVisible: false
+                dialogVisible: false,
+                /*总对话数*/
+                processNumber:0,
+                /*正在进行的对话次数*/
+                currentProcess:0,
+
             }
         },
 
@@ -141,7 +150,7 @@
             },
             process(message){
                 const path = 'http://localhost:5000/api/nlp'
-                let data = [message]
+                let data = [message,this.processNumber,this.currentProcess]
                 axios.post(path, data)
                     .then(response => {
                       let re = response.data.reply

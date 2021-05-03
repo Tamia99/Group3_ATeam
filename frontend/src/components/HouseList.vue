@@ -1,5 +1,24 @@
 <template>
   <div>
+    <el-row>
+      <el-col :span="8">
+        <el-input type="text" size="small" id="" placeholder="search for your house" ></el-input>
+  	    <el-button @click="btn">搜索</el-button>
+      </el-col>
+      <el-col :span="8"></el-col>
+      <el-col :span="8">
+        <p>Sort by</p>
+        <el-select v-model="value" placeholder="please choose">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+  </el-select>
+      </el-col>
+    </el-row>
+    <el-divider></el-divider>
     <el-row gutter="20" >
       <el-col :span="6" v-for="item in houses.slice((currentPage - 1) * pageSize, currentPage*pageSize)" :key="item.id">
             <el-card :body-style="{ paddingLeft: '20px'}" shadow ="hover" @click.native = "openDetail(item.id)">
@@ -71,6 +90,23 @@
             houseId:0,
             details:[],
             thisHouse:[],
+            options: [{
+              value: 'price',
+              label: 'price'
+            }, {
+              value: 'size',
+              label: 'size'
+            }, {
+              value: 'bedroom count',
+              label: 'bedroom count'
+            }, {
+              value: 'bathroom count',
+              label: 'bathroom count'
+            }, {
+              value: 'neighbourhood',
+              label: 'neighbourhood'
+            }],
+            value: '',
           }
       },
       created:function(){
