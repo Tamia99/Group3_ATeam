@@ -3,7 +3,8 @@ questionList = [
     "Bye!",
     "What is the approximate price you can accept?",
     "How many bedrooms do you want?",
-    "How many bathrooms do you want?",
+    "How many full bathrooms do you want?",
+    "How many half bathrooms do you want?",
     "What size of house do you want? (sqft)",
     """Which neighborhood do you want?
     0   It does not matter
