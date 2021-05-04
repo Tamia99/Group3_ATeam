@@ -58,6 +58,7 @@
                         v-model="textarea"
                         maxlength="300"
                         show-word-limit
+                        clearable
                 >
                 </el-input>
                 <br/>

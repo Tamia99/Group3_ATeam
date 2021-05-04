@@ -76,13 +76,13 @@
                     let bd = all[i][51]/*bedroom*/
                     let ba = all[i][50]*0.5+all[i][49]/*bathroom*/
                     let r = a.toString() + " sqft"
-                    if (ba == 1){
+                    if (ba == 1 || ba == 0){
                         r = ba.toString() + " ba " + r
                     }
                     else{
-                        r = ba.toString() + " bas " + r
+                        r = ba.toString() + " ba " + r
                     }
-                    if (bd == 1){
+                    if (bd == 1||bd==0){
                         r = bd.toString() + " bd " + r
                     }
                     else{

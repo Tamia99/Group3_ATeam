@@ -2,13 +2,17 @@
   <div>
     <el-row>
       <el-col :span="8">
-        <el-input type="text" size="small" id="" placeholder="search for your house" ></el-input>
-  	    <el-button @click="btn">Search</el-button>
+        <el-input
+            size="small"
+            placeholder= "search for blocks"
+            v-model="textarea"
+            clearable></el-input>
+  	    <el-button @click="sortandsearch()">Search</el-button>
       </el-col>
       <el-col :span="8"></el-col>
       <el-col :span="8">
         <p>Sort by</p>
-        <el-select v-model="values" placeholder="please choose" @change="sort()">
+        <el-select v-model="values" placeholder="please choose" @change="sortandsearch()">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -19,6 +23,9 @@
       </el-col>
     </el-row>
     <el-divider></el-divider>
+    <div v-if="this.houses==null">
+      <p>No Result</p>
+    </div>
     <el-row gutter="20" >
       <el-col :span="6" v-for="item in houses.slice((currentPage - 1) * pageSize, currentPage*pageSize)" :key="item.id">
             <el-card :body-style="{ paddingLeft: '20px'}" shadow ="hover" @click.native = "openDetail(item.id)">
@@ -81,6 +88,8 @@
       components: {Detail: HouseDetail},
       data(){
           return{
+            textarea:"",
+            matchn:[],
             currentTotal: 0,
             currentPage: 1,
             pageSize: 12,
@@ -92,43 +101,151 @@
             thisHouse:[],
             values:"",
             options: [{
-              value: '1',
+              value: 1,
               label: 'price(High to low)'
             }, {
-              value: '2',
+              value: 2,
               label: 'size(High to low)'
             }, {
-              value: '3',
+              value: 3,
               label: 'bedroom count(High to low)'
             }, {
-              value: '4',
+              value: 4,
               label: 'bathroom count(High to low)'
             },{
-              value: '5',
+              value: 5,
               label: 'price(Low to High)'
             }, {
-              value: '6',
+              value: 6,
               label: 'size(Low to High)'
             }, {
-              value: '7',
+              value: 7,
               label: 'bedroom count(Low to High)'
             }, {
-              value: '8',
+              value: 8,
               label: 'bathroom count(Low to High)'
             }, {
-              value: '9',
+              value: 9,
               label: 'neighbourhood'
             }],
           }
       },
       created:function(){
-        this.getList()
         this.values = this.options[8].value
+        this.getList()
       },
       methods:{
-        sort(){
-          alert(this.values)
+        searchfor(){
+          alert("!")
+
+
+        },
+        sortandsearch(){
+          //先执行排序
+          /*this.houses = []
           this.getList()
+          this.houses = ["nl","mkl"]*/
+          //模糊搜索
+          let nList = ["Bloomington Heights","Bluestem","Briardale","Brookside","Clear Creek",
+            "College Creek","Crawford","Edwards","Gilbert","Iowa DOT and Rail Road","Meadow Village",
+            "Mitchell","North Ames","Northridge","Northpark Villa","Northridge Heights","Northwest Ames",
+            "Old Town","South & West of Iowa State University","Sawyer","Sawyer West","Somerset",
+            "Stone Brook","Timberland","Veenker"]
+          let n =[]
+          for (var i = 0; i < nList.length; i++) {
+            if (nList[i].toLowerCase().indexOf(this.textarea.toLowerCase()) >= 0) {
+              let n1 = nList[i]
+              if (n1 == "Bloomington Heights"){
+                n1 = "Blmngtn"
+              }
+              else if (n1 == "Bluestem"){
+                n1 = "Blueste"
+              }
+              else if (n1 == "Briardale"){
+                n1 = "BrDale"
+              }
+              else if (n1 == "Brookside"){
+                n1 = "BrkSide"
+              }
+              else if (n1 == "Clear Creek"){
+                n1 = "ClearCr"
+              }
+              else if (n1 == "College Creek"){
+                n1 = "CollgCr"
+              }
+              else if (n1 == "Crawford"){
+                n1 = "Crawfor"
+              }
+              else if (n1 == "Edwards"){
+                n1 = "Edwards"
+              }
+              else if (n1 == "Gilbert"){
+                n1 = "Gilbert"
+              }
+              else if (n1 == "Iowa DOT and Rail Road"){
+                n1 = "IDOTRR"
+              }
+              else if (n1 == "Meadow Village"){
+                n1 = "MeadowV"
+              }
+              else if (n1 == "Mitchel"){
+                n1 = "Mitchell"
+              }
+              else if (n1 == "North Ames"){
+                n1 = "NAmes"
+              }
+              else if (n1 == "Northridge"){
+                n1 = "NoRidge"
+              }
+              else if (n1 == "Northpark Villa"){
+                n1 = "NPkVill"
+              }
+              else if (n1 == "Northridge Heights"){
+                n1 = "NridgHt"
+              }
+              else if (n1 == "Northwest Ames"){
+                n1 = "NWAmes"
+              }
+              else if (n1 == "Old Town"){
+                n1 = "OldTown"
+              }
+              else if (n1 == "South & West of Iowa State University"){
+                n1 = "SWISU"
+              }
+              else if (n1 == "Sawyer"){
+                n1 = "Sawyer"
+              }
+              else if (n1 == "Sawyer West"){
+                n1 = "SawyerW"
+              }
+              else if (n1 == "Somerset"){
+                n1 = "Somerst"
+              }
+              else if (n1 == "Stone Brook"){
+                n1 = "StoneBr"
+              }
+              else if (n1 == "Timberland"){
+                n1 = "Timber"
+              }
+              else if (n1 == "Veenker"){
+                n1 = "Veenker"
+              }
+              n.push(n1);
+            }
+          }
+          this.matchn = n
+          alert(this.matchn)
+          this.houses = []
+          this.getList()
+          /*let h = []
+          alert(this.houses[0].neighborhood)
+          for (var i = 0;i<this.houses.length;i++){
+            if(n.indexOf(this.houses[i].neighborhood) > -1){
+              h.push(this.houses[i])
+            }
+          }
+          this.houses = h*/
+
         },
         openDetail(id){
           this.houseId = id
@@ -141,11 +258,14 @@
           }
           this.dialogVisible = true
         },
-        async getList(){
+        getList(){
             const path = 'http://localhost:5000/api/allHouses'
-            axios.get(path)
+            let data = [this.values,this.matchn]
+            axios.post(path,data)
                 .then(response => {
+                   /* alert("s")*/
                     let all = response.data.house;
+                    let list = []
                     this.details = all
                     this.currentTotal = all.length
                     let i = 0;
@@ -158,13 +278,13 @@
                         let bd = all[i][51]/*bedroom*/
                         let ba = all[i][50]*0.5+all[i][49]/*bathroom*/
                         let r = a.toString() + " sqft"
-                        if (ba == 1){
+                        if (ba == 1||ba == 0){
                             r = ba.toString() + " ba " + r
                         }
                         else{
-                          r = ba.toString() + " bas " + r
+                          r = ba.toString() + " ba " + r
                         }
-                        if (bd == 1){
+                        if (bd == 1||bd==0){
                             r = bd.toString() + " bd " + r
                         }
                         else{

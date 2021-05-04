@@ -37,9 +37,11 @@ def recommend():
     }
     return jsonify(response)
 
-@app.route('/api/allHouses')
+@app.route('/api/allHouses',methods=["POST"])
 def getAll():
-    houses = list(database.getAllHouses())
+    n = eval(str(request.data, encoding='utf-8'))
+    print("n=",type(n[1]))
+    houses = list(database.getAllHouses(n[0],n[1]))
     response = {
         "house": houses
     }
