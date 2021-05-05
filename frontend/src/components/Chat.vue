@@ -31,14 +31,7 @@
                             <el-button id="ok" size="medium" type="primary" @click="dialogVisible = true">OK</el-button>
                         </div>
                     </div>
-                    <div class="message_not_me" v-if="status ==='0'&& item.content != null">
-                        <div class="col_not_me">
-                            <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
-                        </div>
-                        <div class="message_not_me_content">
-                            <router-link to="/recommend">Click to see our recommendation for you.</router-link>
-                        </div>
-                    </div>
+
                   <div class="message_not_me" v-if="item.reply != null">
                         <div class="col_not_me">
                             <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
@@ -46,8 +39,27 @@
                         <div class="message_not_me_content">
                             <span v-html="item.reply"></span>
                         </div>
-                    </div>
+                        <!--<div class="message_not_me_content" v-if="status ==='0'">
+                            <router-link to="/recommend">Click to see our recommendation for you.</router-link>
+                        </div>-->
+                  </div>
+                    <!--<div class="message_not_me" v-if="status ==='0'&& item.content != null">
+                        <div class="col_not_me">
+                            <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
+                        </div>
+                        <div class="message_not_me_content">
+                            <router-link to="/recommend">Click to see our recommendation for you.</router-link>
+                        </div>
+                    </div>-->
                 </div>
+              <div class="message_not_me" v-if="status ==='0'">
+                        <div class="col_not_me">
+                            <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
+                        </div>
+                        <div class="message_not_me_content">
+                            <router-link to="/recommend">Click to see our recommendation for you.</router-link>
+                        </div>
+              </div>
             </div>
             <div id="message_send">
                 <br/>
@@ -147,7 +159,7 @@
                     /*this.myMessages.push({ reply: message })*/
                     this.process(message)
                     this.status = "1"
-                    this.$store.commit("newStatus",this.status)
+                    /*this.$store.commit("newStatus",this.status)*/
                 }
                 this.textarea = ''
                 this.randomNumber = this.getRandomFromBackend()
@@ -172,16 +184,15 @@
             },
             submit(){
                 this.$refs.questionnaire.recommend();
-
                 this.status = "0"
                 this.dialogVisible = false
             },
-            changeStatus(){
+           /* changeStatus(){
                 if(this.$store.state.status=="0"){
                     this.status = this.$store.state.status
                     this.dialogVisible = false
                 }
-            },
+            },*/
             /*getRandom (){
                 this.randomNumber = this.getRandomFromBackend()
             },

@@ -9,7 +9,7 @@ const store = new Vuex.Store({
     state: {
         author: 'group 3 A Team',
         recommendation:[],
-        status: "1"
+        status: "0"//0为未推荐，1为已在聊天界面推荐，2为从详情页找10个相似
     },
     mutations:{
         newRecommendation (state,msg){
