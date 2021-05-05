@@ -23,7 +23,7 @@
       </el-col>
     </el-row>
     <el-divider></el-divider>
-    <div v-if="this.houses==null">
+    <div v-if="this.houses.length==0">
       <p>No Result</p>
     </div>
     <el-row gutter="20" >
@@ -58,7 +58,7 @@
                 </div>
                 <span>这是一段信息</span>-->
                 <Detail :message = "thisHouse"></Detail>
-
+                <el-button @click="similar()">View 10 similar houses</el-button>
                 <!--<span slot="footer" class="dialog-footer">
                 <el-button @click="dialogVisible = false">取 消</el-button>
                 <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -135,10 +135,11 @@
         this.getList()
       },
       methods:{
-        searchfor(){
-          alert("!")
-
-
+        similar(){
+          this.$store.commit("newStatus","2")
+          /*alert(this.$store.state.status)*/
+          this.$router.push({ path:'/recommend'  })
+          this.dialogVisible = false
         },
         sortandsearch(){
           //先执行排序
@@ -234,9 +235,12 @@
             }
           }
           this.matchn = n
-          alert(this.matchn)
+         /* alert(this.matchn)*/
           this.houses = []
-          this.getList()
+          if(this.matchn.length!=0){
+            this.getList()
+          }
+
           /*let h = []
           alert(this.houses[0].neighborhood)
           for (var i = 0;i<this.houses.length;i++){

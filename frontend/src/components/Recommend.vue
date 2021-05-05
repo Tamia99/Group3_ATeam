@@ -1,5 +1,12 @@
 <template>
     <div>
+      <div v-if="status == '0'">
+        <h1>Oops!There are no recommendations now.You can go to chat with the assistant or view  all house informations</h1>
+        <router-link to="/chat">chat with our smart assistant</router-link>
+        <br>
+        <router-link to="/house">view all houses</router-link>
+      </div>
+      <div v-if="status != '0'">
         <h1>Here to see recommendations for you</h1>
         <el-row gutter="20" >
           <el-col :span="6" v-for="item in houses" :key="item.id">
@@ -39,7 +46,7 @@
           :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
         </el-rate>
       </div>
-
+        </div>
     </div>
 
 </template>
@@ -54,13 +61,23 @@
               pageSize: 12,
               houses: [],
               value: null,
+              status:this.$store.state.status,
               iconClasses: ['icon-rate-face-1', 'icon-rate-face-2', 'icon-rate-face-3'], // 等同于 { 2: 'icon-rate-face-1', 4: { value: 'icon-rate-face-2', excluded: true }, 5: 'icon-rate-face-3' }
             }
         },
         created:function(){
             this.getList()
+            /*alert(this.$store.state.status)*/
+            this.status = this.$store.state.status
+            /*alert (this.status)*/
         },
-        computed: {
+        updated() {
+          this.status = this.$store.state.status
+        },
+        watched(){
+           this.status = this.$store.state.status
+        },
+      computed: {
 
         },
         methods:{

@@ -580,7 +580,7 @@
 
                         let all = response.data.result
                         this.$store.commit("newRecommendation",all)
-                        this.$store.commit("newStatus","0")
+                        this.$store.commit("newStatus","1")
                         /*alert(this.$store.state.status)*/
                         console.log(this.$store.state.recommendation)
                         /*alert("successful submission")*/
