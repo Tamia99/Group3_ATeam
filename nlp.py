@@ -650,8 +650,10 @@ def NaturalLanguageProcess(data, process1, process2):
     elif process1 == 15:
         returnlist = ['Please fill in the questionnaire and submit it.', process1, process2, informationlist]
     elif process1 == 16:
-        houselist = recommendation.recommendationSysAlgorithm(informationlist)
-        returnlist = ['', process1, process2, houselist]
+        if process2 == 1:
+            process2 == 0
+            houselist = recommendation.recommendationSysAlgorithm(informationlist)
+            returnlist = ['', process1, process2, houselist]
 
     # print(process1)
     # print(process2)
