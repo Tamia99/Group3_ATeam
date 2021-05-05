@@ -6,7 +6,7 @@ questionList = [
     "How many full bathrooms do you want?",
     "How many half bathrooms do you want?",
     "What size of house do you want? (sqft)",
-    """Which neighborhood do you want?
+    """Which neighborhood do you want? (Enter the number)
     0   It does not matter
     1   Bloomington Heights
     2	Bluestem
@@ -33,14 +33,14 @@ questionList = [
     23	Stone Brook
     24	Timberland
     25	Veenker""",
-    """What kind of utility type do you want?
+    """What kind of utility type do you want?（Enter the number）
     0   It does not matter
     1   All public Utilities (E,G,W,& S)	
     2	Electricity, Gas, and Water (Septic Tank)
     3	Electricity and Gas Only
     4	Electricity only	
     """,
-    """What kind of house style do you want?
+    """What kind of house style do you want?（Enter the number）
     0   It does not matter
     1   One story
     2	One and one-half story: 2nd level finished
@@ -51,7 +51,7 @@ questionList = [
     7	Split Foyer
     8	Split Level
     """,
-    """What kind of heating type do you want?
+    """What kind of heating type do you want?（Enter the number）
     0   It does not matter
     1	Floor Furnace
     2	Gas forced warm air furnace
@@ -68,6 +68,6 @@ questionList = [
     "How many cars would you like the garage to hold?",
     "How many rooms(total rooms above ground) do you want?",
     "Would you like to complete the questionnaire to provide more information, which would make the recommendation result more accurate.",
-    "Sorry, we can not gain enough information based on your answer, please complete the questionnaire to provide more information.",
+    "Thank you for answering questions, but we can not gain enough information based on your answer, please complete the questionnaire to provide more information.",
     "Here is the recommendation result."
 ]

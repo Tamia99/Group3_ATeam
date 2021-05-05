@@ -7,6 +7,7 @@ from nltk.stem import WordNetLemmatizer
 import questions
 import robot
 import re
+import recommendation
 
 stopwords = set()
 porter_stemmer = PorterStemmer()
@@ -15,6 +16,7 @@ def readStopword():
     with open (path, 'r') as f:
         for line in f:
             stopwords.add(line.rstrip())
+informationlist = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', -1, -1, -1, -1, -1, -1, -1, '', '', '']
 
 numberDic = {
     'zero': 0,
@@ -50,20 +52,29 @@ numberDic = {
 def word_to_number(data):
     punctuation = '!,;:?"\'、，；'
     data = re.sub(r'[{}]+'.format(punctuation),' ',data)
-    sep = re.split(r'million|billion|thousand', data)
-    print(sep)
+    sep = re.split(r'million|billion|thousand|millions|billions|thousands', data)
     result = []
     for s in sep:
         s = s.replace('and', '')
         s = s.strip()
-        count = 0
         words = re.split('[ -]', s)
-        print(words)
+        # print('word to number: ')
+        # print(words)
         res = []
         for word in words:
             if word in numberDic:
+                count = 0
+                break
+            elif word == 'hundred' or word == 'hundreds':
+                count = 0
+                break
+            else:
+                count = ''
+
+        for word in words:
+            if word in numberDic:
                 count += numberDic[word]
-            elif word == 'hundred':
+            elif word == 'hundred' or word == 'hundreds':
                 if count == 0:
                     count += 100
                 else:
@@ -74,14 +85,20 @@ def word_to_number(data):
             res.insert(0, count)
         else:
             res.append(count)
-        print(res)
         result.append(res)
-    print(result)
     final = ''
     for r in result:
+        # print(r)
         for i in r:
             if isinstance(i,int):
-                final += str(i)
+                # print(i)
+                # print(len(str(i)))
+                if len(str(i)) == 1:
+                    final = final + '00' + str(i)
+                elif len(str(i)) == 2:
+                    final = final + '0' + str(i)
+                else:
+                    final += str(i)
             else:
                 if i != '':
                     final = final + ' ' + i + ' '
@@ -90,9 +107,9 @@ def word_to_number(data):
 def preprocessing(data):
     if len(stopwords) == 0:
         readStopword()
-    data = data.lower().strip()
     data = word_to_number(data)
-    print(data)
+    # print('preprocessing: ')
+    # print(data)
     words = []
     tags = pos_tag(word_tokenize(data))
     wnl = WordNetLemmatizer()
@@ -111,10 +128,16 @@ def preprocessing(data):
     return words
 
 def NaturalLanguageProcess(data, process1, process2):
+    data = data.lower().strip()
     wordsList = preprocessing(data)
-    print(wordsList)
-    if process1 == 0:
-        answerkeyword1 = ['yes','y','ok','yep','sure','yea','yeah','fine','okay']
+    # print('nature: ')
+    # print(wordsList)
+    # print(process1)
+    # print(process2)
+    if process1 == -1:
+        returnlist = [robot.getRespond(data), process1, process2]
+    elif process1 == 0:
+        answerkeyword1 = ['yes','y','ok','yep','sure','yea','yeah','fine','okay','maybe']
         answerkeyword2 = ['no','n','never','noway']
         if len(set(wordsList).intersection(set(answerkeyword1))) != 0:
             process1 += 1
@@ -128,8 +151,510 @@ def NaturalLanguageProcess(data, process1, process2):
             else:
                 process2 += 1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[0], process1, process2]
-    # elif process1 == 1:
-    #
+    elif process1 == 1:
+        i = 0
+        for word in wordsList:
+            if word.isdigit():
+                if int(word) < 10000000 and int(word) > 20000:
+                    process1 = 2
+                    process2 = 0
+                    informationlist[24] = word
+                    returnlist = ["Ok, I know. Let's come to next question." + '\n' + questions.questionList[3], process1, process2]
+                else:
+                    if process2 == 0:
+                        # print('test')
+                        process2 = 1
+                        returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[2], process1, process2]
+                    elif process2 == 1:
+                        process2 = 0
+                        process1 = 2
+                        returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[3], process1, process2]
+            else:
+                i += 1
+        if (i == len(wordsList)):
+            if process2 == 0:
+                # print('test')
+                process2 = 1
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[2], process1, process2]
+            elif process2 == 1:
+                process2 = 0
+                process1 = 2
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[3], process1, process2]
+
+    elif process1 == 2:
+        i = 0
+        for word in wordsList:
+            if word.isdigit():
+                if int(word) < 15 and int(word) >= 0:
+                    process1 = 3
+                    process2 = 0
+                    informationlist[17] = word
+                    returnlist = ["I see." + '\n' + questions.questionList[4], process1, process2]
+                else:
+                    if process2 == 0:
+                        # print('test')
+                        process2 = 1
+                        returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[3], process1, process2]
+                    elif process2 == 1:
+                        process2 = 0
+                        process1 = 3
+                        returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[4], process1, process2]
+            else:
+                i += 1
+        if (i == len(wordsList)):
+            if process2 == 0:
+                # print('test')
+                process2 = 1
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[3], process1, process2]
+            elif process2 == 1:
+                process2 = 0
+                process1 = 3
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[4], process1, process2]
+    elif process1 == 3:
+        i = 0
+        for word in wordsList:
+            if word.isdigit():
+                if int(word) < 10 and int(word) >= 0:
+                    process1 = 4
+                    process2 = 0
+                    informationlist[15] = word
+                    returnlist = ["Ok." + '\n' + questions.questionList[5], process1, process2]
+                else:
+                    if process2 == 0:
+                        # print('test')
+                        process2 = 1
+                        returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[4], process1, process2]
+                    elif process2 == 1:
+                        process2 == 0
+                        process1 = 4
+                        returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[5], process1, process2]
+            else:
+                i += 1
+        if (i == len(wordsList)):
+            if process2 == 0:
+                # print('test')
+                process2 = 1
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[4], process1, process2]
+            elif process2 == 1:
+                process2 = 0
+                process1 = 4
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[5], process1, process2]
+    elif process1 == 4:
+        i = 0
+        for word in wordsList:
+            if word.isdigit():
+                if int(word) < 6 and int(word) >= 0:
+                    process1 = 5
+                    process2 = 0
+                    informationlist[16] = word
+                    returnlist = ["Well." + '\n' + questions.questionList[6], process1, process2]
+                else:
+                    if process2 == 0:
+                        # print('test')
+                        process2 = 1
+                        returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[5], process1, process2]
+                    elif process2 == 1:
+                        process2 == 0
+                        process1 = 5
+                        returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[6], process1, process2]
+            else:
+                i += 1
+        if (i == len(wordsList)):
+            if process2 == 0:
+                # print('test')
+                process2 = 1
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[5], process1, process2]
+            elif process2 == 1:
+                process2 = 0
+                process1 = 5
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[6], process1, process2]
+    elif process1 == 5:
+        i = 0
+        for word in wordsList:
+            if word.isdigit():
+                if int(word) < 250000 and int(word) >= 1000:
+                    process1 = 6
+                    process2 = 0
+                    informationlist[1] = word
+                    returnlist = ["Well." + '\n' + questions.questionList[7], process1, process2]
+                else:
+                    if process2 == 0:
+                        # print('test')
+                        process2 = 1
+                        returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[6], process1, process2]
+                    elif process2 == 1:
+                        process2 == 0
+                        process1 = 6
+                        returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[7], process1, process2]
+            else:
+                i += 1
+        if (i == len(wordsList)):
+            if process2 == 0:
+                # print('test')
+                process2 = 1
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[6], process1, process2]
+            elif process2 == 1:
+                process2 = 0
+                process1 = 6
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[7], process1, process2]
+    elif process1 == 6:
+        i = 0
+        ans = False
+        answerlist = ['it does not matter', 'bloomington heights', 'bluestem', 'briardale', 'brookside',
+                      'clear creek', 'college creek', 'crawford', 'edwards', 'gilbert', 'iowa dot and rail road',
+                      'meadow village', 'mitchell', 'north ames', 'northridge', 'northpark villa', 'northridge heights',
+                      'northwest ames', 'old town', 'south & west of iowa state university', 'sawyer', 'sawyer west',
+                      'somerset', 'stone brook', 'timberland', 'veenker']
+        item = ['-1', 'blmngtn', 'blueste', 'brdale', 'brkside', 'clearcr',
+                'collgcr', 'crawfor', 'edwards', 'gilbert', 'idotrr',
+                'MeadowV', 'Mitchel', 'NAmes', 'NoRidge', 'NPkVill',
+                'NridgHt', 'NWAmes', 'OldTown', 'SWISU', 'Sawyer',
+                'SawyerW', 'Somerst', 'StoneBr', 'Timber', 'Veenker']
+        for i,answer in enumerate(answerlist):
+            if re.match(answer,data) is not None:
+                process1 = 7
+                process2 = 0
+                informationlist[4] = item[i]
+                returnlist = ["Well." + '\n' + questions.questionList[8], process1, process2]
+                ans = True
+                break
+        if ans == False:
+            for word in wordsList:
+                if word.isdigit():
+                    if int(word) <= 25 and int(word) >= 0:
+                        process1 = 7
+                        process2 = 0
+                        informationlist[4] = item[int(word)]
+                        returnlist = ["Well." + '\n' + questions.questionList[8], process1, process2]
+                    else:
+                        if process2 == 0:
+                            # print('test')
+                            process2 = 1
+                            returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[7], process1, process2]
+                        elif process2 == 1:
+                            process2 == 0
+                            process1 = 7
+                            returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[8], process1, process2]
+                else:
+                    i += 1
+            if (i == len(wordsList)):
+                if process2 == 0:
+                    # print('test')
+                    process2 = 1
+                    returnlist = [robot.getRespond(data) + '\n' + questions.questionList[7], process1, process2]
+                elif process2 == 1:
+                    process2 = 0
+                    process1 = 7
+                    returnlist = [robot.getRespond(data) + '\n' + questions.questionList[8], process1, process2]
+    elif process1 == 7:
+        i = 0
+        ans = False
+        item = ['-1', 'AllPub', 'NoSewr', 'NoSeWa', 'ELO']
+        answerlist = ['it does not matter', 'all public utilities (e,g,w,& s)', 'electricity, gas, and water (septic tank)', 'electricity and gas only', 'electricity only']
+        for i, answer in enumerate(answerlist):
+            if re.match(answer.lower(),data) is not None:
+                process1 = 8
+                process2 = 0
+                informationlist[3] = item[i]
+                returnlist = ["Well." + '\n' + questions.questionList[9], process1, process2]
+                ans = True
+                break
+        if ans == False:
+            for word in wordsList:
+                if word.isdigit():
+                    if int(word) <= 4 and int(word) >= 0:
+                        process1 = 8
+                        process2 = 0
+                        informationlist[3] = item[int(word)]
+                        returnlist = ["Well." + '\n' + questions.questionList[9], process1, process2]
+                    else:
+                        if process2 == 0:
+                            # print('test')
+                            process2 = 1
+                            returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[8], process1, process2]
+                        elif process2 == 1:
+                            process2 == 0
+                            process1 = 8
+                            returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[9], process1, process2]
+                else:
+                    i += 1
+            if (i == len(wordsList)):
+                if process2 == 0:
+                    # print('test')
+                    process2 = 1
+                    returnlist = [robot.getRespond(data) + '\n' + questions.questionList[8], process1, process2]
+                elif process2 == 1:
+                    process2 = 0
+                    process1 = 8
+                    returnlist = [robot.getRespond(data) + '\n' + questions.questionList[9], process1, process2]
+    elif process1 == 8:
+        i = 0
+        ans = False
+        item = ['-1', '1Story', '1.5Fin', '1.5Unf', '2Story', '2.5Fin', '2.5Unf',
+                'SFoyer', 'SLvl']
+        answerlist = ['it does not matter', 'one story', 'one and one-half story: 2nd level finished', 'one and one-half story: 2nd level unfinished',
+                      'two story', 'two and one-half story: 2nd level finished', 'two and one-half story: 2nd level unfinished', 'split foyer', 'split level']
+        for i, answer in enumerate(answerlist):
+            if re.match(answer.lower(),data) is not None:
+                process1 = 9
+                process2 = 0
+                informationlist[5] = item[i]
+                returnlist = ["Well." + '\n' + questions.questionList[10], process1, process2]
+                ans = True
+                break
+        if ans == False:
+            for word in wordsList:
+                if word.isdigit():
+                    if int(word) <= 8 and int(word) >= 0:
+                        process1 = 9
+                        process2 = 0
+                        informationlist[5] = item[int(word)]
+                        returnlist = ["Well." + '\n' + questions.questionList[10], process1, process2]
+                    else:
+                        if process2 == 0:
+                            # print('test')
+                            process2 = 1
+                            returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[9], process1, process2]
+                        elif process2 == 1:
+                            process2 == 0
+                            process1 = 9
+                            returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[10], process1, process2]
+                else:
+                    i += 1
+            if (i == len(wordsList)):
+                if process2 == 0:
+                    # print('test')
+                    process2 = 1
+                    returnlist = [robot.getRespond(data) + '\n' + questions.questionList[9], process1, process2]
+                elif process2 == 1:
+                    process2 = 0
+                    process1 = 9
+                    returnlist = [robot.getRespond(data) + '\n' + questions.questionList[10], process1, process2]
+    elif process1 == 9:
+        i = 0
+        ans = False
+        item = ['-1', 'Floor', 'GasA', 'GasW', 'Grav', 'OthW', 'Wall']
+        answerlist = ['It does not matter', 'Floor Furnace', 'Gas forced warm air furnace',
+                      'Gas hot water or steam heat', 'Gravity furnace',
+                      'Hot water or steam heat other than gas', 'Wall furnace']
+        for i, answer in enumerate(answerlist):
+            if re.match(answer.lower(),data) is not None:
+                process1 = 10
+                process2 = 0
+                informationlist[11] = item[i]
+                returnlist = ["Well." + '\n' + questions.questionList[11], process1, process2]
+                ans = True
+                break
+        if ans == False:
+            for word in wordsList:
+                if word.isdigit():
+                    if int(word) <= 6 and int(word) >= 0:
+                        process1 = 10
+                        process2 = 0
+                        informationlist[11] = item[int(word)]
+                        returnlist = ["Well." + '\n' + questions.questionList[11], process1, process2]
+                    else:
+                        if process2 == 0:
+                            # print('test')
+                            process2 = 1
+                            returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' +
+                                          questions.questionList[10], process1, process2]
+                        elif process2 == 1:
+                            process2 == 0
+                            process1 = 10
+                            returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' +
+                                          questions.questionList[11], process1, process2]
+                else:
+                    i += 1
+            if (i == len(wordsList)):
+                if process2 == 0:
+                    # print('test')
+                    process2 = 1
+                    returnlist = [robot.getRespond(data) + '\n' + questions.questionList[10], process1, process2]
+                elif process2 == 1:
+                    process2 = 0
+                    process1 = 10
+                    returnlist = [robot.getRespond(data) + '\n' + questions.questionList[11], process1, process2]
+    elif process1 == 10:
+        i = 0
+        ans = False
+        item = ['-1', 'Y', 'N']
+        answerlist = ['It does not matter', 'Yes', 'No']
+        for i, answer in enumerate(answerlist):
+            if re.match(answer.lower(),data) is not None:
+                process1 = 11
+                process2 = 0
+                informationlist[12] = item[i]
+                returnlist = ["Well." + '\n' + questions.questionList[12], process1, process2]
+                ans = True
+                break
+        if ans == False:
+            for word in wordsList:
+                if word.isdigit():
+                    if int(word) <= 2 and int(word) >= 0:
+                        process1 = 11
+                        process2 = 0
+                        informationlist[12] = item[int(word)]
+                        returnlist = ["Well." + '\n' + questions.questionList[12], process1, process2]
+                    else:
+                        if process2 == 0:
+                            # print('test')
+                            process2 = 1
+                            returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' +
+                                          questions.questionList[11], process1, process2]
+                        elif process2 == 1:
+                            process2 == 0
+                            process1 = 11
+                            returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' +
+                                          questions.questionList[12], process1, process2]
+                else:
+                    i += 1
+            if (i == len(wordsList)):
+                if process2 == 0:
+                    # print('test')
+                    process2 = 1
+                    returnlist = [robot.getRespond(data) + '\n' + questions.questionList[11], process1, process2]
+                elif process2 == 1:
+                    process2 = 0
+                    process1 = 11
+                    returnlist = [robot.getRespond(data) + '\n' + questions.questionList[12], process1, process2]
+    elif process1 == 11:
+        i = 0
+        for word in wordsList:
+            if word.isdigit():
+                if int(word) <= 5 and int(word) >= 0:
+                    process1 = 12
+                    process2 = 0
+                    informationlist[18] = word
+                    returnlist = ["Well." + '\n' + questions.questionList[13], process1, process2]
+                else:
+                    if process2 == 0:
+                        # print('test')
+                        process2 = 1
+                        returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[12], process1, process2]
+                    elif process2 == 1:
+                        process2 == 0
+                        process1 = 12
+                        returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[13], process1, process2]
+            else:
+                i += 1
+        if (i == len(wordsList)):
+            if process2 == 0:
+                # print('test')
+                process2 = 1
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[12], process1, process2]
+            elif process2 == 1:
+                process2 = 0
+                process1 = 12
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[13], process1, process2]
+    elif process1 == 12:
+        i = 0
+        for word in wordsList:
+            if word.isdigit():
+                if int(word) <= 6 and int(word) >= 0:
+                    process1 = 13
+                    process2 = 0
+                    informationlist[22] = word
+                    returnlist = ["Well." + '\n' + questions.questionList[14], process1, process2]
+                else:
+                    if process2 == 0:
+                        # print('test')
+                        process2 = 1
+                        returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[13], process1, process2]
+                    elif process2 == 1:
+                        process2 == 0
+                        process1 = 13
+                        returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[14], process1, process2]
+            else:
+                i += 1
+        if (i == len(wordsList)):
+            if process2 == 0:
+                # print('test')
+                process2 = 1
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[13], process1, process2]
+            elif process2 == 1:
+                process2 = 0
+                process1 = 13
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[14], process1, process2]
+    elif process1 == 13:
+        i = 0
+        for word in wordsList:
+            if word.isdigit():
+                if int(word) <= 15 and int(word) >= 0:
+                    informationlist[20] = word
+                    count = 0
+                    for i in informationlist:
+                        if i != '' and i != -1:
+                            count += 1
+                    if count >= 6:
+                        process2 = 0
+                        process1 = 14
+                        returnlist = ['I see. Thank you for answering all the question.' + questions.questionList[15], process1, process2]
+                    else:
+                        process2 = 0
+                        process1 = 15
+                        returnlist = ['Umm..., your answer seems unreasonable.' + '\n' + questions.questionList[16], process1, process2, informationlist]
+                else:
+                    if process2 == 0:
+                        # print('test')
+                        process2 = 1
+                        returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[14], process1, process2]
+                    elif process2 == 1:
+                        count = 0
+                        for i in informationlist:
+                            if i != '' and i != -1:
+                                count += 1
+                        if count >= 6:
+                            process2 = 0
+                            process1 = 14
+                            returnlist = ['Umm..., your answer seems unreasonable.' + '\n' + 'Above are all the question.' + questions.questionList[
+                                    15], process1, process2]
+                        else:
+                            process2 = 0
+                            process1 = 15
+                            returnlist = ['Umm..., your answer seems unreasonable.' + '\n' + questions.questionList[16], process1,
+                                          process2, informationlist]
+            else:
+                i += 1
+        if (i == len(wordsList)):
+            if process2 == 0:
+                # print('test')
+                process2 = 1
+                returnlist = [robot.getRespond(data) + '\n' + questions.questionList[14], process1, process2]
+            elif process2 == 1:
+                count = 0
+                for i in informationlist:
+                    if i != '' and i != -1:
+                        count += 1
+                if count >= 6:
+                    process2 = 0
+                    process1 = 14
+                    returnlist = [robot.getRespond(data) + '\n' + 'Above are all the question.' + questions.questionList[15], process1, process2]
+                else:
+                    process2 = 0
+                    process1 = 15
+                    returnlist = [robot.getRespond(data) + '\n' + questions.questionList[16], process1, process2, informationlist]
+    elif process1 == 14:
+        answerkeyword1 = ['yes', 'y', 'ok', 'yep', 'sure', 'yea', 'yeah', 'fine', 'okay']
+        # answerkeyword2 = ['no', 'n', 'never', 'noway']
+        if len(set(wordsList).intersection(set(answerkeyword1))) != 0:
+            process1 = 16
+            process2 = 1
+            returnlist = ['', process1, process2, informationlist]
+        else:
+            houselist = recommendation.recommendationSysAlgorithm(informationlist)
+            process1 = 16
+            process2 = 0
+            returnlist = ['', process1, process2, houselist]
+        print(informationlist)
+    elif process1 == 15:
+        returnlist = ['Please fill in the questionnaire and submit it.', process1, process2, informationlist]
+    elif process1 == 16:
+        houselist = recommendation.recommendationSysAlgorithm(informationlist)
+        returnlist = ['', process1, process2, houselist]
+
+    # print(process1)
+    # print(process2)
     return returnlist
 
 

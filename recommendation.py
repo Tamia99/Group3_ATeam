@@ -5,6 +5,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import database
 
 def recommendationSysAlgorithm(userList):
+    print(userList)
     # User information
     #userList = recommend()
     #userList = ['', 5000, 'Lvl', '', 'NAmes', '1Story', 2004, '', 'None', '', 200, 'GasA', 0, 'SBrkr', 1700, '', -1, 3, 2, 6, 0, -1, 0, 0, 100000]
