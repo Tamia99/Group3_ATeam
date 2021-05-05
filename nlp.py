@@ -137,7 +137,7 @@ def NaturalLanguageProcess(data, process1, process2):
     if process1 == -1:
         returnlist = [robot.getRespond(data), process1, process2]
     elif process1 == 0:
-        answerkeyword1 = ['yes','y','ok','yep','sure','yea','yeah','fine','okay','maybe']
+        answerkeyword1 = ['yes','y','ok','yep','sure','yea','yeah','fine','okay','maybe','need','of course','get']
         answerkeyword2 = ['no','n','never','noway']
         if len(set(wordsList).intersection(set(answerkeyword1))) != 0:
             process1 += 1
@@ -298,7 +298,6 @@ def NaturalLanguageProcess(data, process1, process2):
                 process1 = 6
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[7], process1, process2]
     elif process1 == 6:
-        i = 0
         ans = False
         answerlist = ['it does not matter', 'bloomington heights', 'bluestem', 'briardale', 'brookside',
                       'clear creek', 'college creek', 'crawford', 'edwards', 'gilbert', 'iowa dot and rail road',
@@ -319,6 +318,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 ans = True
                 break
         if ans == False:
+            i = 0
             for word in wordsList:
                 if word.isdigit():
                     if int(word) <= 25 and int(word) >= 0:
@@ -337,7 +337,9 @@ def NaturalLanguageProcess(data, process1, process2):
                             returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[8], process1, process2]
                 else:
                     i += 1
+            print(i)
             if (i == len(wordsList)):
+                print('2')
                 if process2 == 0:
                     # print('test')
                     process2 = 1
@@ -347,7 +349,6 @@ def NaturalLanguageProcess(data, process1, process2):
                     process1 = 7
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[8], process1, process2]
     elif process1 == 7:
-        i = 0
         ans = False
         item = ['-1', 'AllPub', 'NoSewr', 'NoSeWa', 'ELO']
         answerlist = ['it does not matter', 'all public utilities (e,g,w,& s)', 'electricity, gas, and water (septic tank)', 'electricity and gas only', 'electricity only']
@@ -360,6 +361,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 ans = True
                 break
         if ans == False:
+            i = 0
             for word in wordsList:
                 if word.isdigit():
                     if int(word) <= 4 and int(word) >= 0:
@@ -388,7 +390,6 @@ def NaturalLanguageProcess(data, process1, process2):
                     process1 = 8
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[9], process1, process2]
     elif process1 == 8:
-        i = 0
         ans = False
         item = ['-1', '1Story', '1.5Fin', '1.5Unf', '2Story', '2.5Fin', '2.5Unf',
                 'SFoyer', 'SLvl']
@@ -403,6 +404,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 ans = True
                 break
         if ans == False:
+            i = 0
             for word in wordsList:
                 if word.isdigit():
                     if int(word) <= 8 and int(word) >= 0:
@@ -431,7 +433,6 @@ def NaturalLanguageProcess(data, process1, process2):
                     process1 = 9
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[10], process1, process2]
     elif process1 == 9:
-        i = 0
         ans = False
         item = ['-1', 'Floor', 'GasA', 'GasW', 'Grav', 'OthW', 'Wall']
         answerlist = ['It does not matter', 'Floor Furnace', 'Gas forced warm air furnace',
@@ -446,6 +447,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 ans = True
                 break
         if ans == False:
+            i = 0
             for word in wordsList:
                 if word.isdigit():
                     if int(word) <= 6 and int(word) >= 0:
@@ -476,7 +478,6 @@ def NaturalLanguageProcess(data, process1, process2):
                     process1 = 10
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[11], process1, process2]
     elif process1 == 10:
-        i = 0
         ans = False
         item = ['-1', 'Y', 'N']
         answerlist = ['It does not matter', 'Yes', 'No']
@@ -489,6 +490,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 ans = True
                 break
         if ans == False:
+            i = 0
             for word in wordsList:
                 if word.isdigit():
                     if int(word) <= 2 and int(word) >= 0:
