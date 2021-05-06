@@ -8,6 +8,7 @@ import questions
 import robot
 import re
 import recommendation
+import database
 
 stopwords = set()
 porter_stemmer = PorterStemmer()
@@ -641,21 +642,26 @@ def NaturalLanguageProcess(data, process1, process2):
         # answerkeyword2 = ['no', 'n', 'never', 'noway']
         if len(set(wordsList).intersection(set(answerkeyword1))) != 0:
             process1 = 16
-            process2 = 1
+            process2 = 0
             returnlist = ['', process1, process2, informationlist]
         else:
             houselist = recommendation.recommendationSysAlgorithm(informationlist)
-            process1 = 16
+            houseinfo = database.getHouseByIds(houselist)
+            process1 = 17
             process2 = 0
-            returnlist = ['', process1, process2, houselist]
+            returnlist = ['', process1, process2, houseinfo]
         print(informationlist)
     elif process1 == 15:
-        returnlist = ['Please fill in the questionnaire and submit it.', process1, process2, informationlist]
+        returnlist = ['Please fill in the questionnaire and submit it, then we can recommend suitable houses for you.', process1, process2, informationlist]
     elif process1 == 16:
-        if process2 == 1:
-            process2 == 0
-            houselist = recommendation.recommendationSysAlgorithm(informationlist)
-            returnlist = ['', process1, process2, houselist]
+        process1 == 17
+        process2 == 0
+        houselist = recommendation.recommendationSysAlgorithm(informationlist)
+        houseinfo = database.getHouseByIds(houselist)
+        returnlist = ['', process1, process2, houseinfo]
+    elif process1 == 17:
+        process2 += 1
+        returnlist = [robot.getRespond(data), process1, process2]
 
     # print(process1)
     # print(process2)

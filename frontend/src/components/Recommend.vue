@@ -258,7 +258,7 @@
             openDetail(id){
                 this.houseId = id
                 let i = 0
-                alert(this.houseId)
+                /*alert(this.houseId)*/
                 while(i<this.details.length){
                     // alert(this.details[i][0])
                     if (id == this.details[i][0]){
