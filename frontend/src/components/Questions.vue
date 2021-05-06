@@ -1,5 +1,6 @@
 <template>
     <div id = "q">
+      <p>{{message}}</p>
         <h1>Here is the questions page</h1><br>
         <el-form ref="form" :model="form" label-width="80px">
             <el-form-item>
@@ -212,8 +213,10 @@
 
     export default {
         name: "Questions.vue",
+        props:['message'],
         data() {
             return {
+                qtype: this.message[0],
                 form: {
                     classification:"",
                     inputSize: '',
@@ -562,7 +565,10 @@
                 return this.$store.state.author
             }
         },
-        methods: {
+        created() {
+          alert(this.qtype)
+        },
+      methods: {
             handleChange(value) {
                 console.log(value);
             },
@@ -573,6 +579,7 @@
                             this.form.bedroom,this.form.kitchen,this.form.room,this.form.fire,this.form.garage,this.form.deck,
                             this.form.pool,this.form.price]
                /* alert(data)*/
+                /*let data = list*/
                 const path = 'http://localhost:5000/api/recommend'
                 axios.post(path, data)
                     .then(response => {
@@ -583,7 +590,7 @@
                         this.$store.commit("newStatus","1")
                         /*alert(this.$store.state.status)*/
                         console.log(this.$store.state.recommendation)
-                        /*alert("successful submission")*/
+                        alert("successful submission")
                     })
                     .catch((error) => {
                         // eslint-disable-next-line

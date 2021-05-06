@@ -589,7 +589,7 @@ def NaturalLanguageProcess(data, process1, process2):
                     if count >= 6:
                         process2 = 0
                         process1 = 14
-                        returnlist = ['I see. Thank you for answering all the question.' + questions.questionList[15], process1, process2]
+                        returnlist = ['I see. Thank you for answering all the question.' + '\n' + questions.questionList[15], process1, process2]
                     else:
                         process2 = 0
                         process1 = 15

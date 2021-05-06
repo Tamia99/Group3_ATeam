@@ -66,16 +66,24 @@
             }
         },
         created:function(){
+            alert("1")
             this.getList()
             /*alert(this.$store.state.status)*/
             this.status = this.$store.state.status
-            /*alert (this.status)*/
+            alert (this.houses[1])
         },
         updated() {
           this.status = this.$store.state.status
+          this.getList()
+          alert("2")
         },
         watched(){
            this.status = this.$store.state.status
+           this.getList()
+          alert("3")
+        },
+      mounted:function(){
+
         },
       computed: {
 
@@ -84,6 +92,7 @@
             getList(){
                 /*this.tableData.push({id:"all[i][0]",price:"p",room:"r",area:"a",neighborhood:"n",type:"t"})*/
                 let all = this.$store.state.recommendation
+                alert(all)
                 let i = 0
                 while (i<all.length){
                     let p = all[i][80]
@@ -209,6 +218,7 @@
                     this.houses.push({price:p,room:r,neighborhood:n,type:t})
                     i++
                 }
+                alert(this.houses)
 
             }
         }

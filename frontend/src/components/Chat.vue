@@ -27,7 +27,7 @@
                             <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
-                            <span>Can you answer some questions so we can recommend house for you.</span>
+                            <span @click="dialogVisible = true">Can you answer some questions so we can recommend house for you.</span>
                             <el-button id="ok" size="medium" type="primary" @click="dialogVisible = true">OK</el-button>
                         </div>
                     </div>
@@ -52,12 +52,20 @@
                         </div>
                     </div>-->
                 </div>
-              <div class="message_not_me" v-if="status ==='0'">
+              <div class="message_not_me" v-if="status ==='0'&& isReloadData">
                         <div class="col_not_me">
                             <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
                             <router-link to="/recommend">Click to see our recommendation for you.</router-link>
+                        </div>
+              </div>
+              <div class="message_not_me" v-if="questionType==0||questionType==2">
+                        <div class="col_not_me">
+                            <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
+                        </div>
+                        <div class="message_not_me_content">
+                            <span @click="dialogVisible = true">Click here to get the questionnaire.</span>
                         </div>
               </div>
             </div>
@@ -83,8 +91,10 @@
                 width="30%"
                 :before-close="handleClose"
                 fullscreen = true
-                id="q">
-            <Questions  ref="questionnaire"></Questions>
+                id="q"
+
+        >
+            <Questions  ref="questionnaire" :message = "questionType"></Questions>
             <span slot="footer" class="dialog-footer">
                         <el-button @click="dialogVisible = false">Cancel</el-button>
                         <!--<el-button type="primary" @click="dialogVisible = false">Submit</el-button>-->
@@ -106,6 +116,7 @@
         },
         data: function () {
             return {
+                isReloadData:true,
                 textarea: '',
                 myMessages: [
                   {time: "testtime"},
@@ -121,6 +132,8 @@
                 processNumber:0,
                 /*正在进行的对话次数*/
                 currentProcess:0,
+              //问卷类型， 0为选填，1为直接推荐，2为必填
+                questionType:[1],
 
             }
         },
@@ -131,6 +144,12 @@
 
         methods: {
             // 滚动条自动保持在底部
+          reload () {
+            this.isReloadData = false
+            this.$nextTick(() => {
+              this.isReloadData = true
+            })
+          },
             scrollToBottom: function () {
                 this.$nextTick(() => {
                     var container = this.$el.querySelector('#message_show')
@@ -158,7 +177,7 @@
                     this.myMessages.push({ content: message })
                     /*this.myMessages.push({ reply: message })*/
                     this.process(message)
-                    this.status = "1"
+                    /*this.status = "1"*/
                     /*this.$store.commit("newStatus",this.status)*/
                 }
                 this.textarea = ''
@@ -171,10 +190,34 @@
                 axios.post(path, data)
                     .then(response => {
                       let re = response.data.reply
-                      let rep = this.preText(re[0] )
+                     /* alert(re)*/
+                      if (re[1]==16&&re[2]==1){//选填问卷
+                        this.questionType[0] = 0
+                        this.questionType = this.questionType.concat(re[3])
+                      }
+                      else if(re[1]==16&&re[2]==0){//直接推荐
+                        alert("re[3]")
+                        this.questionType[0] = 1
+                      /*  this.$refs.questionnaire.recommend(re[3])*/
+                        this.$store.commit("newRecommendation",re[3])
+                        this.$store.commit("newStatus","1")
+                        this.status = "0"
+                        /*this.reload()*/
+                        alert(this.$store.state.recommendation)
+                        /*this.$router.push("/recommend");*/
+                      }
+                      else if(re[1]==15){//有回复，填必填问卷
+                        let rep = this.preText(re[0])
+                        this.myMessages.push({ reply: rep })
+                        this.questionType[0] = 2
+                        this.questionType = this.questionType.concat(re[3])
+                      }
+                      else{
+                        let rep = this.preText(re[0])
+                        this.myMessages.push({ reply: rep })
+                      }
                       this.processNumber = re[1]
                       this.currentProcess = re[2]
-                      this.myMessages.push({ reply: rep })
                     })
                     .catch((error) => {
                         console.log(error)
@@ -183,7 +226,7 @@
 
             },
             submit(){
-                this.$refs.questionnaire.recommend();
+                this.$refs.questionnaire.recommend([]);
                 this.status = "0"
                 this.dialogVisible = false
             },
