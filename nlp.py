@@ -165,10 +165,12 @@ def NaturalLanguageProcess(data, process1, process2):
                     if process2 == 0:
                         # print('test')
                         process2 = 1
+                        informationlist[24] = ''
                         returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[2], process1, process2]
                     elif process2 == 1:
                         process2 = 0
                         process1 = 2
+                        informationlist[24] = ''
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[3], process1, process2]
             else:
                 i += 1
@@ -176,10 +178,12 @@ def NaturalLanguageProcess(data, process1, process2):
             if process2 == 0:
                 # print('test')
                 process2 = 1
+                informationlist[24] = ''
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[2], process1, process2]
             elif process2 == 1:
                 process2 = 0
                 process1 = 2
+                informationlist[24] = ''
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[3], process1, process2]
 
     elif process1 == 2:
@@ -195,10 +199,12 @@ def NaturalLanguageProcess(data, process1, process2):
                     if process2 == 0:
                         # print('test')
                         process2 = 1
+                        informationlist[17] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[3], process1, process2]
                     elif process2 == 1:
                         process2 = 0
                         process1 = 3
+                        informationlist[17] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[4], process1, process2]
             else:
                 i += 1
@@ -206,10 +212,12 @@ def NaturalLanguageProcess(data, process1, process2):
             if process2 == 0:
                 # print('test')
                 process2 = 1
+                informationlist[17] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[3], process1, process2]
             elif process2 == 1:
                 process2 = 0
                 process1 = 3
+                informationlist[17] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[4], process1, process2]
     elif process1 == 3:
         i = 0
@@ -224,10 +232,12 @@ def NaturalLanguageProcess(data, process1, process2):
                     if process2 == 0:
                         # print('test')
                         process2 = 1
+                        informationlist[15] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[4], process1, process2]
                     elif process2 == 1:
-                        process2 == 0
+                        process2 = 0
                         process1 = 4
+                        informationlist[15] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[5], process1, process2]
             else:
                 i += 1
@@ -235,10 +245,12 @@ def NaturalLanguageProcess(data, process1, process2):
             if process2 == 0:
                 # print('test')
                 process2 = 1
+                informationlist[15] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[4], process1, process2]
             elif process2 == 1:
                 process2 = 0
                 process1 = 4
+                informationlist[15] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[5], process1, process2]
     elif process1 == 4:
         i = 0
@@ -253,10 +265,12 @@ def NaturalLanguageProcess(data, process1, process2):
                     if process2 == 0:
                         # print('test')
                         process2 = 1
+                        informationlist[16] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[5], process1, process2]
                     elif process2 == 1:
-                        process2 == 0
+                        process2 = 0
                         process1 = 5
+                        informationlist[16] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[6], process1, process2]
             else:
                 i += 1
@@ -264,10 +278,12 @@ def NaturalLanguageProcess(data, process1, process2):
             if process2 == 0:
                 # print('test')
                 process2 = 1
+                informationlist[16] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[5], process1, process2]
             elif process2 == 1:
                 process2 = 0
                 process1 = 5
+                informationlist[16] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[6], process1, process2]
     elif process1 == 5:
         i = 0
@@ -282,10 +298,12 @@ def NaturalLanguageProcess(data, process1, process2):
                     if process2 == 0:
                         # print('test')
                         process2 = 1
+                        informationlist[1] = ''
                         returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[6], process1, process2]
                     elif process2 == 1:
-                        process2 == 0
+                        process2 = 0
                         process1 = 6
+                        informationlist[1] = ''
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[7], process1, process2]
             else:
                 i += 1
@@ -293,10 +311,12 @@ def NaturalLanguageProcess(data, process1, process2):
             if process2 == 0:
                 # print('test')
                 process2 = 1
+                informationlist[1] = ''
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[6], process1, process2]
             elif process2 == 1:
                 process2 = 0
                 process1 = 6
+                informationlist[1] = ''
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[7], process1, process2]
     elif process1 == 6:
         ans = False
@@ -305,8 +325,8 @@ def NaturalLanguageProcess(data, process1, process2):
                       'meadow village', 'mitchell', 'north ames', 'northridge', 'northpark villa', 'northridge heights',
                       'northwest ames', 'old town', 'south & west of iowa state university', 'sawyer', 'sawyer west',
                       'somerset', 'stone brook', 'timberland', 'veenker']
-        item = ['-1', 'blmngtn', 'blueste', 'brdale', 'brkside', 'clearcr',
-                'collgcr', 'crawfor', 'edwards', 'gilbert', 'idotrr',
+        item = ['-1', 'Blmngtn', 'Blueste', 'Brdale', 'Brkside', 'Clearcr',
+                'Collgcr', 'Crawfor', 'Edwards', 'Gilbert', 'IDOTRR',
                 'MeadowV', 'Mitchel', 'NAmes', 'NoRidge', 'NPkVill',
                 'NridgHt', 'NWAmes', 'OldTown', 'SWISU', 'Sawyer',
                 'SawyerW', 'Somerst', 'StoneBr', 'Timber', 'Veenker']
@@ -331,10 +351,12 @@ def NaturalLanguageProcess(data, process1, process2):
                         if process2 == 0:
                             # print('test')
                             process2 = 1
+                            informationlist[4] = ''
                             returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[7], process1, process2]
                         elif process2 == 1:
-                            process2 == 0
+                            process2 = 0
                             process1 = 7
+                            informationlist[4] = ''
                             returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[8], process1, process2]
                 else:
                     i += 1
@@ -344,10 +366,12 @@ def NaturalLanguageProcess(data, process1, process2):
                 if process2 == 0:
                     # print('test')
                     process2 = 1
+                    informationlist[4] = ''
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[7], process1, process2]
                 elif process2 == 1:
                     process2 = 0
                     process1 = 7
+                    informationlist[4] = ''
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[8], process1, process2]
     elif process1 == 7:
         ans = False
@@ -374,10 +398,12 @@ def NaturalLanguageProcess(data, process1, process2):
                         if process2 == 0:
                             # print('test')
                             process2 = 1
+                            informationlist[3] = ''
                             returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[8], process1, process2]
                         elif process2 == 1:
-                            process2 == 0
+                            process2 = 0
                             process1 = 8
+                            informationlist[3] = ''
                             returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[9], process1, process2]
                 else:
                     i += 1
@@ -385,10 +411,12 @@ def NaturalLanguageProcess(data, process1, process2):
                 if process2 == 0:
                     # print('test')
                     process2 = 1
+                    informationlist[3] = ''
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[8], process1, process2]
                 elif process2 == 1:
                     process2 = 0
                     process1 = 8
+                    informationlist[3] = ''
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[9], process1, process2]
     elif process1 == 8:
         ans = False
@@ -408,7 +436,7 @@ def NaturalLanguageProcess(data, process1, process2):
             i = 0
             for word in wordsList:
                 if word.isdigit():
-                    if int(word) <= 8 and int(word) >= 0:
+                    if 8 >= int(word) >= 0:
                         process1 = 9
                         process2 = 0
                         informationlist[5] = item[int(word)]
@@ -417,10 +445,12 @@ def NaturalLanguageProcess(data, process1, process2):
                         if process2 == 0:
                             # print('test')
                             process2 = 1
+                            informationlist[5] = ''
                             returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[9], process1, process2]
                         elif process2 == 1:
-                            process2 == 0
+                            process2 = 0
                             process1 = 9
+                            informationlist[5] = ''
                             returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[10], process1, process2]
                 else:
                     i += 1
@@ -428,10 +458,12 @@ def NaturalLanguageProcess(data, process1, process2):
                 if process2 == 0:
                     # print('test')
                     process2 = 1
+                    informationlist[5] = ''
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[9], process1, process2]
                 elif process2 == 1:
                     process2 = 0
                     process1 = 9
+                    informationlist[5] = ''
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[10], process1, process2]
     elif process1 == 9:
         ans = False
@@ -460,11 +492,13 @@ def NaturalLanguageProcess(data, process1, process2):
                         if process2 == 0:
                             # print('test')
                             process2 = 1
+                            informationlist[11] = ''
                             returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' +
                                           questions.questionList[10], process1, process2]
                         elif process2 == 1:
-                            process2 == 0
+                            process2 = 0
                             process1 = 10
+                            informationlist[11] = ''
                             returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' +
                                           questions.questionList[11], process1, process2]
                 else:
@@ -473,10 +507,12 @@ def NaturalLanguageProcess(data, process1, process2):
                 if process2 == 0:
                     # print('test')
                     process2 = 1
+                    informationlist[11] = ''
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[10], process1, process2]
                 elif process2 == 1:
                     process2 = 0
                     process1 = 10
+                    informationlist[11] = ''
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[11], process1, process2]
     elif process1 == 10:
         ans = False
@@ -503,11 +539,13 @@ def NaturalLanguageProcess(data, process1, process2):
                         if process2 == 0:
                             # print('test')
                             process2 = 1
+                            informationlist[12] = ''
                             returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' +
                                           questions.questionList[11], process1, process2]
                         elif process2 == 1:
-                            process2 == 0
+                            process2 = 0
                             process1 = 11
+                            informationlist[12] = ''
                             returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' +
                                           questions.questionList[12], process1, process2]
                 else:
@@ -516,10 +554,12 @@ def NaturalLanguageProcess(data, process1, process2):
                 if process2 == 0:
                     # print('test')
                     process2 = 1
+                    informationlist[12] = ''
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[11], process1, process2]
                 elif process2 == 1:
                     process2 = 0
                     process1 = 11
+                    informationlist[12] = ''
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[12], process1, process2]
     elif process1 == 11:
         i = 0
@@ -534,10 +574,12 @@ def NaturalLanguageProcess(data, process1, process2):
                     if process2 == 0:
                         # print('test')
                         process2 = 1
+                        informationlist[18] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[12], process1, process2]
                     elif process2 == 1:
-                        process2 == 0
+                        process2 = 0
                         process1 = 12
+                        informationlist[18] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[13], process1, process2]
             else:
                 i += 1
@@ -545,10 +587,12 @@ def NaturalLanguageProcess(data, process1, process2):
             if process2 == 0:
                 # print('test')
                 process2 = 1
+                informationlist[18] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[12], process1, process2]
             elif process2 == 1:
                 process2 = 0
                 process1 = 12
+                informationlist[18] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[13], process1, process2]
     elif process1 == 12:
         i = 0
@@ -563,10 +607,12 @@ def NaturalLanguageProcess(data, process1, process2):
                     if process2 == 0:
                         # print('test')
                         process2 = 1
+                        informationlist[22] = ''
                         returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[13], process1, process2]
                     elif process2 == 1:
-                        process2 == 0
+                        process2 = 0
                         process1 = 13
+                        informationlist[22] = ''
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[14], process1, process2]
             else:
                 i += 1
@@ -574,10 +620,12 @@ def NaturalLanguageProcess(data, process1, process2):
             if process2 == 0:
                 # print('test')
                 process2 = 1
+                informationlist[22] = ''
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[13], process1, process2]
             elif process2 == 1:
                 process2 = 0
                 process1 = 13
+                informationlist[22] = ''
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[14], process1, process2]
     elif process1 == 13:
         i = 0
@@ -601,6 +649,7 @@ def NaturalLanguageProcess(data, process1, process2):
                     if process2 == 0:
                         # print('test')
                         process2 = 1
+                        informationlist[20] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, please check it again' + '\n' + questions.questionList[14], process1, process2]
                     elif process2 == 1:
                         count = 0
@@ -610,11 +659,13 @@ def NaturalLanguageProcess(data, process1, process2):
                         if count >= 6:
                             process2 = 0
                             process1 = 14
+                            informationlist[20] = -1
                             returnlist = ['Umm..., your answer seems unreasonable.' + '\n' + 'Above are all the question.' + questions.questionList[
                                     15], process1, process2]
                         else:
                             process2 = 0
                             process1 = 15
+                            informationlist[20] = -1
                             returnlist = ['Umm..., your answer seems unreasonable.' + '\n' + questions.questionList[16], process1,
                                           process2, informationlist]
             else:
@@ -623,6 +674,7 @@ def NaturalLanguageProcess(data, process1, process2):
             if process2 == 0:
                 # print('test')
                 process2 = 1
+                informationlist[20] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[14], process1, process2]
             elif process2 == 1:
                 count = 0
@@ -632,10 +684,12 @@ def NaturalLanguageProcess(data, process1, process2):
                 if count >= 6:
                     process2 = 0
                     process1 = 14
+                    informationlist[20] = -1
                     returnlist = [robot.getRespond(data) + '\n' + 'Above are all the question.' + questions.questionList[15], process1, process2]
                 else:
                     process2 = 0
                     process1 = 15
+                    informationlist[20] = -1
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[16], process1, process2, informationlist]
     elif process1 == 14:
         answerkeyword1 = ['yes', 'y', 'ok', 'yep', 'sure', 'yea', 'yeah', 'fine', 'okay']
@@ -654,8 +708,8 @@ def NaturalLanguageProcess(data, process1, process2):
     elif process1 == 15:
         returnlist = ['Please fill in the questionnaire and submit it, then we can recommend suitable houses for you.', process1, process2, informationlist]
     elif process1 == 16:
-        process1 == 17
-        process2 == 0
+        process1 = 17
+        process2 = 0
         houselist = recommendation.recommendationSysAlgorithm(informationlist)
         houseinfo = database.getHouseByIds(houselist)
         returnlist = ['', process1, process2, houseinfo]
@@ -665,6 +719,7 @@ def NaturalLanguageProcess(data, process1, process2):
 
     # print(process1)
     # print(process2)
+    print(informationlist)
     return returnlist
 
 

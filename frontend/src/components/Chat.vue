@@ -60,12 +60,12 @@
                             <router-link to="/recommend">{{this.recommendLink}}</router-link>
                         </div>
               </div>
-              <div class="message_not_me" v-if="questionType==0||questionType==2">
+              <div class="message_not_me" v-if="questionType[0]==0||questionType[0]==2">
                         <div class="col_not_me">
                             <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
-                            <span @click="dialogVisible = true">Click here to get the questionnaire.</span>
+                            <span @click="dialogVisible = true" v-bind:style="styleObject">Click here to get the questionnaire.</span>
                         </div>
               </div>
             </div>
@@ -116,7 +116,11 @@
         },
         data: function () {
             return {
-                recommendLink:"",
+              styleObject: {
+                color: "#660099",
+                textDecoration:"underline",
+              },
+                recommendLink:"Click here to get our recommendations for you.",
                 isRecommend:false,
                 isReloadData:true,
                 textarea: '',
@@ -200,10 +204,12 @@
                 axios.post(path, data)
                     .then(response => {
                       let re = response.data.reply
-                     /* alert(re)*/
+                      /*alert(re[1])
+                      alert(re[2])*/
                       if (re[1]==16){//选填问卷
                         this.questionType[0] = 0
                         this.questionType = this.questionType.concat(re[3])
+                        
                       }
                       else if(re[1]==17&&re[2]==0){//直接推荐
                         this.myMessages.push({ reply: "The system is working, please wait for a while." })
@@ -243,9 +249,10 @@
 
             },
             submit(){
-                this.$refs.questionnaire.recommend([]);
+                this.$refs.questionnaire.recommend();
                 this.status = "0"
                 this.dialogVisible = false
+                this.questionType[0] = 1
             },
            /* changeStatus(){
                 if(this.$store.state.status=="0"){

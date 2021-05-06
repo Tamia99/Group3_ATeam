@@ -15,7 +15,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="">
-                <span>Q2 What size of house do you want?</span>
+                <span>Q2 What size of house do you want?(sqft)</span>
                 <el-input v-model="form.inputSize" placeholder="please enter"></el-input>
             </el-form-item>
             <el-form-item>
@@ -165,7 +165,7 @@
             </el-form-item>
             <el-form-item>
                 <span>Q20 How many rooms(total rooms above ground) do you want?</span><br>
-                <el-input-number v-model="form.room" @change="handleChange" :min="0" :max="30" label="room"></el-input-number>
+                <el-input-number v-model="form.room" @change="handleChange" :min="0" :max="30" label="room" ></el-input-number>
             </el-form-item>
             <el-form-item>
                 <span>Q21 How many fire places do you want?</span><br>
@@ -217,29 +217,30 @@
         data() {
             return {
                 qtype: this.message[0],
+                information:[],
                 form: {
                     classification:"",
-                    inputSize: '',
+                    inputSize:"",
                     flatness:"",
                     utility:"",
                     neighborhood:"",
                     style:"",
-                    year:"",
+                    year:undefined,
                     roof:"",
                     vaneer:"",
-                    foudation:"",
+                    foundation:"",
                     basement:"",
                     heating:"",
                     air:"",
                     electrical:"",
                     living:"",
-                    fullbath:"",
-                    halfbath:"",
-                    bedroom:"",
-                    kitchen:"",
-                    room:"",
-                    fire:"",
-                    garage:"",
+                    fullbath:undefined,
+                    halfbath:undefined,
+                    bedroom:undefined,
+                    kitchen:undefined,
+                    room:undefined,
+                    fire:undefined,
+                    garage:undefined,
                     deck:"",
                     pool:"",
                     price:"",
@@ -566,19 +567,72 @@
             }
         },
         created() {
-          alert(this.qtype)
+          /*alert(this.qtype)*/
+          this.qtype = this.message[0]
+          this.getInformation()
+
         },
       methods: {
+            getInformation(){
+              /*this.form.inputSize = 1*/
+              /*this.form.classification = this.form.classifications[0].value*/
+              if (this.qtype==0){
+                /*this.form.inputSize = 1*/
+
+                this.form.inputSize = this.message[2]
+                this.form.bedroom = this.message[18]
+                this.form.fullbath = this.message[16]
+                this.form.halfbath = this.message[17]
+                this.form.kitchen = this.message[19]
+                this.form.garage = this.message[23]
+                this.form.room = this.message[21]
+                this.form.price = this.message[25]
+                /*alert(this.message[5])*/
+                for (let i=0;i<this.form.neighborhoods.length;i++){
+                  if (this.message[5]==this.form.neighborhoods[i].value||this.message[5]==""){
+                    this.form.neighborhood = this.message[5]
+                  }
+                }
+                for (let i=0;i<this.form.utilities.length;i++){
+                  if (this.message[4]==this.form.utilities[i].value||this.message[4]==""){
+                    this.form.utility = this.message[4]
+                  }
+                }
+                for (let i=0;i<this.form.styles.length;i++){
+                  if (this.message[6]==this.form.styles[i].value||this.message[6]==""){
+                    this.form.style = this.message[6]
+                  }
+                }
+                for (let i=0;i<this.form.heatings.length;i++){
+                  if (this.message[12]==this.form.heatings[i].value||this.message[12]==""){
+                    this.form.heating = this.message[12]
+                  }
+                }
+                for (let i=0;i<this.form.airs.length;i++){
+                  if (this.message[13]==this.form.ais[i].value||this.message[13]==""){
+                    this.form.air = this.message[13]
+                  }
+                }
+                /*alert(this.form.room)*/
+                /*this.form.neighborhood = this.message[5]*/
+              }
+            },
             handleChange(value) {
                 console.log(value);
             },
             recommend(){
+              /*alert(typeof this.form.room)*/
                 let data = [this.form.classification,this.form.inputSize,this.form.flatness,this.form.utility,this.form.neighborhood,
-                            this.form.style,this.form.year,this.form.roof,this.form.vaneer,this.form.foudation,this.form.basement,
+                            this.form.style,this.form.year,this.form.roof,this.form.vaneer,this.form.foundation,this.form.basement,
                             this.form.heating,this.form.air,this.form.electrical,this.form.living,this.form.fullbath,this.form.halfbath,
                             this.form.bedroom,this.form.kitchen,this.form.room,this.form.fire,this.form.garage,this.form.deck,
                             this.form.pool,this.form.price]
-               /* alert(data)*/
+                for(let i = 0;i<data.length;i++){
+                  if (data[i]==undefined || data[i]==""){
+                    data[i]= -1
+                  }
+                }
+                alert(data)
                 /*let data = list*/
                 const path = 'http://localhost:5000/api/recommend'
                 axios.post(path, data)
