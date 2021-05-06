@@ -1,11 +1,11 @@
 questionList = [
     "Do you need us to recommend suitable housing information for you?",
     "Bye!",
-    "What is the approximate price you can accept?",
-    "How many bedrooms do you want?",
-    "How many full bathrooms do you want?",
-    "How many half bathrooms do you want?",
-    "What size of house do you want? (sqft)",
+    "What is the approximate price you can accept? (We currently have houses whose prices are between 34,900 and 755,000 dollars)",
+    "How many bedrooms do you want? (We currently have houses with 0 to 8 bedrooms)",
+    "How many full bathrooms do you want? (We currently have houses with 0 to 6 full bathrooms)",
+    "How many half bathrooms do you want? (We currently have houses with 0 to 4 full bathrooms)",
+    "What size of house do you want? (sqft) (We currently have houses whose areas are between 1300 and 215245 sqft)",
     """Which neighborhood do you want? (Enter the number)
     0   It does not matter
     1   Bloomington Heights
@@ -64,9 +64,9 @@ questionList = [
     1   Yes
     2   No
     """,
-    "How many kitchens(above ground) do you want?",
-    "How many cars would you like the garage to hold?",
-    "How many rooms(total rooms above ground) do you want?",
+    "How many kitchens(above ground) do you want? (We currently have houses with 0 to 3 kitchens)",
+    "How many cars would you like the garage to hold? (We currently have houses with garage that can hold 0 to 5 cars)",
+    "How many rooms(total rooms above ground) do you want? (We currently have houses with 3 to 14 rooms)",
     "Would you like to complete the questionnaire to provide more information, which would make the recommendation result more accurate.",
     "Thank you for answering questions, but we can not gain enough information based on your answer, please complete the questionnaire to provide more information.",
     "Here is the recommendation result."
