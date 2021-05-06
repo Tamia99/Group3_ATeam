@@ -52,12 +52,12 @@
                         </div>
                     </div>-->
                 </div>
-              <div class="message_not_me" v-if="status ==='0'&& isReloadData">
+              <div class="message_not_me" v-if="status">
                         <div class="col_not_me">
                             <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
-                            <router-link to="/recommend">Click to see our recommendation for you.</router-link>
+                            <router-link to="/recommend">{{this.recommendLink}}</router-link>
                         </div>
               </div>
               <div class="message_not_me" v-if="questionType==0||questionType==2">
@@ -110,12 +110,14 @@
     export default {
         name: 'Chat.vue',
         components: {Questions: Questions},
-        status:"1",
+        status:false,
         mounted () {
             this.scrollToBottom()
         },
         data: function () {
             return {
+                recommendLink:"",
+                isRecommend:false,
                 isReloadData:true,
                 textarea: '',
                 myMessages: [
@@ -141,7 +143,15 @@
         updated: function () {
             this.scrollToBottom()
         },
-
+        watch:{
+          /*'status':{
+            handler:function (val,oldval) {
+              if (status==="0"){
+                this.isRecommend = true
+              }
+            }
+          }*/
+        },
         methods: {
             // 滚动条自动保持在底部
           reload () {
@@ -191,19 +201,26 @@
                     .then(response => {
                       let re = response.data.reply
                      /* alert(re)*/
-                      if (re[1]==16&&re[2]==1){//选填问卷
+                      if (re[1]==16){//选填问卷
                         this.questionType[0] = 0
                         this.questionType = this.questionType.concat(re[3])
                       }
-                      else if(re[1]==16&&re[2]==0){//直接推荐
-                        alert("re[3]")
+                      else if(re[1]==17&&re[2]==0){//直接推荐
+                        this.myMessages.push({ reply: "The system is working, please wait for a while." })
                         this.questionType[0] = 1
                       /*  this.$refs.questionnaire.recommend(re[3])*/
                         this.$store.commit("newRecommendation",re[3])
                         this.$store.commit("newStatus","1")
-                        this.status = "0"
+                        this.status = true
+                        /*this.$nextTick(() => {
+                          this.status = true
+                        })*/
+                        this.textarea = " "
+                        this.textarea = ""
+                        this.recommendLink = "Click here to get our recommendations for you."
+                        /*this.status = */
                         /*this.reload()*/
-                        alert(this.$store.state.recommendation)
+                        /*alert(this.$store.state.recommendation)*/
                         /*this.$router.push("/recommend");*/
                       }
                       else if(re[1]==15){//有回复，填必填问卷
