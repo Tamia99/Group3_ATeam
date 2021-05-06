@@ -1,18 +1,22 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="8">
+      <el-col :span="6">
         <el-input
             size="small"
             placeholder= "search for blocks"
             v-model="textarea"
-            clearable></el-input>
-  	    <el-button @click="sortandsearch()">Search</el-button>
+            clearable
+            class="inputSearch"></el-input>
+  	    
       </el-col>
-      <el-col :span="8"></el-col>
-      <el-col :span="8">
-        <p>Sort by</p>
-        <el-select v-model="values" placeholder="please choose" @change="sortandsearch()">
+      <el-button @click="sortandsearch()" class="buttonSearch" style="height: 8%!important" icon="el-icon-search">Search</el-button>
+      <el-col :span="10"></el-col>
+      <el-col :span="2">
+        <p class="sortText">Sort by:</p>
+      </el-col>
+      <el-col :span="3">
+        <el-select v-model="values" placeholder="please choose" @change="sortandsearch()" class="sortBy">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -21,6 +25,7 @@
           </el-option>
         </el-select>
       </el-col>
+      
     </el-row>
     <el-divider></el-divider>
     <div v-if="this.houses.length==0">
@@ -28,7 +33,7 @@
     </div>
     <el-row gutter="20" >
       <el-col :span="6" v-for="item in houses.slice((currentPage - 1) * pageSize, currentPage*pageSize)" :key="item.id">
-            <el-card :body-style="{ paddingLeft: '20px'}" shadow ="hover" @click.native = "openDetail(item.id)">
+            <el-card :body-style="{ paddingLeft: '20px'}" shadow ="hover" @click.native = "openDetail(item.id)" class="cards">
                 <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
                 <div style="padding: 14px;">
                     <!--<h2>Price: $2000</h2>
@@ -433,6 +438,35 @@
     min-width: 100%;
     height: 100%;
   }
+
+.buttonSearch{
+  margin-left: 0.5%;
+  background-color: rgb(29, 142, 180);
+  /* background-color: #66A4AC; */
+  color: white;
+}
+
+.inputSearch{
+  margin-top: 1%;
+  /* font-size: 50px; */
+}
+
+.sortText{
+  /* margin-bottom: 0%; */
+  margin-top: 9%;
+  margin-bottom: -2%;
+  margin-left: 40%;
+}
+
+.sortBy{
+  /* margin-top: 10%; */
+  margin-bottom: -3%;
+  margin-left: 5%;
+}
+
+.cards{
+  border-radius: 10px;
+}
 
 /* .el-dialog{
     height: 100px!important;

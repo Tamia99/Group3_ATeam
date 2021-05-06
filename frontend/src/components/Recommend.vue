@@ -1,6 +1,15 @@
 <template>
     <div>
       <div v-if="status == '0'">
+          <el-row>
+            <el-col :span="12">
+                <img src="frontend/src/assets/zmd-1.jpg">
+            </el-col>
+            <el-col :span="12">
+                
+            </el-col>
+          </el-row>
+        
         <h1>Oops!There are no recommendations now.You can go to chat with the assistant or view  all house informations</h1>
         <router-link to="/chat">chat with our smart assistant</router-link>
         <br>
