@@ -15,7 +15,8 @@
       </el-carousel-item>
     </el-carousel>
     <div>
-        <el-card :body-style="{ padding: '0px', width:'500px!important'}">
+      <!-- <el-col :span="6" v-for="item in houses.slice((currentPage - 1) * pageSize, currentPage*pageSize)" :key="item.id"> -->
+        <el-card :body-style="{ padding: '20px'}">
         <img src="./assets/zmd-2.jpg" class="image" style="width:400px">
         <div style="padding: 14px;">
             <span>好吃的汉堡</span>
@@ -26,7 +27,7 @@
         </div>
         </el-card>
 
-        <el-card :body-style="{ padding: '0px', width:'500px!important'}">
+        <el-card :body-style="{ padding: '20px', width:'500px!important'}">
         <img src="./assets/zmd-2.jpg" class="image" style="width:400px">
         <div style="padding: 14px;">
             <span>好吃的汉堡</span>
@@ -36,6 +37,8 @@
             </div>
         </div>
         </el-card>
+      <!-- </el-col> -->
+        
     </div>
 </div>
     

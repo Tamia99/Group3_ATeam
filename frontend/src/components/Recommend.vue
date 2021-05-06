@@ -10,7 +10,7 @@
         <h1>Here to see recommendations for you</h1>
         <el-row gutter="20" >
           <el-col :span="6" v-for="item in houses" :key="item.id">
-            <el-card :body-style="{ padding: '20px' }" shadow ="hover">
+            <el-card :body-style="{ padding: '20px' }" shadow ="hover" @click.native = "openDetail(item.id)">
                 <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
                 <div style="padding: 14px;">
                     <!--<h2>Price: $2000</h2>
@@ -23,11 +23,27 @@
                     <span>{{ item.neighborhood }}</span>
                     <br>
                     <span>{{ item.type }}</span>
-                    <div class="bottom clearfix">
+                    <!-- <div class="bottom clearfix">
                         <el-button type="text" class="button">View Details</el-button>
-                    </div>
+                    </div> -->
                 </div>
             </el-card>
+            <el-dialog
+                :visible.sync="dialogVisible"
+                width="80%"
+                height="60%"
+                :before-close="handleClose">
+                <!--<div style="width:500px">
+                <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
+                </div>
+                <span>这是一段信息</span>-->
+                <Detail :message = "thisHouse"></Detail>
+                <!-- <el-button @click="similar()">View 10 similar houses</el-button> -->
+                <!--<span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                </span>-->
+            </el-dialog>
         </el-col>
       </el-row>
       <!--<el-pagination
@@ -53,34 +69,41 @@
 
 <script>
     import axios from "axios";
+    import HouseDetail from "@/components/HouseDetail";
     export default{
+        name: "Recommend.vue",
+        components: {Detail: HouseDetail},
         data() {
             return {
               currentTotal: 0,
               currentPage: 1,
               pageSize: 12,
               houses: [],
+              dialogVisible: false,
+              houseId:0,
+              details:[],
+              thisHouse:[],
               value: null,
               status:this.$store.state.status,
               iconClasses: ['icon-rate-face-1', 'icon-rate-face-2', 'icon-rate-face-3'], // 等同于 { 2: 'icon-rate-face-1', 4: { value: 'icon-rate-face-2', excluded: true }, 5: 'icon-rate-face-3' }
             }
         },
         created:function(){
-            alert("1")
+            // alert("1")
             this.getList()
             /*alert(this.$store.state.status)*/
             this.status = this.$store.state.status
-            alert (this.houses[1])
+            // alert (this.houses[1])
         },
         updated() {
-          this.status = this.$store.state.status
-          this.getList()
-          alert("2")
+        //   this.status = this.$store.state.status
+        //   this.getList()
+        //   alert("2")
         },
         watched(){
-           this.status = this.$store.state.status
-           this.getList()
-          alert("3")
+        //    this.status = this.$store.state.status
+        //    this.getList()
+        //   alert("3")
         },
       mounted:function(){
 
@@ -92,9 +115,11 @@
             getList(){
                 /*this.tableData.push({id:"all[i][0]",price:"p",room:"r",area:"a",neighborhood:"n",type:"t"})*/
                 let all = this.$store.state.recommendation
-                alert(all)
+                this.details = all
+                // alert(all)
                 let i = 0
                 while (i<all.length){
+                    let iD = all[i][0]
                     let p = all[i][80]
                     let a = all[i][4]/*mianji*/
                     let n = all[i][12]
@@ -215,11 +240,25 @@
                         t = "Residential Medium Density"
                     }
                     p = "$"+p
-                    this.houses.push({price:p,room:r,neighborhood:n,type:t})
+                    this.houses.push({id:iD,price:p,room:r,neighborhood:n,type:t})
                     i++
                 }
-                alert(this.houses)
+                // alert(this.houses)
 
+            },
+            openDetail(id){
+                this.houseId = id
+                let i = 0
+                alert(this.houseId)
+                while(i<this.details.length){
+                    // alert(this.details[i][0])
+                    if (id == this.details[i][0]){
+                        this.thisHouse = this.details[i]
+                    }
+                    i++
+                }
+                
+                this.dialogVisible = true
             }
         }
     }
