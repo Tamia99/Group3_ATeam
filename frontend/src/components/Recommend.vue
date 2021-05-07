@@ -3,17 +3,26 @@
       <div v-if="status == '0'">
           <el-row>
             <el-col :span="12">
-                <img src="frontend/src/assets/zmd-1.jpg">
+                <!-- <img src="./pic1.jpg" style="width:50%;"> -->
             </el-col>
             <el-col :span="12">
                 
             </el-col>
           </el-row>
         
-        <h1>Oops!There are no recommendations now.You can go to chat with the assistant or view  all house informations</h1>
-        <router-link to="/chat">chat with our smart assistant</router-link>
-        <br>
-        <router-link to="/house">view all houses</router-link>
+        <!-- <h1>Oops!There are no recommendations now.You can go to chat with the assistant or view  all house informations</h1> -->
+        <!-- <h1><img src="./bg1.png" style="width:50%;"> -->
+        <!-- </h1> -->
+        <div class="background">
+            <img :src="imgSrc" width="108%" height="100%"  alt="" />
+            <div class="links">
+            <router-link to="/chat">chat with our smart assistant</router-link>
+            <br>
+            <router-link to="/house">view all houses</router-link>
+        </div>
+        </div>
+        
+        
       </div>
       <div v-if="status != '0'">
         <h1>Here to see recommendations for you</h1>
@@ -95,6 +104,7 @@
               value: null,
               status:this.$store.state.status,
               iconClasses: ['icon-rate-face-1', 'icon-rate-face-2', 'icon-rate-face-3'], // 等同于 { 2: 'icon-rate-face-1', 4: { value: 'icon-rate-face-2', excluded: true }, 5: 'icon-rate-face-3' }
+              imgSrc:require('./bg1.png'),
             }
         },
         created:function(){
@@ -288,4 +298,16 @@
     min-width: 100%;
     height: 100%;
   }
+
+.background{
+    margin-top: -3%;
+    /* margin-left: 0%!important;
+    margin-right: 0%!important; */
+    position: absolute;
+}
+
+.links{
+    margin-top: -90%;
+    position: relative;
+}
 </style>

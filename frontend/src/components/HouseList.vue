@@ -55,7 +55,7 @@
             </el-card>
             <el-dialog
                 :visible.sync="dialogVisible"
-                width="80%"
+                width="60%"
                 height="60%"
                 :before-close="handleClose">
                 <!--<div style="width:500px">

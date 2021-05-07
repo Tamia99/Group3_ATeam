@@ -28,7 +28,7 @@
       style="height:62px">
       <!-- background-color="#545c64" -->
         <!-- <img src="./assets/teamlogo.png"> -->
-        <img height=57px src="./assets/teamlogo.png" style="padding-left:630px">
+        <img height=57px src="./assets/teamlogo-black.png" style="padding-left:630px">
         <el-menu-item index="1" @click="route4"><i class="el-icon-s-home"></i></el-menu-item>
         <el-menu-item index="2" @click="route1 "><i class="el-icon-chat-square"></i>Assistant</el-menu-item>
           

@@ -14,11 +14,11 @@
     </h1>
   <el-row :gutter="24">
     <el-column :span="12">
-      <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
+      <!-- <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image"> -->
     </el-column>
     <el-column :span="12">
       <el-tabs v-model="activeName" @tab-click="handleClick">
-    <el-tab-pane label="Environment" name="first" style="overflow-x:hidden;">
+    <el-tab-pane label="Environment" name="first" style="overflow-x:hidden;overflow-y:hidden;">
       <p>
           <nobr class="title">
           Neighborhood:
@@ -41,7 +41,7 @@
     </el-tab-pane>
 
 
-    <el-tab-pane label="Area" name="second" style="overflow-x:hidden;">
+    <el-tab-pane label="Area" name="second" style="overflow-x:hidden;overflow-y:hidden;">
       <p>
           <nobr class="title">
           Lot Area:
@@ -87,7 +87,7 @@
     </el-tab-pane>
 
 
-    <el-tab-pane label="Living Condition" name="third" style="overflow-x:hidden;">
+    <el-tab-pane label="Living Condition" name="third" style="overflow-x:hidden;overflow-y:hidden;">
       <p>
           <nobr class="title">
           Utilities:
@@ -163,7 +163,7 @@
     </el-tab-pane>
 
 
-    <el-tab-pane label="Type and Style" name="fourth" style="overflow-x:hidden;">
+    <el-tab-pane label="Type and Style" name="fourth" style="overflow-x:hidden;overflow-y:hidden;">
       <p>
           <nobr class="title">
           Dwelling Type:
@@ -179,7 +179,7 @@
     </el-tab-pane>
 
 
-    <el-tab-pane label="Duration" name="fifth" style="overflow-x:hidden;">
+    <el-tab-pane label="Duration" name="fifth" style="overflow-x:hidden;overflow-y:hidden;">
       <p>
           <nobr class="title">
           Year Built:
@@ -189,7 +189,7 @@
     </el-tab-pane>
 
 
-    <el-tab-pane label="Build Condition" name="sixth" style="overflow-x:hidden;">
+    <el-tab-pane label="Build Condition" name="sixth" style="overflow-x:hidden;overflow-y:hidden;">
       <p>
           <nobr class="title">
           Foundation:
@@ -199,7 +199,7 @@
     </el-tab-pane>
 
 
-    <el-tab-pane label="Sale" name="seventh" style="overflow-x:hidden;">
+    <el-tab-pane label="Sale" name="seventh" style="overflow-x:hidden;overflow-y:hidden;">
         <p>
           <nobr class="title">
           Type of Sale:
@@ -662,6 +662,10 @@ h1{
 
 /* .head{
   padding-top: -50%;
+} */
+
+/* .el-tab-pane{
+  background-color: #66A4AC;
 } */
 
 </style>
