@@ -127,26 +127,31 @@
               imgList: [
                   {
                   name: "1",
-                  src: require("@/assets/zmd-1.jpg"),
+                  src: require("@/assets/pic-card.png"),
                   title: "Comfortable Environment"
                   },
                   {
                   name: "2",
+                  src: require("@/assets/zmd-1.jpg"),
+                  title: "Comfortable Environment"
+                  },
+                  {
+                  name: "3",
                   src: require("@/assets/zmd-2.jpg"),
                   title: "Convenient to Work"
                   },
                   {
-                  name: "3",
+                  name: "4",
                   src: require("@/assets/zmd-3.jpg"),
                   title: "Safe and Assured"
                   },
                   {
-                  name: "4",
+                  name: "5",
                   src: require("@/assets/zmd-4.jpg"),
                   title: "Prosperous Surroundings"
                   },
                   {
-                  name: "5",
+                  name: "6",
                   src: require("@/assets/zmd-5.jpg"),
                   title: "Flexible Decoration Style"
                   }
