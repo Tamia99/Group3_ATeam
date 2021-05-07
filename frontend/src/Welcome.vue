@@ -1,45 +1,67 @@
 <template>
 <div>
-    <!-- <el-card shadow="hover" class="card1">
-    <div class="text1">
-      Welcome to Smart Recommendation! <br>
-    </div>
-      <i class="el-icon-phone"></i>
-      Phone abc-000000 to Express More Emergency Needs
-    </el-card> -->
-    <!-- <el-divider></el-divider> -->
-    <!-- style="{ height: clientHeight-194 + 'px' }" -->
+
     <el-carousel>
-      <el-carousel-item v-for="item in imgList" :key="item.name" style="height:600px">
+      <el-carousel-item v-for="item in imgList" :key="item.name" style="height:600px; padding-top:-100%">
         <img :src="item.src" style="height:100%;width:100%;" alt="图片丢失了" :title="item.title" />
+        
       </el-carousel-item>
+      
     </el-carousel>
-    <div>
-      <!-- <el-col :span="6" v-for="item in houses.slice((currentPage - 1) * pageSize, currentPage*pageSize)" :key="item.id"> -->
-        <el-card :body-style="{ padding: '20px'}">
-        <img src="./assets/zmd-2.jpg" class="image" style="width:400px">
-        <div style="padding: 14px;">
-            <span>好吃的汉堡</span>
-            <div class="bottom clearfix">
-            <time class="time">{{ currentDate }}</time>
-            <el-button type="text" class="button">操作按钮</el-button>
+    <!-- <el-card style="width:100%!important; margin-top:-10%; margin-bottom:5%; z-index=2; postion:absolute">
+      <img src="./components/allhouses1.jpg" class="image" style="width:100%; height:100%;">
+      <nobr style="padding-left:37%; font-size:25px; font-weight:bold; ">Changes start here</nobr>
+         
+        </el-card> -->
+    <nobr style="padding-left:37%; font-size:25px; font-weight:bold;">What you can do HERE?</nobr>
+    <!-- <el-divider style="padding-left:35%; font-size:50px; z-index=3; postion:relative">少年包青天</el-divider> -->
+
+    <div class="cards">
+      
+          <el-card style="width:30%!important; margin-left:0%; margin-top:5%;" @click.native="route1">
+            <img src="./components/chat.jpg" class="image" style="width:100%; height:100%;">
+            <div style="padding-top: 15px;">
+                <nobr style="font-weight:bold; font-size:15px; margin-bottom:20%!important">Smart Chatting Assistant</nobr><br>
+                <div style="margin-top:6%;">
+                  <nobr class="clicking">Click </nobr>
+                  to chat freely with our intelligent assistant and get the most suitable choices for you!
+                </div>
             </div>
-        </div>
         </el-card>
 
-        <el-card :body-style="{ padding: '20px', width:'500px!important'}">
-        <img src="./assets/zmd-2.jpg" class="image" style="width:400px">
-        <div style="padding: 14px;">
-            <span>好吃的汉堡</span>
-            <div class="bottom clearfix">
-            <time class="time">{{ currentDate }}</time>
-            <el-button type="text" class="button">操作按钮</el-button>
+        <el-card style="width:30%!important; margin-left:33%; margin-top:-31.2%;" @click.native="route2">
+            <img src="./components/pic4.jpg" class="image" style="width:100%; height:100%;">
+            <div style="padding-top: 15px;">
+                <nobr style="font-weight:bold; font-size:15px; margin-bottom:20%!important">Recommendations for you</nobr><br>
+                <div style="margin-top:6%;">Don't know which homes suit you most? 
+                  <nobr class="clicking"> Click </nobr>
+                  and recognize them from our recommendations!
+                </div>
             </div>
-        </div>
         </el-card>
-      <!-- </el-col> -->
+
+        <el-card style="width:30%!important; margin-left:66%; margin-top:-31.2%;" @click.native="route3">
+            <img src="./components/allhouses3.jpg" class="image" style="width:100%; height:100%;">
+            <div style="padding-top: 15px;">
+                <nobr style="font-weight:bold; font-size:15px; margin-bottom:20%!important">Various kinds of Homes</nobr><br>
+                <div style="margin-top:6%;">No matter what you prefer, you will always find a satisfying home here!
+                  <nobr class="clicking"> Click </nobr> to see them!
+                </div>
+            </div>
+        </el-card>
         
     </div>
+
+    <el-card style="width:100%!important;margin-top:45%">
+            <img src="./components/pic-card.png" class="image" style="width:100%; height:100%;">
+            <!-- <div style="padding-top: 15px;">
+                <nobr style="font-weight:bold; font-size:15px; margin-bottom:20%!important">Various kinds of Homes</nobr><br>
+                <div style="margin-top:6%;">No matter what you prefer, you will always find a satisfying home here!
+                  <nobr class="clicking"> Click </nobr> to see them!
+                </div>
+            </div> -->
+        </el-card>
+    
 </div>
     
 </template>
@@ -51,6 +73,8 @@
     padding-left: 0%!important;
     height: 800px!important;
     width: 100%;
+    position:relative;
+    z-index: 1;
 }
 .card1{
     
@@ -66,8 +90,17 @@
     
 }
 
+.cards{
+  position:absolute;
+  /* z-index: 2; */
+}
+
 .text1{
     font-size: 45px!important;
+}
+
+.clicking{
+  color: rgb(12, 163, 209);
 }
   /* .el-carousel__item h3 {
     color: #475669;
@@ -146,7 +179,20 @@
             }, 400)
           }
         }
-    }
+    },
+
+    methods: {
+      route1 () {
+        this.$router.push('/Chat')
+      },
+      route2 () {
+        this.$router.push('/recommend')
+      },
+      route3 () {
+        this.$router.push('/house')
+      }
+
+  }
     }
     
 </script>
