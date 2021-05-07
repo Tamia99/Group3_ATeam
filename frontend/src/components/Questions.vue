@@ -3,7 +3,7 @@
       <p>{{message}}</p>
         <h1>Here is the questions page</h1><br>
         <el-form ref="form" :model="form" label-width="80px">
-            <el-form-item>
+            <el-form-item >
                 <span>Q1 Please identifies the general zoning classification.</span><br>
                 <el-select v-model="form.classification" placeholder="please choose">
                     <el-option
@@ -218,6 +218,7 @@
             return {
                 qtype: this.message[0],
                 information:[],
+                close:false,
                 form: {
                     classification:"",
                     inputSize:"",
@@ -576,7 +577,8 @@
             getInformation(){
               /*this.form.inputSize = 1*/
               /*this.form.classification = this.form.classifications[0].value*/
-              if (this.qtype==0){
+
+              if (this.qtype==0||this.qtype==2){
                 /*this.form.inputSize = 1*/
 
                 this.form.inputSize = this.message[2]
@@ -627,12 +629,17 @@
                             this.form.heating,this.form.air,this.form.electrical,this.form.living,this.form.fullbath,this.form.halfbath,
                             this.form.bedroom,this.form.kitchen,this.form.room,this.form.fire,this.form.garage,this.form.deck,
                             this.form.pool,this.form.price]
+                let invalidcount = 0
                 for(let i = 0;i<data.length;i++){
-                  if (data[i]==undefined || data[i]==""){
+                  if (data[i]==undefined || data[i]==""||data[i]== -1){
                     data[i]= -1
+                    invalidcount++
                   }
                 }
-                alert(data)
+                if (invalidcount>19){
+                    
+                }
+               /* alert(data)*/
                 /*let data = list*/
                 const path = 'http://localhost:5000/api/recommend'
                 axios.post(path, data)
@@ -651,7 +658,9 @@
                         console.log(error)
 
                     })
-
+                /*this.$emit("closeDialogue",this.close)*/
+                /*this.dialogVisible = false*/
+                return this.close
             }
         }
     }

@@ -94,7 +94,7 @@
                 id="q"
 
         >
-            <Questions  ref="questionnaire" :message = "questionType"></Questions>
+            <Questions ref="questionnaire" :message = "questionType"  ></Questions><!--v-on:="closeDialogue = 'handleClose'"-->
             <span slot="footer" class="dialog-footer">
                         <el-button @click="dialogVisible = false">Cancel</el-button>
                         <!--<el-button type="primary" @click="dialogVisible = false">Submit</el-button>-->
@@ -157,13 +157,16 @@
           }*/
         },
         methods: {
-            // 滚动条自动保持在底部
+          handleClose:function(data){
+              alert(data)
+          },
           reload () {
             this.isReloadData = false
             this.$nextTick(() => {
               this.isReloadData = true
             })
           },
+            // 滚动条自动保持在底部
             scrollToBottom: function () {
                 this.$nextTick(() => {
                     var container = this.$el.querySelector('#message_show')
@@ -209,11 +212,13 @@
                       if (re[1]==16){//选填问卷
                         this.questionType[0] = 0
                         this.questionType = this.questionType.concat(re[3])
+                        /*this.questionType.push(this.dialogVisible)*/
                         
                       }
                       else if(re[1]==17&&re[2]==0){//直接推荐
-                        this.myMessages.push({ reply: "The system is working, please wait for a while." })
-                        this.questionType[0] = 1
+                          this.myMessages.push({ reply: "Since you choose not to fill the questionnaire, we will directly find houses for you according to your answers above." })
+                          /*this.myMessages.push({ reply: "The system is working, please wait for a while." })*/
+                          this.questionType[0] = 1
                       /*  this.$refs.questionnaire.recommend(re[3])*/
                         this.$store.commit("newRecommendation",re[3])
                         this.$store.commit("newStatus","1")
@@ -249,9 +254,9 @@
 
             },
             submit(){
-                this.$refs.questionnaire.recommend();
+                this.dialogVisible = this.$refs.questionnaire.recommend()
                 this.status = "0"
-                this.dialogVisible = false
+                /*this.dialogVisible = false*/
                 this.questionType[0] = 1
             },
            /* changeStatus(){
