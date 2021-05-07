@@ -127,7 +127,7 @@
               imgList: [
                   {
                   name: "1",
-                  src: require("@/assets/zmd-3.jpg"),
+                  src: require("@/assets/zmd-1.jpg"),
                   title: "Comfortable Environment"
                   },
                   {
@@ -137,7 +137,7 @@
                   },
                   {
                   name: "3",
-                  src: require("@/assets/zmd-1.jpg"),
+                  src: require("@/assets/zmd-3.jpg"),
                   title: "Safe and Assured"
                   },
                   {
