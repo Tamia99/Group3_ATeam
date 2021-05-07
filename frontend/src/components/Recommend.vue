@@ -15,11 +15,11 @@
         <!-- </h1> -->
         <div class="background">
             <img :src="imgSrc" width="108%" height="100%"  alt="" />
-            <div class="links">
+            <!-- <div class="links">
             <router-link to="/chat">chat with our smart assistant</router-link>
             <br>
             <router-link to="/house">view all houses</router-link>
-        </div>
+        </div> -->
         </div>
         
         

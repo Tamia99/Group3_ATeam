@@ -7,7 +7,7 @@
 
 
 <el-container>
-  <el-header>
+  <el-header style="height: 80%!important;">
 
     <!-- <el-menu
       :default-active="activeIndex2"
@@ -25,10 +25,10 @@
       
       text-color="#545c64"
       active-text-color="#ffd04b"
-      style="height:62px">
+      style="margin-top:-0.5%; margin-bottom:-3%!important">
       <!-- background-color="#545c64" -->
         <!-- <img src="./assets/teamlogo.png"> -->
-        <img height=57px src="./assets/teamlogo-black.png" style="padding-left:630px">
+        <img height=70px src="./assets/teamlogo-black.png" style="padding-left:630px; margin-bottom:-1%; margin-right:0%!important;">
         <el-menu-item index="1" @click="route4"><i class="el-icon-s-home"></i></el-menu-item>
         <el-menu-item index="2" @click="route1 "><i class="el-icon-chat-square"></i>Assistant</el-menu-item>
           
@@ -39,7 +39,7 @@
       </el-menu>
       
   </el-header>
-      <el-main class="main-part">
+      <el-main class="main-part" >
         <div id="app">
           <keep-alive>
             <router-view v-if="$route.meta.keepAlive"></router-view>
@@ -191,7 +191,12 @@
   
   padding-left: 0%!important;
   padding-right: 0%!important;
+  
   /* height: 120px!important; */
+}
+
+.el-menu{
+  height: 80%!important;
 }
 
 .el-menu-item{

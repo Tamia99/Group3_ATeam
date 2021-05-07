@@ -1,16 +1,19 @@
 <template>
 <div>
   <h1>
-    <el-row :gutter="24">
-      <el-column :span="12" style="margin-top:-10%!important">
-        
-        <nobr class="head" style="padding-left:0%; margin-bottom:100%">Details of This House</nobr>
-      </el-column>
+    <!-- <el-row :gutter="24"> -->
+      
 
-      <el-column :span="12">
-        <img class="logo" height=60px src="./teamlogo-black.png" style="margin-top:-10%; margin-left:86%">
-      </el-column>    
-    </el-row>
+      <!-- <el-column :span="12"> -->
+        <img class="logo" height=60px src="./teamlogo-black.png" style="margin-top:-2%; margin-left:80%">
+      <!-- </el-column>  -->
+      <!-- <el-column :span="12" style=""> -->
+
+        <!-- <el-button style="border:none; margin-left:0%;margin-top:-200%;"><i class="el-icon-collection-tag">Tab</i></el-button> -->
+        
+        <!-- <nobr class="head" style="padding-left:0%; margin-bottom:100%">Details of This House</nobr> -->
+      <!-- </el-column>    -->
+    <!-- </el-row> -->
     </h1>
   <el-row :gutter="24">
     <el-column :span="12">
