@@ -34,7 +34,7 @@
     <el-row gutter="20" >
       <el-col :span="6" v-for="item in houses.slice((currentPage - 1) * pageSize, currentPage*pageSize)" :key="item.id">
             <el-card :body-style="{ paddingLeft: '20px'}" shadow ="hover" @click.native = "openDetail(item.id)" class="cards">
-                <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
+                <img :src="item.pic" class="image">
                 <div style="padding: 14px;">
 <!--                   
                     <h2>Price: $2000</h2>
@@ -84,6 +84,7 @@
       components: {Detail: HouseDetail},
       data(){
           return{
+            src:"",
             textarea:"",
             matchn:[],
             currentTotal: 0,
@@ -130,7 +131,17 @@
         this.values = this.options[8].value
         this.getList()
       },
+      /*computed:{
+        getsrc(id){
+              /!*return "./components/pictures/"+id+".JPG"*!/
+              return "./pictures/" + id + ".jpg"
+          },
+      },*/
       methods:{
+          getsrc(id){
+              /*return "./components/pictures/"+id+".JPG"*/
+              return "./pictures/" + "1.jpg"
+          },
         similar(){
           this.$store.commit("newStatus","2")
           /*alert(this.$store.state.status)*/
@@ -278,6 +289,7 @@
                         let bd = all[i][51]/*bedroom*/
                         let ba = all[i][50]*0.5+all[i][49]/*bathroom*/
                         let r = a.toString() + " sqft"
+                        let src = require("../assets/pictures/" + ID + ".jpg")
                         if (ba == 1||ba == 0){
                             r = ba.toString() + " ba " + r
                         }
@@ -392,7 +404,7 @@
                             t = "Residential Medium Density"
                         }
                         p = "$"+p
-                        this.houses.push({id:ID,price:p,room:r,neighborhood:n,type:t})
+                        this.houses.push({id:ID,price:p,room:r,neighborhood:n,type:t,pic:src})
                         i++
                     }
 
