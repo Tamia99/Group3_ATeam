@@ -36,11 +36,13 @@
             <el-card :body-style="{ paddingLeft: '20px'}" shadow ="hover" @click.native = "openDetail(item.id)" class="cards">
                 <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
                 <div style="padding: 14px;">
-                    <!--<h2>Price: $2000</h2>
+<!--                   
+                    <h2>Price: $2000</h2>
                     <span>1 bd, 1 ba, 288 sqft</span>
                     <br>
-                    <span>neighborhood</span>-->
-                    <!--<h2>{{item.id}}</h2>-->
+                    <span>neighborhood</span>
+                    <h2>{{item.id}}</h2> -->
+
                     <h2>{{item.price}}</h2>
                     <span>{{ item.room }}</span>
                     <br>
@@ -48,9 +50,6 @@
                     <br>
                     <span>{{ item.type }}</span>
                    
-                    <!-- <div class="bottom clearfix">
-                        <el-button type="text" class="button" @click="dialogVisible = true">View Details</el-button>
-                    </div> -->
                 </div>
             </el-card>
             <el-dialog
@@ -58,16 +57,8 @@
                 width="60%"
                 height="60%"
                 :before-close="handleClose">
-                <!--<div style="width:500px">
-                <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
-                </div>
-                <span>这是一段信息</span>-->
                 <Detail :message = "thisHouse"></Detail>
                 <el-button @click="similar()">View 10 similar houses</el-button>
-                <!--<span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-                </span>-->
             </el-dialog>
         </el-col>
     </el-row>
@@ -437,40 +428,33 @@
 .el-card {
     min-width: 100%;
     height: 100%;
-  }
+  } 
 
 .buttonSearch{
   margin-left: 0.5%;
   background-color: rgb(29, 142, 180);
-  /* background-color: #66A4AC; */
   color: white;
 }
 
 .inputSearch{
   margin-top: 1%;
-  /* font-size: 50px; */
 }
 
 .sortText{
-  /* margin-bottom: 0%; */
   margin-top: 9%;
   margin-bottom: -2%;
   margin-left: 40%;
 }
 
 .sortBy{
-  /* margin-top: 10%; */
   margin-bottom: -3%;
   margin-left: 5%;
 }
 
-.cards{
+/* .cards{
   border-radius: 10px;
-}
-
-/* .el-dialog{
-    height: 100px!important;
 } */
+
 
 </style>
 
