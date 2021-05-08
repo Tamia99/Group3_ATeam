@@ -1,9 +1,9 @@
 <template>
 <div>
 
-    <el-carousel>
-      <el-carousel-item v-for="item in imgList" :key="item.name" style="height:600px; padding-top:-100%">
-        <img :src="item.src" style="height:100%;width:100%;" alt="图片丢失了" :title="item.title" />
+    <el-carousel style=" margin-top:0%!important">
+      <el-carousel-item v-for="item in imgList" :key="item.name" style="height:600px; margin-top:0%!important">
+        <img :src="item.src" style="height:83%;width:100%;" alt="图片丢失了" :title="item.title" />
         
       </el-carousel-item>
       
@@ -61,10 +61,11 @@
 <style>
 .el-carousel{
     padding-left: 0%!important;
-    height: 800px!important;
+    height: 600px!important;
     width: 100%;
     position:relative;
     z-index: 1;
+    margin-top:10%!important;
 }
 .card1{
     
@@ -98,34 +99,34 @@
       data() {
           return {
               imgList: [
-                  {
-                  name: "1",
-                  src: require("@/assets/pic-card.png"),
-                  title: "Comfortable Environment"
-                  },
+                  // {
+                  // name: "1",
+                  // src: require("@/assets/pic-card.png"),
+                  // title: "Comfortable Environment"
+                  // },
                   {
                   name: "2",
-                  src: require("@/assets/zmd-1.jpg"),
+                  src: require("@/assets/zmd-1.png"),
                   title: "Comfortable Environment"
                   },
                   {
                   name: "3",
-                  src: require("@/assets/zmd-2.jpg"),
+                  src: require("@/assets/zmd-2.png"),
                   title: "Convenient to Work"
                   },
                   {
                   name: "4",
-                  src: require("@/assets/zmd-3.jpg"),
+                  src: require("@/assets/zmd-3.png"),
                   title: "Safe and Assured"
                   },
                   {
                   name: "5",
-                  src: require("@/assets/zmd-4.jpg"),
+                  src: require("@/assets/zmd-4.png"),
                   title: "Prosperous Surroundings"
                   },
                   {
                   name: "6",
-                  src: require("@/assets/zmd-5.jpg"),
+                  src: require("@/assets/zmd-5.png"),
                   title: "Flexible Decoration Style"
                   }
               ],

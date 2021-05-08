@@ -30,7 +30,7 @@
         <!-- <img src="./assets/teamlogo.png"> -->
         <img height=70px src="./assets/teamlogo-black.png" style="padding-left:630px; margin-bottom:-1%; margin-right:0%!important;">
         <el-menu-item index="1" @click="route4"><i class="el-icon-s-home"></i></el-menu-item>
-        <el-menu-item index="2" @click="route1 "><i class="el-icon-chat-square"></i>Assistant</el-menu-item>
+        <el-menu-item index="2" @click="route1 " style="font-weight:bold;"><i class="el-icon-chat-square"></i>Assistant</el-menu-item>
           
         <el-menu-item index="3" @click="route2"><i class="el-icon-aim"></i>Recommendations</el-menu-item>
         <el-menu-item index="4" @click="route3"><i class="el-icon-house"></i>Houses</el-menu-item>
