@@ -28,10 +28,10 @@
       
     </el-row>
     <el-divider></el-divider>
-    <div v-if="this.houses.length==0">
+    <div v-if="this.houses.length==0&&this.loading==false">
       <p>No Result</p>
     </div>
-    <el-row gutter="20" >
+    <el-row v-loading="loading" gutter="20" >
       <el-col :span="6" v-for="item in houses.slice((currentPage - 1) * pageSize, currentPage*pageSize)" :key="item.id">
             <el-card :body-style="{ paddingLeft: '20px'}" shadow ="hover" @click.native = "openDetail(item.id)" class="cards">
                 <img :src="item.pic" class="image">
@@ -97,6 +97,7 @@
             details:[],
             thisHouse:[],
             values:"",
+            loading: true,
             options: [{
               value: 1,
               label: 'price(High to low)'
@@ -413,7 +414,7 @@
                         this.houses.push({id:ID,price:p,room:r,neighborhood:n,type:t,pic:src})
                         i++
                     }
-
+                    this.loading = false
                 })
                 .catch(error => {
                     console.log(error)

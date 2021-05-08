@@ -1,6 +1,5 @@
 <template>
 <div>
-
     <el-carousel style=" margin-top:0%!important">
       <el-carousel-item v-for="item in imgList" :key="item.name" style="height:600px; margin-top:0%!important">
         <img :src="item.src" style="height:83%;width:100%;" alt="图片丢失了" :title="item.title" />
@@ -58,7 +57,7 @@
 
 
 
-<style>
+<style scoped>
 .el-carousel{
     padding-left: 0%!important;
     height: 600px!important;

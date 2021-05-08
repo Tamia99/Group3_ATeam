@@ -29,7 +29,7 @@
         <el-row gutter="20" >
           <el-col :span="6" v-for="item in houses" :key="item.id">
             <el-card :body-style="{ padding: '20px' }" shadow ="hover" @click.native = "openDetail(item.id)">
-                <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
+                <img :src="item.pic" class="image">
                 <div style="padding: 14px;">
                     <!--<h2>Price: $2000</h2>
                     <span>1 bd, 1 ba, 288 sqft</span>
@@ -144,6 +144,7 @@
                     let n = all[i][12]
                     let t = all[i][2]
                     let bd = all[i][51]/*bedroom*/
+                    let src = require("../assets/pictures/" + iD + ".jpg")
                     let ba = all[i][50]*0.5+all[i][49]/*bathroom*/
                     let r = a.toString() + " sqft"
                     if (ba == 1 || ba == 0){
@@ -259,7 +260,7 @@
                         t = "Residential Medium Density"
                     }
                     p = "$"+p
-                    this.houses.push({id:iD,price:p,room:r,neighborhood:n,type:t})
+                    this.houses.push({id:iD,price:p,room:r,neighborhood:n,type:t,pic:src})
                     i++
                 }
                 // alert(this.houses)
