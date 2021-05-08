@@ -1,7 +1,7 @@
 questionList = [
     "Do you need us to recommend suitable housing information for you?",
     "Bye!",
-    "What is the approximate price you can accept? (We currently have houses whose prices are between 34,900 and 755,000 dollars)",
+    "What is the approximate price you can accept? (We currently have houses whose prices are between 34900 and 755000 dollars)",
     "How many bedrooms do you want? (We currently have houses with 0 to 8 bedrooms)",
     "How many full bathrooms do you want? (We currently have houses with 0 to 6 full bathrooms)",
     "How many half bathrooms do you want? (We currently have houses with 0 to 4 half bathrooms)",

@@ -1,6 +1,6 @@
 <template>
     <div id = "q">
-      <p>{{message}}</p>
+      <<!--p>{{message}}</p>-->
         <h1>Here is the questions page</h1><br>
         <el-form ref="form" :model="form" label-width="80px">
             <el-form-item >
@@ -22,7 +22,7 @@
                 <span>Q3 Please choose the flatness property.</span><br>
                 <el-select v-model="form.flatness" placeholder="please choose">
                     <el-option
-                            v-for="item in form.flatnessP"
+                            v-for="item in form.flatnesses"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value">
@@ -275,7 +275,7 @@
                         label: 'Residential Medium Density'
                     },
                     ],
-                    flatnessP: [{
+                    flatnesses: [{
                         value: -1,
                         label: 'It does not matter'
                     },{
