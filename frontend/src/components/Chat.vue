@@ -256,8 +256,13 @@
 
             },
             submit(){
-                let a = this.$refs.questionnaire.recommend()
-                alert(a)
+                /*let a = this.$refs.questionnaire.recommend()*/
+                 let data = [this.$refs.questionnaire.form.classification,this.form.$refs.questionnaire.inputSize,this.form.$refs.questionnaire.flatness,this.$refs.questionnaire.form.utility,this.$refs.questionnaire.form.neighborhood,
+                            this.$refs.questionnaire.form.style,this.$refs.questionnaire.form.year,this.$refs.questionnaire.form.roof,this.$refs.questionnaire.form.vaneer,this.$refs.questionnaire.form.foundation,this.$refs.questionnaire.form.basement,
+                            this.$refs.questionnaire.form.heating,this.$refs.questionnaire.form.air,this.$refs.questionnaire.form.electrical,this.$refs.questionnaire.form.living,this.$refs.questionnaire.form.fullbath,this.$refs.questionnaire.form.halfbath,
+                            this.$refs.questionnaire.form.bedroom,this.$refs.questionnaire.form.kitchen,this.$refs.questionnaire.form.room,this.$refs.questionnaire.form.fire,this.$refs.questionnaire.form.garage,this.$refs.questionnaire.form.deck,
+                            this.$refs.questionnaire.form.pool,this.$refs.questionnaire.form.price]
+                /*alert(a)*/
                 /*this.dialogVisible = this.$refs.questionnaire.visible*/
                 /*this.dialogVisible = this.$refs.questionnaire.visible*/
                 /*this.status = this.$store.state.status*/

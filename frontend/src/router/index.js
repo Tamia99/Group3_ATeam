@@ -5,7 +5,7 @@ import HouseList from "../components/HouseList"
 import Recommend from "../components/Recommend"
 import Chat from "../components/Chat";
 import Welcome from "../Welcome";
-import HouseItem from "@/components/HouseItem";
+
 
 
 
