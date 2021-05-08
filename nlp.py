@@ -143,7 +143,7 @@ def NaturalLanguageProcess(data, process1, process2):
         if len(set(wordsList).intersection(set(answerkeyword1))) != 0:
             process1 += 1
             process2 = 0
-            returnlist = [questions.questionList[2], process1, process2]
+            returnlist = ["Thank you for choosing me. Now I'm going to ask you 13 questions to find out your perference." + '\n' + questions.questionList[2], process1, process2]
         else:
             if len(set(wordsList).intersection(set(answerkeyword2))) != 0:
                 process1 = -1
@@ -194,7 +194,7 @@ def NaturalLanguageProcess(data, process1, process2):
                     process1 = 3
                     process2 = 0
                     informationlist[17] = word
-                    returnlist = ["I see." + '\n' + questions.questionList[4], process1, process2]
+                    returnlist = ["I see. I've written it down." + '\n' + questions.questionList[4], process1, process2]
                 else:
                     if process2 == 0:
                         # print('test')
@@ -227,7 +227,7 @@ def NaturalLanguageProcess(data, process1, process2):
                     process1 = 4
                     process2 = 0
                     informationlist[15] = word
-                    returnlist = ["Ok." + '\n' + questions.questionList[5], process1, process2]
+                    returnlist = ["Ok! That really counts." + '\n' + questions.questionList[5], process1, process2]
                 else:
                     if process2 == 0:
                         # print('test')
@@ -293,7 +293,7 @@ def NaturalLanguageProcess(data, process1, process2):
                     process1 = 6
                     process2 = 0
                     informationlist[1] = word
-                    returnlist = ["Well." + '\n' + questions.questionList[7], process1, process2]
+                    returnlist = ["I got it." + '\n' + questions.questionList[7], process1, process2]
                 else:
                     if process2 == 0:
                         # print('test')
@@ -335,7 +335,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 process1 = 7
                 process2 = 0
                 informationlist[4] = item[i]
-                returnlist = ["Well." + '\n' + questions.questionList[8], process1, process2]
+                returnlist = ["You've made the right decision!" + '\n' + questions.questionList[8], process1, process2]
                 ans = True
                 break
         if ans == False:
@@ -346,7 +346,7 @@ def NaturalLanguageProcess(data, process1, process2):
                         process1 = 7
                         process2 = 0
                         informationlist[4] = item[int(word)]
-                        returnlist = ["Well." + '\n' + questions.questionList[8], process1, process2]
+                        returnlist = ["You've made the right decision!" + '\n' + questions.questionList[8], process1, process2]
                     else:
                         if process2 == 0:
                             # print('test')
@@ -382,7 +382,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 process1 = 8
                 process2 = 0
                 informationlist[3] = item[i]
-                returnlist = ["Well." + '\n' + questions.questionList[9], process1, process2]
+                returnlist = ["Marked." + '\n' + questions.questionList[9], process1, process2]
                 ans = True
                 break
         if ans == False:
@@ -393,7 +393,7 @@ def NaturalLanguageProcess(data, process1, process2):
                         process1 = 8
                         process2 = 0
                         informationlist[3] = item[int(word)]
-                        returnlist = ["Well." + '\n' + questions.questionList[9], process1, process2]
+                        returnlist = ["Marked." + '\n' + questions.questionList[9], process1, process2]
                     else:
                         if process2 == 0:
                             # print('test')
@@ -429,7 +429,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 process1 = 9
                 process2 = 0
                 informationlist[5] = item[i]
-                returnlist = ["Well." + '\n' + questions.questionList[10], process1, process2]
+                returnlist = ["Got it." + '\n' + questions.questionList[10], process1, process2]
                 ans = True
                 break
         if ans == False:
@@ -440,7 +440,7 @@ def NaturalLanguageProcess(data, process1, process2):
                         process1 = 9
                         process2 = 0
                         informationlist[5] = item[int(word)]
-                        returnlist = ["Well." + '\n' + questions.questionList[10], process1, process2]
+                        returnlist = ["Got it." + '\n' + questions.questionList[10], process1, process2]
                     else:
                         if process2 == 0:
                             # print('test')
@@ -476,7 +476,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 process1 = 10
                 process2 = 0
                 informationlist[11] = item[i]
-                returnlist = ["Well." + '\n' + questions.questionList[11], process1, process2]
+                returnlist = ["Received." + '\n' + questions.questionList[11], process1, process2]
                 ans = True
                 break
         if ans == False:
@@ -487,7 +487,7 @@ def NaturalLanguageProcess(data, process1, process2):
                         process1 = 10
                         process2 = 0
                         informationlist[11] = item[int(word)]
-                        returnlist = ["Well." + '\n' + questions.questionList[11], process1, process2]
+                        returnlist = ["Received." + '\n' + questions.questionList[11], process1, process2]
                     else:
                         if process2 == 0:
                             # print('test')
@@ -523,7 +523,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 process1 = 11
                 process2 = 0
                 informationlist[12] = item[i]
-                returnlist = ["Well." + '\n' + questions.questionList[12], process1, process2]
+                returnlist = ["Nice. We are almost done." + '\n' + questions.questionList[12], process1, process2]
                 ans = True
                 break
         if ans == False:
@@ -534,7 +534,7 @@ def NaturalLanguageProcess(data, process1, process2):
                         process1 = 11
                         process2 = 0
                         informationlist[12] = item[int(word)]
-                        returnlist = ["Well." + '\n' + questions.questionList[12], process1, process2]
+                        returnlist = ["Nice. We are almost done." + '\n' + questions.questionList[12], process1, process2]
                     else:
                         if process2 == 0:
                             # print('test')
@@ -569,7 +569,7 @@ def NaturalLanguageProcess(data, process1, process2):
                     process1 = 12
                     process2 = 0
                     informationlist[18] = word
-                    returnlist = ["Well." + '\n' + questions.questionList[13], process1, process2]
+                    returnlist = ["Roger." + '\n' + questions.questionList[13], process1, process2]
                 else:
                     if process2 == 0:
                         # print('test')
@@ -602,7 +602,7 @@ def NaturalLanguageProcess(data, process1, process2):
                     process1 = 13
                     process2 = 0
                     informationlist[21] = word
-                    returnlist = ["Well." + '\n' + questions.questionList[14], process1, process2]
+                    returnlist = ["Great." + '\n' + questions.questionList[14], process1, process2]
                 else:
                     if process2 == 0:
                         # print('test')
