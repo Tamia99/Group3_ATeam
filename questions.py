@@ -4,7 +4,7 @@ questionList = [
     "What is the approximate price you can accept? (We currently have houses whose prices are between 34,900 and 755,000 dollars)",
     "How many bedrooms do you want? (We currently have houses with 0 to 8 bedrooms)",
     "How many full bathrooms do you want? (We currently have houses with 0 to 6 full bathrooms)",
-    "How many half bathrooms do you want? (We currently have houses with 0 to 4 full bathrooms)",
+    "How many half bathrooms do you want? (We currently have houses with 0 to 4 half bathrooms)",
     "What size of house do you want? (sqft) (We currently have houses whose areas are between 1300 and 215245 sqft)",
     """Which neighborhood do you want? (Enter the number)
     0   It does not matter

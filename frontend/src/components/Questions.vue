@@ -205,6 +205,7 @@
         <p>
             Copyright&nbsp;&copy;&nbsp;{{author}} - 2021 All rights reserved
         </p>
+
     </div>
 </template>
 
@@ -218,7 +219,7 @@
             return {
                 qtype: this.message[0],
                 information:[],
-                close:false,
+                visible:undefined,
                 form: {
                     classification:"",
                     inputSize:"",
@@ -577,17 +578,51 @@
             getInformation(){
               /*this.form.inputSize = 1*/
               /*this.form.classification = this.form.classifications[0].value*/
-
               if (this.qtype==0||this.qtype==2){
                 /*this.form.inputSize = 1*/
-
+                if(this.message[18]===-1){
+                  this.form.bedroom = undefined
+                }
+                else{
+                  this.form.bedroom = this.message[18]
+                }
+                if(this.message[16]===-1){
+                  this.form.fullbath = undefined
+                }
+                else{
+                  this.form.fullbath = this.message[16]
+                }
+                if(this.message[17]===-1){
+                  this.form.halfbath = undefined
+                }
+                else{
+                  this.form.halfbath = this.message[17]
+                }
+                if(this.message[19]===-1){
+                  this.form.kitchen = undefined
+                }
+                else{
+                  this.form.kitchen = this.message[19]
+                }
+                if(this.message[22]===-1){
+                  this.form.garage = undefined
+                }
+                else{
+                  this.form.garage = this.message[22]
+                }
+                if(this.message[21]===-1){
+                  this.form.room = undefined
+                }
+                else{
+                  this.form.room = this.message[21]
+                }
                 this.form.inputSize = this.message[2]
-                this.form.bedroom = this.message[18]
+               /* this.form.bedroom = this.message[18]
                 this.form.fullbath = this.message[16]
                 this.form.halfbath = this.message[17]
                 this.form.kitchen = this.message[19]
                 this.form.garage = this.message[23]
-                this.form.room = this.message[21]
+                this.form.room = this.message[21]*/
                 this.form.price = this.message[25]
                 /*alert(this.message[5])*/
                 for (let i=0;i<this.form.neighborhoods.length;i++){
@@ -622,26 +657,8 @@
             handleChange(value) {
                 console.log(value);
             },
-            recommend(){
-              /*alert(typeof this.form.room)*/
-                let data = [this.form.classification,this.form.inputSize,this.form.flatness,this.form.utility,this.form.neighborhood,
-                            this.form.style,this.form.year,this.form.roof,this.form.vaneer,this.form.foundation,this.form.basement,
-                            this.form.heating,this.form.air,this.form.electrical,this.form.living,this.form.fullbath,this.form.halfbath,
-                            this.form.bedroom,this.form.kitchen,this.form.room,this.form.fire,this.form.garage,this.form.deck,
-                            this.form.pool,this.form.price]
-                let invalidcount = 0
-                for(let i = 0;i<data.length;i++){
-                  if (data[i]==undefined || data[i]==""||data[i]== -1){
-                    data[i]= -1
-                    invalidcount++
-                  }
-                }
-                if (invalidcount>19){
-                    
-                }
-               /* alert(data)*/
-                /*let data = list*/
-                const path = 'http://localhost:5000/api/recommend'
+            realrecommend(data){
+              const path = 'http://localhost:5000/api/recommend'
                 axios.post(path, data)
                     .then(response => {
                        /* alert("successful submission")*/
@@ -651,16 +668,59 @@
                         this.$store.commit("newStatus","1")
                         /*alert(this.$store.state.status)*/
                         console.log(this.$store.state.recommendation)
-                        alert("successful submission")
+                        this.visible = false
+                        this.$notify({
+                          title: 'Success',
+                          message: 'successful submission',
+                          type: 'success'
+                        });
+                        /*alert("successful submission")*/
                     })
                     .catch((error) => {
                         // eslint-disable-next-line
                         console.log(error)
 
                     })
-                /*this.$emit("closeDialogue",this.close)*/
-                /*this.dialogVisible = false*/
-                return this.close
+            },
+            recommend(){
+              /*alert(typeof this.form.room)*/
+
+                let data = [this.form.classification,this.form.inputSize,this.form.flatness,this.form.utility,this.form.neighborhood,
+                            this.form.style,this.form.year,this.form.roof,this.form.vaneer,this.form.foundation,this.form.basement,
+                            this.form.heating,this.form.air,this.form.electrical,this.form.living,this.form.fullbath,this.form.halfbath,
+                            this.form.bedroom,this.form.kitchen,this.form.room,this.form.fire,this.form.garage,this.form.deck,
+                            this.form.pool,this.form.price]
+                let invalidcount = 0
+                /*alert(this.form.deck)*/
+                for(let i = 0;i<data.length;i++){
+                  if (data[i]===undefined || data[i]===""||data[i]=== -1){
+                    /*console.log("in",data[i])*/
+                    data[i]= -1
+                    invalidcount++
+                  }
+                }
+                /*alert(invalidcount)*/
+                if (invalidcount>19){
+                    this.$confirm('Sorry, information provided is not enough! Lack of information may lead to inaccurate recommendations, do you confirm to continue recommendation ?', '', {
+                      confirmButtonText: 'confirm',
+                      cancelButtonText: 'no,I will provide more information',
+                      type: 'warning'
+                      }).then(() => {
+                        this.visible = false
+                        /*this.realrecommend(data)*/
+                        this.visible = false
+                        /*return this.visible*/
+                        /*this.recommend()*/
+                      }).catch(() => {
+                        this.visible = true
+                        /*return this.visible*/
+                    });
+                }
+                else {
+                  /*this.realrecommend(data)*/
+                  this.visible = false
+                }
+                return this.visible
             }
         }
     }

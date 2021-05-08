@@ -101,6 +101,7 @@
                         <el-button type="primary" @click= "submit()">Submit</el-button>
                     </span>
         </el-dialog>
+
     </div>
 </template>
 
@@ -116,6 +117,7 @@
         },
         data: function () {
             return {
+              rstatus:this.$store.state.status,
               styleObject: {
                 color: "#660099",
                 textDecoration:"underline",
@@ -148,18 +150,14 @@
             this.scrollToBottom()
         },
         watch:{
-          /*'status':{
-            handler:function (val,oldval) {
-              if (status==="0"){
-                this.isRecommend = true
-              }
-            }
-          }*/
+          rstatus(newVal, oldVal) {
+            alert(newVal)
+          }
         },
         methods: {
-          handleClose:function(data){
+         /* handleClose:function(data){
               alert(data)
-          },
+          },*/
           reload () {
             this.isReloadData = false
             this.$nextTick(() => {
@@ -187,7 +185,11 @@
                 var time = yy + '-' + mm + '-' + dd + ' ' + hh + ':' + mf + ':' + ss
                 var message =  this.preText(this.textarea)
                 if(message.match(/^[ ]+$/)||message===""){
-                    alert("invalid null message")
+                    /*alert("invalid null message")*/
+                  this.$notify.error({
+                    message: 'Invalid null message,please try again',
+                    duration: 2000
+                  });
                 }
                 else{
                     this.myMessages.push({ time: time })
@@ -213,7 +215,7 @@
                         this.questionType[0] = 0
                         this.questionType = this.questionType.concat(re[3])
                         /*this.questionType.push(this.dialogVisible)*/
-                        
+
                       }
                       else if(re[1]==17&&re[2]==0){//直接推荐
                           this.myMessages.push({ reply: "Since you choose not to fill the questionnaire, we will directly find houses for you according to your answers above." })
@@ -254,8 +256,11 @@
 
             },
             submit(){
-                this.dialogVisible = this.$refs.questionnaire.recommend()
-                this.status = "0"
+                let a = this.$refs.questionnaire.recommend()
+                alert(a)
+                /*this.dialogVisible = this.$refs.questionnaire.visible*/
+                /*this.dialogVisible = this.$refs.questionnaire.visible*/
+                /*this.status = this.$store.state.status*/
                 /*this.dialogVisible = false*/
                 this.questionType[0] = 1
             },
