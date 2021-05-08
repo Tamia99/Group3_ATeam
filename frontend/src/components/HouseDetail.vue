@@ -1,7 +1,7 @@
 <template>
 <div>
   <h1>
-    
+    {{this.similar}}
     </h1>
   <el-row :gutter="24">
     
@@ -267,11 +267,20 @@ export default {
     return {
       detail:[],
       activeName: 'first',
+      similar:["ndjsfs"],
     }
 
   },
-
+  created() {
+    if (this.message.length!=0){
+      this.getSimilars()
+    }
+  },
   methods:{
+    getSimilars(){
+      alert("!")
+
+    },
     replaceNeigh(n1){
         if(n1 == "Blmngtn"){
           n1 = "Bloomington Heights"

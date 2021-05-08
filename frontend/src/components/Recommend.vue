@@ -73,12 +73,13 @@
                 layout="total,sizes, prev, pager, next, jumper"
                 :total="currentTotal">
       </el-pagination>-->
-      <div v-if="this.houses.length!=0">
+      <div v-if="this.houses.length!=0&&this.rated == false">
         <p>Please rate for the recommendation</p>
         <el-rate
           v-model="value"
           :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
         </el-rate>
+        <el-button @click="submit()">submit</el-button>
       </div>
         </div>
     </div>
@@ -93,6 +94,7 @@
         components: {Detail: HouseDetail},
         data() {
             return {
+              rated:false,
               currentTotal: 0,
               currentPage: 1,
               pageSize: 12,
@@ -277,9 +279,21 @@
                     }
                     i++
                 }
+                for(let j=0;j<this.houses.length;j++){
+                  if (id == this.houses[j].id){
+                    this.thisHouse = this.thisHouse.concat(this.houses[j])
+                  }
+               }
                 
                 this.dialogVisible = true
-            }
+            },
+          submit(){
+              this.$message({
+                message: 'Thank you for your rating!',
+                type: 'success'
+              });
+              this.rated = true
+          }
         }
     }
 </script>

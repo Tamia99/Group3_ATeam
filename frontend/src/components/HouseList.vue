@@ -58,7 +58,7 @@
                 height="60%"
                 :before-close="handleClose">
                 <Detail :message = "thisHouse"></Detail>
-                <el-button @click="similar()">View 10 similar houses</el-button>
+                <!--<el-button @click="similar()">View 10 similar houses</el-button>-->
             </el-dialog>
         </el-col>
     </el-row>
