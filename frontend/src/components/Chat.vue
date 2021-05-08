@@ -211,9 +211,13 @@
                       let re = response.data.reply
                       /*alert(re[1])
                       alert(re[2])*/
-                      if (re[1]==16){//选填问卷
+                      this.processNumber = re[1]
+                      this.currentProcess = re[2]
+                      if (re[1]==16&&re[2]==0){//选填问卷
                         this.questionType[0] = 0
                         this.questionType = this.questionType.concat(re[3])
+                        this.currentProcess = 1
+                        this.processNumber = 17
                         /*this.questionType.push(this.dialogVisible)*/
 
                       }
@@ -241,13 +245,15 @@
                         this.myMessages.push({ reply: rep })
                         this.questionType[0] = 2
                         this.questionType = this.questionType.concat(re[3])
+                        this.currentProcess = 1
+                        this.processNumber = 17
                       }
                       else{
+                        this.status = false
                         let rep = this.preText(re[0])
                         this.myMessages.push({ reply: rep })
                       }
-                      this.processNumber = re[1]
-                      this.currentProcess = re[2]
+
                     })
                     .catch((error) => {
                         console.log(error)
@@ -257,37 +263,67 @@
             },
             submit(){
                 /*let a = this.$refs.questionnaire.recommend()*/
-                 let data = [this.$refs.questionnaire.form.classification,this.form.$refs.questionnaire.inputSize,this.form.$refs.questionnaire.flatness,this.$refs.questionnaire.form.utility,this.$refs.questionnaire.form.neighborhood,
+              let data = [this.$refs.questionnaire.form.classification,this.$refs.questionnaire.form.inputSize,this.$refs.questionnaire.form.flatness,this.$refs.questionnaire.form.utility,this.$refs.questionnaire.form.neighborhood,
                             this.$refs.questionnaire.form.style,this.$refs.questionnaire.form.year,this.$refs.questionnaire.form.roof,this.$refs.questionnaire.form.vaneer,this.$refs.questionnaire.form.foundation,this.$refs.questionnaire.form.basement,
                             this.$refs.questionnaire.form.heating,this.$refs.questionnaire.form.air,this.$refs.questionnaire.form.electrical,this.$refs.questionnaire.form.living,this.$refs.questionnaire.form.fullbath,this.$refs.questionnaire.form.halfbath,
                             this.$refs.questionnaire.form.bedroom,this.$refs.questionnaire.form.kitchen,this.$refs.questionnaire.form.room,this.$refs.questionnaire.form.fire,this.$refs.questionnaire.form.garage,this.$refs.questionnaire.form.deck,
                             this.$refs.questionnaire.form.pool,this.$refs.questionnaire.form.price]
-                /*alert(a)*/
-                /*this.dialogVisible = this.$refs.questionnaire.visible*/
-                /*this.dialogVisible = this.$refs.questionnaire.visible*/
-                /*this.status = this.$store.state.status*/
-                /*this.dialogVisible = false*/
-                this.questionType[0] = 1
-            },
-           /* changeStatus(){
-                if(this.$store.state.status=="0"){
-                    this.status = this.$store.state.status
-                    this.dialogVisible = false
+              /*let a = [this.$refs.questionnaire.form.price , this.$refs.questionnaire.form.pool]*/
+              let invalidcount = 0
+                for(let i = 0;i<data.length;i++){
+                  if (data[i]===undefined || data[i]===""||data[i]=== -1){
+                    /*console.log("in",data[i])*/
+                    data[i]= -1
+                    invalidcount++
+                  }
                 }
-            },*/
-            /*getRandom (){
-                this.randomNumber = this.getRandomFromBackend()
+                if (invalidcount>19&&invalidcount!=25){
+                    this.$confirm('Sorry, information provided is not enough! Lack of information may lead to inaccurate recommendations, do you confirm to continue recommendation ?', '', {
+                      confirmButtonText: 'confirm',
+                      cancelButtonText: 'no,I will provide more information',
+                      type: 'warning'
+                      }).then(() => {
+                        this.$refs.questionnaire.realrecommend(data)
+                        this.dialogVisible = false
+                        this.questionType[0] = 1
+                        this.myMessages.push({ reply: "The system is working, please wait for a while." })
+                        /*this.status = true*/
+                        let that = this
+                        setTimeout(function() {
+                          that.textarea = " "
+                          that.textarea = ""
+                          that.status = true
+                          /*alert("1")*/
+                        },8000);
+                      }).catch(() => {
+                        this.dialogVisible = true
+                    });
+                }
+                else if(invalidcount==25&&this.dialogVisible==true){
+                  this.$notify.error({
+                    message: 'You must provide at least one feature for us to recommendation, please try again!',
+                    duration: 5000
+                  });
+                }
+                else {
+                  /*alert("else")*/
+                  this.$refs.questionnaire.realrecommend(data)
+                  this.dialogVisible = false
+                  this.questionType[0] = 1
+                  /*this.status = true*/
+                  this.myMessages.push({ reply: "The system is working, please wait for a while." })
+                  let that = this
+                        setTimeout(function() {
+                          that.textarea = " "
+                          that.textarea = ""
+                          that.status = true
+                          /*alert("1")*/
+                        },8000);
+                }
+                /*this.dialogVisible = false*/
+
             },
-            getRandomFromBackend (){
-                const path = 'http://localhost:5000/api/random'
-                axios.get(path)
-                    .then(response => {
-                        this.randomNumber = response.data.randomNumber
-                    })
-                    .catch(error => {
-                        console.log(error)
-                    })
-            },*/
+
 
         }
     }
