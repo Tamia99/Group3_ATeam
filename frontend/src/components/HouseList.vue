@@ -54,7 +54,7 @@
             </el-card>
             <el-dialog
                 :visible.sync="dialogVisible"
-                width="60%"
+                width="80%"
                 height="60%"
                 :before-close="handleClose">
                 <Detail :message = "thisHouse"></Detail>
@@ -266,6 +266,12 @@
               this.thisHouse = this.details[i]
             }
             i++
+          }
+          // this.thisHouse = this.thisHouse.concat(this.houses[0])
+          for(let j=0;j<this.houses.length;j++){
+            if (id == this.houses[j].id){
+              this.thisHouse = this.thisHouse.concat(this.houses[j])
+            }
           }
           this.dialogVisible = true
         },

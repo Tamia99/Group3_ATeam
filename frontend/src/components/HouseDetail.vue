@@ -1,27 +1,37 @@
 <template>
 <div>
-  <h1>
+  <h1>{{message}}
     <!-- <el-row :gutter="24"> -->
       
 
       <!-- <el-column :span="12"> -->
-        <img class="logo" height=60px src="./teamlogo-black.png" style="margin-top:-2%; margin-left:80%">
+        <!-- <img class="logo" height=60px src="./teamlogo-black.png" style="margin-top:-2%; margin-left:80%"> -->
       <!-- </el-column>  -->
       <!-- <el-column :span="12" style=""> -->
 
-        <!-- <el-button style="border:none; margin-left:0%;margin-top:-200%;"><i class="el-icon-collection-tag">Tab</i></el-button> -->
+        
         
         <!-- <nobr class="head" style="padding-left:0%; margin-bottom:100%">Details of This House</nobr> -->
       <!-- </el-column>    -->
     <!-- </el-row> -->
     </h1>
   <el-row :gutter="24">
-    <el-column :span="12">
-      <!-- <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image"> -->
+    
+    <el-column :span="6">
+      <div>
+      <el-button class="tag1" style="border:none; margin-left:88%;margin-top:-200%; width:80px!important;"><i class="el-icon-collection-tag">Tab</i></el-button>
+      </div>
+      <div>
+      <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
+    </div>
     </el-column>
-    <el-column :span="12">
+    
+    
+    <el-column :span="6">
+      
+      <div>
       <el-tabs v-model="activeName" @tab-click="handleClick">
-    <el-tab-pane label="Environment" name="first" style="overflow-x:hidden;overflow-y:hidden;">
+    <el-tab-pane label="Environment" name="first">
       <p>
           <nobr class="title">
           Neighborhood:
@@ -44,7 +54,7 @@
     </el-tab-pane>
 
 
-    <el-tab-pane label="Area" name="second" style="overflow-x:hidden;overflow-y:hidden;">
+    <el-tab-pane label="Area" name="second">
       <p>
           <nobr class="title">
           Lot Area:
@@ -90,7 +100,7 @@
     </el-tab-pane>
 
 
-    <el-tab-pane label="Living Condition" name="third" style="overflow-x:hidden;overflow-y:hidden;">
+    <el-tab-pane label="Living Condition" name="third">
       <p>
           <nobr class="title">
           Utilities:
@@ -166,7 +176,7 @@
     </el-tab-pane>
 
 
-    <el-tab-pane label="Type and Style" name="fourth" style="overflow-x:hidden;overflow-y:hidden;">
+    <el-tab-pane label="Type and Style" name="fourth">
       <p>
           <nobr class="title">
           Dwelling Type:
@@ -182,7 +192,7 @@
     </el-tab-pane>
 
 
-    <el-tab-pane label="Duration" name="fifth" style="overflow-x:hidden;overflow-y:hidden;">
+    <el-tab-pane label="Duration" name="fifth">
       <p>
           <nobr class="title">
           Year Built:
@@ -192,7 +202,7 @@
     </el-tab-pane>
 
 
-    <el-tab-pane label="Build Condition" name="sixth" style="overflow-x:hidden;overflow-y:hidden;">
+    <el-tab-pane label="Build Condition" name="sixth">
       <p>
           <nobr class="title">
           Foundation:
@@ -202,7 +212,7 @@
     </el-tab-pane>
 
 
-    <el-tab-pane label="Sale" name="seventh" style="overflow-x:hidden;overflow-y:hidden;">
+    <el-tab-pane label="Sale" name="seventh">
         <p>
           <nobr class="title">
           Type of Sale:
@@ -217,6 +227,7 @@
         </p>
     </el-tab-pane>
   </el-tabs>
+  </div> 
     </el-column>
     
   </el-row>  
@@ -661,6 +672,34 @@ h1{
 
 .title{
   font-weight: bold;
+}
+
+.image{
+  width:50%;
+}
+
+.tag1{
+
+  /* padding-bottom: 50%!important; */
+  padding-left: -1000%;
+  font-size: 15px!important;
+}
+
+.el-tabs{
+  width:45%;
+  /* height: 60%!important; */
+  margin-left: 53%;
+  margin-top: -20%;
+}
+
+.el-tab-pane{
+  overflow-x:hidden;
+  overflow-y:auto;
+  height:150px;
+}
+
+.el-icon-collection-tag{
+  
 }
 
 /* .head{
