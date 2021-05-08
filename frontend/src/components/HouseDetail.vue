@@ -1,42 +1,61 @@
 <template>
 <div>
-  <h1>{{message}}
-    <!-- <el-row :gutter="24"> -->
-      
-
-      <!-- <el-column :span="12"> -->
-        <!-- <img class="logo" height=60px src="./teamlogo-black.png" style="margin-top:-2%; margin-left:80%"> -->
-      <!-- </el-column>  -->
-      <!-- <el-column :span="12" style=""> -->
-
-        
-        
-        <!-- <nobr class="head" style="padding-left:0%; margin-bottom:100%">Details of This House</nobr> -->
-      <!-- </el-column>    -->
-    <!-- </el-row> -->
+  <h1>
+    
     </h1>
   <el-row :gutter="24">
     
     <el-column :span="6">
-      <div>
-      <el-button class="tag1" style="border:none; margin-left:88%;margin-top:-200%; width:80px!important;"><i class="el-icon-collection-tag">Tab</i></el-button>
-      </div>
-      <div>
-      <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image">
+      
+      <!-- <div>
+        <el-button class="tag1" style="border:none; margin-left:78%;margin-top:-1000%;width:80px!important;"><i class="el-icon-collection-tag">Tab</i></el-button>
+     </div> -->
+
+      
+    <div>
+      <img :src=message[82].pic class="image">
+        <!-- {{message[82].pic}} -->
     </div>
     </el-column>
     
     
     <el-column :span="6">
+
+      <!-- <div>
+        <el-button class="tag1" style="border:none; margin-left:88%;margin-top:-50%; width:80px!important;"><i class="el-icon-collection-tag">Tab</i></el-button>
+     </div> -->
+
+      <div>
+        <div class="info1">
+          {{message[82].price}}
+          <el-button class="tag1" style="border:none; margin-top:-10%!important; width:80px!important"><i class="el-icon-collection-tag">Tab</i></el-button>
+        </div>
+        <!-- {{message}} -->
+        <div class="info2">
+          {{message[82].room}}
+        </div>
+
+        <div class="info3">
+          {{message[82].neighborhood}} | {{message[82].type}}
+        </div>
+        
+        <div class="info4">
+          
+        </div>
+
+      </div>
+
       
       <div>
+
+        
+
       <el-tabs v-model="activeName" @tab-click="handleClick">
     <el-tab-pane label="Environment" name="first">
       <p>
           <nobr class="title">
           Neighborhood:
           </nobr>
-          <!-- {{message[12]}} -->
           {{replaceNeigh(message[12])}}
         </p>
       <p>
@@ -228,22 +247,12 @@
     </el-tab-pane>
   </el-tabs>
   </div> 
+
+  
     </el-column>
     
   </el-row>  
   
-  <!-- <p class="body"> -->
-    <!-- <el-row :gutter="10"> -->
-      <!-- <el-column :span="2" class="leftSide"> -->
-        <!-- 为什么不换行 -->
-        <!-- <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2287568211,2342036693&fm=26&gp=0.jpg" class="image"><br> -->
-      <!-- </el-column> -->
-      <!-- <el-column :span="8" class="rightSide"> -->
-        
-        <!-- {{message}} -->
-      <!-- </el-column> -->
-    <!-- </el-row> -->
-  <!-- </p> -->
 </div>
 </template>
 
@@ -676,38 +685,53 @@ h1{
 
 .image{
   width:50%;
+  margin-top: -2%;
 }
 
 .tag1{
 
-  /* padding-bottom: 50%!important; */
   padding-left: -1000%;
   font-size: 15px!important;
 }
 
+.info1{
+  width:45%;
+  margin-left: 55%;
+  margin-top: -38%;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.info2{
+  width:45%;
+  margin-left: 55%;
+  margin-top: 3%;
+  font-size: 15px;
+  color: dodgerblue;
+}
+
+.info3{
+  margin-top: 1%;
+  margin-left: 55%;
+}
+
+.info4{
+  margin-top: 1%;
+  margin-left: 55%;
+}
+
 .el-tabs{
   width:45%;
-  /* height: 60%!important; */
   margin-left: 53%;
-  margin-top: -20%;
+  margin-top: 7%;
 }
 
 .el-tab-pane{
   overflow-x:hidden;
   overflow-y:auto;
-  height:150px;
+  height:140px;
 }
 
-.el-icon-collection-tag{
-  
-}
 
-/* .head{
-  padding-top: -50%;
-} */
-
-/* .el-tab-pane{
-  background-color: #66A4AC;
-} */
 
 </style>
