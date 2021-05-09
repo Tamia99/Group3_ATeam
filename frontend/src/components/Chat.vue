@@ -127,8 +127,8 @@
                 isReloadData:true,
                 textarea: '',
                 myMessages: [
-                  {time: "testtime"},
-                  {content: 'Testcontent'},
+                 /* {time: "testtime"},
+                  {content: 'Testcontent'},*/
                   {reply:"Welcome to the Smart House Recommendation Assistant"},
                   {reply: "Do you need us to recommend suitable housing information for you?"}],
                 /*myMessages: [],*/
@@ -192,8 +192,8 @@
                   });
                 }
                 else{
-                    /*this.myMessages.push({ time: time })
-                    this.myMessages.push({ content: message })*/
+                    this.myMessages.push({ time: time })
+                    this.myMessages.push({ content: message })
                     /*this.myMessages.push({ reply: message })*/
                     this.process(message)
                     /*this.status = "1"*/

@@ -31,7 +31,8 @@
 
 
 
-        <h1>Here is the questions page</h1><br>
+        <h1>Questions Page</h1><br>
+        <!--<p>{{this.message}}</p>-->
         <el-form ref="form" :model="form" label-width="80px">
             <el-form-item >
                 <span>Q1 Please identifies the general zoning classification.</span><br>
@@ -611,6 +612,11 @@
               /*this.form.classification = this.form.classifications[0].value*/
               if (this.qtype==0||this.qtype==2){
                 /*this.form.inputSize = 1*/
+                for (let i=0;i<this.message.length;i++){
+                  if(this.message[i]==="-1"){
+                    this.message[i]=-1
+                  }
+                }
                 if(this.message[18]===-1){
                   this.form.bedroom = undefined
                 }
