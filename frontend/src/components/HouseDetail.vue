@@ -278,7 +278,7 @@ export default {
   },
   methods:{
     getSimilars(){
-      alert("!")
+      this.similar = "!"
 
     },
     replaceNeigh(n1){
