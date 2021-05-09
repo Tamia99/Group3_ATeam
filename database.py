@@ -70,3 +70,12 @@ def getHouseByIds(ids):
     conn.commit()
     cursor.close()
     return result
+
+def getRecommendation(id):
+    cursor = conn.cursor()
+    statement = "SELECT * FROM Recommendation WHERE id = " + id[0]
+    cursor.execute(statement)
+    recommendation = cursor.fetchone()
+    conn.commit()
+    cursor.close()
+    return recommendation

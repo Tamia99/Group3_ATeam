@@ -52,14 +52,32 @@
                    
                 </div>
             </el-card>
-            <el-dialog
+            <div>
+              <el-dialog
                 :visible.sync="dialogVisible"
                 width="80%"
-                height="60%"
-                :before-close="handleClose">
+                :before-close="handleClose"
+                >
                 <Detail :message = "thisHouse"></Detail>
+                <!-- dodgerblue -->
+                <p style="font-weight:bold; font-size:18px; color:rgb(71, 144, 218)">Similar Homes:</p>
+                <el-col :span="6" v-for="item in similar " :key="item.id">
+                  <el-card :body-style="{ paddingLeft: '15px',marginLeft:'0px'}" shadow ="hover" @click.native = "openDetail(item.id)" class="cards1">
+                    <img :src="item.pic" class="image">
+                    <!-- <span>{{item.id}}</span> -->
+                    <br>
+                     <h2>{{item.price}}</h2>
+                    <span>{{ item.room }}</span>
+                    <br>
+                    <span>{{ item.neighborhood }}</span>
+                    <br>
+                    <span>{{ item.type }}</span>
+                  </el-card>
+                </el-col>
                 <!--<el-button @click="similar()">View 10 similar houses</el-button>-->
             </el-dialog>
+            </div>
+            
         </el-col>
     </el-row>
     <el-pagination
@@ -84,6 +102,7 @@
       components: {Detail: HouseDetail},
       data(){
           return{
+            similar:[],
             src:"",
             textarea:"",
             matchn:[],
@@ -139,16 +158,34 @@
           },
       },*/
       methods:{
-          getsrc(id){
-              /*return "./components/pictures/"+id+".JPG"*/
+        getSimilar(id){
+          const path = 'http://localhost:5000/api/recommendById'
+          /*let data = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 2, -1, -1, -1]*/
+          let data = [id]
+                axios.post(path, data)
+                    .then(response => {
+                       /* alert("successful submission")*/
+                        let all = response.data.result
+                        this.similar = this.dealdata(all)
+                        this.similar = this.similar.slice(1,9)
+                        /*alert("successful submission")*/
+                    })
+                    .catch((error) => {
+                        // eslint-disable-next-line
+                        console.log(error)
+
+                    })
+        },
+          /*getsrc(id){
+              /!*return "./components/pictures/"+id+".JPG"*!/
               return "./pictures/" + "1.jpg"
-          },
-        similar(){
+          },*/
+        /*similar(){
           this.$store.commit("newStatus","2")
-          /*alert(this.$store.state.status)*/
+          /!*alert(this.$store.state.status)*!/
           this.$router.push({ path:'/recommend'  })
           this.dialogVisible = false
-        },
+        },*/
         sortandsearch(){
           //先执行排序
           /*this.houses = []
@@ -274,20 +311,14 @@
               this.thisHouse = this.thisHouse.concat(this.houses[j])
             }
           }
+          this.getSimilar(id)
           this.dialogVisible = true
+
         },
-        getList(){
-            const path = 'http://localhost:5000/api/allHouses'
-            let data = [this.values,this.matchn]
-            axios.post(path,data)
-                .then(response => {
-                   /* alert("s")*/
-                    let all = response.data.house;
-                    let list = []
-                    this.details = all
-                    this.currentTotal = all.length
-                    let i = 0;
-                    while (i< all.length){
+        dealdata(all){
+          let houses = []
+          let i = 0;
+          while (i< all.length){
                         let ID = all[i][0]
                         let p = all[i][80]
                         let a = all[i][4]/*mianji*/
@@ -411,9 +442,22 @@
                             t = "Residential Medium Density"
                         }
                         p = "$"+p
-                        this.houses.push({id:ID,price:p,room:r,neighborhood:n,type:t,pic:src})
+                        houses.push({id:ID,price:p,room:r,neighborhood:n,type:t,pic:src})
                         i++
                     }
+          return houses
+        },
+        getList(){
+            const path = 'http://localhost:5000/api/allHouses'
+            let data = [this.values,this.matchn]
+            axios.post(path,data)
+                .then(response => {
+                   /* alert("s")*/
+                    let all = response.data.house;
+                    let list = []
+                    this.details = all
+                    this.currentTotal = all.length
+                    this.houses = this.dealdata(all)
                     this.loading = false
                 })
                 .catch(error => {
@@ -439,13 +483,20 @@
   }
 
 .el-row {
-    margin-bottom: 20px;
+    margin-top: 10px;
     display: flex;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    /* padding-top: 10%; */
   }
 
+/* .el-column {
+  padding-top:10%;
+} */
+
+
+
 .el-card {
-    min-width: 100%;
+    /* min-width: 100%; */
     height: 100%;
   } 
 
@@ -470,9 +521,15 @@
   margin-left: 5%;
 }
 
-/* .cards{
+.cards{
   border-radius: 10px;
-} */
+}
+
+.cards1{
+  width:126%;
+  overflow-x:hidden;
+  margin-left: -13.2%;
+}
 
 
 </style>
