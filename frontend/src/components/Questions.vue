@@ -1,6 +1,36 @@
 <template>
     <div id = "q">
-      <<!--p>{{message}}</p>-->
+      
+        <!-- <el-steps :active="active" finish-status="success">
+            <el-step title="步骤 1">
+
+                
+
+            </el-step>
+            
+
+
+            <el-step title="步骤 2">
+
+
+
+            </el-step>
+
+
+
+            <el-step title="步骤 3">
+
+
+
+            </el-step>
+        </el-steps>
+
+        <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+ -->
+
+
+
+
         <h1>Here is the questions page</h1><br>
         <el-form ref="form" :model="form" label-width="80px">
             <el-form-item >
@@ -202,9 +232,9 @@
                 <el-input v-model="form.price" placeholder="please enter"></el-input>
             </el-form-item>
         </el-form>
-        <p>
+        <!-- <p>
             Copyright&nbsp;&copy;&nbsp;{{author}} - 2021 All rights reserved
-        </p>
+        </p> -->
 
     </div>
 </template>
@@ -220,6 +250,7 @@
                 qtype: this.message[0],
                 information:[],
                 visible:undefined,
+                // active: 0,
                 form: {
                     classification:"",
                     inputSize:"",
@@ -722,6 +753,9 @@
                 }
                 return this.visible
             }
+            // next() {
+            //     this.active++;
+            // }
         }
     }
 </script>

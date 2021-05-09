@@ -25,7 +25,7 @@
         
       </div>
       <div v-if="status != '0'">
-        <h1>Here to see recommendations for you</h1>
+        <h1>We recommend these homes for you</h1>
         <el-row gutter="20" >
           <el-col :span="6" v-for="item in houses" :key="item.id">
             <el-card :body-style="{ padding: '20px' }" shadow ="hover" @click.native = "openDetail(item.id)">
@@ -73,14 +73,27 @@
                 layout="total,sizes, prev, pager, next, jumper"
                 :total="currentTotal">
       </el-pagination>-->
-      <div v-if="this.houses.length!=0&&this.rated == false">
-        <p>Please rate for the recommendation</p>
-        <el-rate
-          v-model="value"
-          :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
-        </el-rate>
-        <el-button @click="submit()">submit</el-button>
-      </div>
+
+
+
+            <!-- <div v-if="this.houses.length!=0&&this.rated == false">
+                 -->
+
+        <el-card class="rating">
+            <div v-if="this.houses.length!=0">
+                <p>Please rate for the recommendation</p>
+                <el-rate
+                v-model="value"
+                :colors="['#99A9BF', '#F7BA2A', '#FF9900']"
+                style="margin-left:29.5%;"
+                >
+                </el-rate>
+                <el-button class="submit-rate" @click="submit()" style="margin-top:6%;margin-left:35%">submit</el-button>
+            </div>
+        </el-card>
+            
+
+
         </div>
     </div>
 
@@ -310,7 +323,7 @@
   }
 
 .el-card {
-    min-width: 100%;
+    /* min-width: 100%; */
     height: 100%;
   }
 
@@ -325,4 +338,15 @@
     margin-top: -90%;
     position: relative;
 }
+
+.rating{
+    width: 30%;
+    margin-top: 0%;
+    margin-left: 37%;
+}
+
+/* .submit-rate{
+    background-color: rgb(49, 115, 153);
+} */
+
 </style>
