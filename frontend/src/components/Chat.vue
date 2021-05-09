@@ -8,7 +8,7 @@
                     </div>
                     <div class="message_is_me" v-if="item.content != null">
                         <div class="col_is_me">
-                            <el-avatar shape="square" icon=el-icon-user-solid></el-avatar>
+                            <el-avatar src = "https://p2.ssl.qhimgs1.com/sdr/400__/t01966a42b78d397e1c.jpg"></el-avatar>
                         </div>
                         <div class="message_is_me_content">
                             <span v-html="item.content"></span>
@@ -16,7 +16,7 @@
                     </div>
                     <div class="message_not_me" v-if="item.content === 'Testcontent'">
                         <div class="col_not_me">
-                            <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
+                            <el-avatar src="http://img.qqzhi.com/uploads/2018-12-02/032658178.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
                             <span>Sorry! I cannot understand.</span>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="message_not_me" v-if="item.content === 'Testcontent'">
                         <div class="col_not_me">
-                            <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
+                            <el-avatar src="http://img.qqzhi.com/uploads/2018-12-02/032658178.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
                             <span @click="dialogVisible = true">Can you answer some questions so we can recommend house for you.</span>
@@ -34,7 +34,7 @@
 
                   <div class="message_not_me" v-if="item.reply != null">
                         <div class="col_not_me">
-                            <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
+                            <el-avatar src="http://img.qqzhi.com/uploads/2018-12-02/032658178.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
                             <span v-html="item.reply"></span>
@@ -45,7 +45,7 @@
                   </div>
                     <!--<div class="message_not_me" v-if="status ==='0'&& item.content != null">
                         <div class="col_not_me">
-                            <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
+                            <el-avatar src="http://img.qqzhi.com/uploads/2018-12-02/032658178.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
                             <router-link to="/recommend">Click to see our recommendation for you.</router-link>
@@ -54,7 +54,7 @@
                 </div>
               <div class="message_not_me" v-if="status">
                         <div class="col_not_me">
-                            <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
+                            <el-avatar src="http://img.qqzhi.com/uploads/2018-12-02/032658178.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
                             <router-link to="/recommend">{{this.recommendLink}}</router-link>
@@ -62,7 +62,7 @@
               </div>
               <div class="message_not_me" v-if="questionType[0]==0||questionType[0]==2">
                         <div class="col_not_me">
-                            <el-avatar src="http://img.qqzhi.com/uploads/2019-02-25/230332138.jpg"></el-avatar>
+                            <el-avatar src="http://img.qqzhi.com/uploads/2018-12-02/032658178.jpg"></el-avatar>
                         </div>
                         <div class="message_not_me_content">
                             <span @click="dialogVisible = true" v-bind:style="styleObject">Click here to get the questionnaire.</span>
@@ -192,8 +192,8 @@
                   });
                 }
                 else{
-                    this.myMessages.push({ time: time })
-                    this.myMessages.push({ content: message })
+                    /*this.myMessages.push({ time: time })
+                    this.myMessages.push({ content: message })*/
                     /*this.myMessages.push({ reply: message })*/
                     this.process(message)
                     /*this.status = "1"*/
