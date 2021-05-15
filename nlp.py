@@ -138,7 +138,7 @@ def NaturalLanguageProcess(data, process1, process2):
     if process1 == -1:
         returnlist = [robot.getRespond(data), process1, process2]
     elif process1 == 0:
-        answerkeyword1 = ['yes','y','ok','yep','sure','yea','yeah','fine','okay','maybe','need','of course','get']
+        answerkeyword1 = ['yes','y','ok','yep','sure','yea','yeah','fine','okay','maybe','need','course','get']
         answerkeyword2 = ['no','n','never','noway']
         if len(set(wordsList).intersection(set(answerkeyword1))) != 0:
             process1 += 1
@@ -153,7 +153,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 process2 += 1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[0], process1, process2]
     elif process1 == 1:
-        i = 0
+        x = 0
         for word in wordsList:
             if word.isdigit():
                 if int(word) < 10000000 and int(word) > 20000:
@@ -173,8 +173,8 @@ def NaturalLanguageProcess(data, process1, process2):
                         informationlist[24] = ''
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[3], process1, process2]
             else:
-                i += 1
-        if (i == len(wordsList)):
+                x += 1
+        if (x == len(wordsList)):
             if process2 == 0:
                 # print('test')
                 process2 = 1
@@ -187,7 +187,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[3], process1, process2]
 
     elif process1 == 2:
-        i = 0
+        x = 0
         for word in wordsList:
             if word.isdigit():
                 if int(word) < 15 and int(word) >= 0:
@@ -207,8 +207,8 @@ def NaturalLanguageProcess(data, process1, process2):
                         informationlist[17] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[4], process1, process2]
             else:
-                i += 1
-        if (i == len(wordsList)):
+                x += 1
+        if (x == len(wordsList)):
             if process2 == 0:
                 # print('test')
                 process2 = 1
@@ -220,7 +220,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 informationlist[17] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[4], process1, process2]
     elif process1 == 3:
-        i = 0
+        x = 0
         for word in wordsList:
             if word.isdigit():
                 if int(word) < 10 and int(word) >= 0:
@@ -240,8 +240,8 @@ def NaturalLanguageProcess(data, process1, process2):
                         informationlist[15] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[5], process1, process2]
             else:
-                i += 1
-        if (i == len(wordsList)):
+                x += 1
+        if (x == len(wordsList)):
             if process2 == 0:
                 # print('test')
                 process2 = 1
@@ -253,7 +253,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 informationlist[15] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[5], process1, process2]
     elif process1 == 4:
-        i = 0
+        x = 0
         for word in wordsList:
             if word.isdigit():
                 if int(word) < 6 and int(word) >= 0:
@@ -273,8 +273,8 @@ def NaturalLanguageProcess(data, process1, process2):
                         informationlist[16] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[6], process1, process2]
             else:
-                i += 1
-        if (i == len(wordsList)):
+                x += 1
+        if (x == len(wordsList)):
             if process2 == 0:
                 # print('test')
                 process2 = 1
@@ -286,7 +286,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 informationlist[16] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[6], process1, process2]
     elif process1 == 5:
-        i = 0
+        x = 0
         for word in wordsList:
             if word.isdigit():
                 if int(word) < 250000 and int(word) >= 1000:
@@ -306,8 +306,8 @@ def NaturalLanguageProcess(data, process1, process2):
                         informationlist[1] = ''
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[7], process1, process2]
             else:
-                i += 1
-        if (i == len(wordsList)):
+                x += 1
+        if (x == len(wordsList)):
             if process2 == 0:
                 # print('test')
                 process2 = 1
@@ -339,7 +339,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 ans = True
                 break
         if ans == False:
-            i = 0
+            x = 0
             for word in wordsList:
                 if word.isdigit():
                     if int(word) <= 25 and int(word) >= 0:
@@ -359,9 +359,9 @@ def NaturalLanguageProcess(data, process1, process2):
                             informationlist[4] = ''
                             returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[8], process1, process2]
                 else:
-                    i += 1
-            print(i)
-            if (i == len(wordsList)):
+                    x += 1
+            # print(x)
+            if (x == len(wordsList)):
                 print('2')
                 if process2 == 0:
                     # print('test')
@@ -386,7 +386,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 ans = True
                 break
         if ans == False:
-            i = 0
+            x = 0
             for word in wordsList:
                 if word.isdigit():
                     if int(word) <= 4 and int(word) >= 0:
@@ -406,8 +406,8 @@ def NaturalLanguageProcess(data, process1, process2):
                             informationlist[3] = ''
                             returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[9], process1, process2]
                 else:
-                    i += 1
-            if (i == len(wordsList)):
+                    x += 1
+            if (x == len(wordsList)):
                 if process2 == 0:
                     # print('test')
                     process2 = 1
@@ -433,7 +433,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 ans = True
                 break
         if ans == False:
-            i = 0
+            x = 0
             for word in wordsList:
                 if word.isdigit():
                     if 8 >= int(word) >= 0:
@@ -453,8 +453,8 @@ def NaturalLanguageProcess(data, process1, process2):
                             informationlist[5] = ''
                             returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[10], process1, process2]
                 else:
-                    i += 1
-            if (i == len(wordsList)):
+                    x += 1
+            if (x == len(wordsList)):
                 if process2 == 0:
                     # print('test')
                     process2 = 1
@@ -480,7 +480,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 ans = True
                 break
         if ans == False:
-            i = 0
+            x = 0
             for word in wordsList:
                 if word.isdigit():
                     if int(word) <= 6 and int(word) >= 0:
@@ -502,8 +502,8 @@ def NaturalLanguageProcess(data, process1, process2):
                             returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' +
                                           questions.questionList[11], process1, process2]
                 else:
-                    i += 1
-            if (i == len(wordsList)):
+                    x += 1
+            if (x == len(wordsList)):
                 if process2 == 0:
                     # print('test')
                     process2 = 1
@@ -527,7 +527,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 ans = True
                 break
         if ans == False:
-            i = 0
+            x = 0
             for word in wordsList:
                 if word.isdigit():
                     if int(word) <= 2 and int(word) >= 0:
@@ -549,8 +549,8 @@ def NaturalLanguageProcess(data, process1, process2):
                             returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' +
                                           questions.questionList[12], process1, process2]
                 else:
-                    i += 1
-            if (i == len(wordsList)):
+                    x += 1
+            if (x == len(wordsList)):
                 if process2 == 0:
                     # print('test')
                     process2 = 1
@@ -562,7 +562,7 @@ def NaturalLanguageProcess(data, process1, process2):
                     informationlist[12] = ''
                     returnlist = [robot.getRespond(data) + '\n' + questions.questionList[12], process1, process2]
     elif process1 == 11:
-        i = 0
+        x = 0
         for word in wordsList:
             if word.isdigit():
                 if int(word) <= 5 and int(word) >= 0:
@@ -582,8 +582,8 @@ def NaturalLanguageProcess(data, process1, process2):
                         informationlist[18] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[13], process1, process2]
             else:
-                i += 1
-        if (i == len(wordsList)):
+                x += 1
+        if (x == len(wordsList)):
             if process2 == 0:
                 # print('test')
                 process2 = 1
@@ -595,7 +595,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 informationlist[18] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[13], process1, process2]
     elif process1 == 12:
-        i = 0
+        x = 0
         for word in wordsList:
             if word.isdigit():
                 if int(word) <= 6 and int(word) >= 0:
@@ -615,8 +615,8 @@ def NaturalLanguageProcess(data, process1, process2):
                         informationlist[21] = -1
                         returnlist = ['Umm..., your answer seems unreasonable, let me change another question.' + '\n' + questions.questionList[14], process1, process2]
             else:
-                i += 1
-        if (i == len(wordsList)):
+                x += 1
+        if (x == len(wordsList)):
             if process2 == 0:
                 # print('test')
                 process2 = 1
@@ -628,7 +628,7 @@ def NaturalLanguageProcess(data, process1, process2):
                 informationlist[21] = -1
                 returnlist = [robot.getRespond(data) + '\n' + questions.questionList[14], process1, process2]
     elif process1 == 13:
-        i = 0
+        x = 0
         for word in wordsList:
             if word.isdigit():
                 if int(word) <= 15 and int(word) >= 0:
@@ -669,8 +669,8 @@ def NaturalLanguageProcess(data, process1, process2):
                             returnlist = ['Umm..., your answer seems unreasonable.' + '\n' + questions.questionList[16], process1,
                                           process2, informationlist]
             else:
-                i += 1
-        if (i == len(wordsList)):
+                x += 1
+        if (x == len(wordsList)):
             if process2 == 0:
                 # print('test')
                 process2 = 1

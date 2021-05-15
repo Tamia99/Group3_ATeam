@@ -8,7 +8,7 @@
                     </div>
                     <div class="message_is_me" v-if="item.content != null">
                         <div class="col_is_me">
-                            <el-avatar src = "https://p2.ssl.qhimgs1.com/sdr/400__/t01966a42b78d397e1c.jpg"></el-avatar>
+                            <el-avatar><img src="./user-ava.jpg"></el-avatar>
                         </div>
                         <div class="message_is_me_content">
                             <span v-html="item.content"></span>
@@ -31,7 +31,7 @@
                             <el-button id="ok" size="medium" type="primary" @click="dialogVisible = true">OK</el-button>
                         </div>
                     </div>
-
+<!--  src="http://img.qqzhi.com/uploads/2018-12-02/032658178.jpg" -->
                   <div class="message_not_me" v-if="item.reply != null">
                         <div class="col_not_me">
                             <el-avatar src="http://img.qqzhi.com/uploads/2018-12-02/032658178.jpg"></el-avatar>
@@ -127,8 +127,8 @@
                 isReloadData:true,
                 textarea: '',
                 myMessages: [
-                  {time: "testtime"},
-                  {content: 'Testcontent'},
+                  // {time: "testtime"},
+                  // {content: 'Testcontent'},
                   {reply:"Welcome to the Smart House Recommendation Assistant"},
                   {reply: "Do you need us to recommend suitable housing information for you?"}],
                 /*myMessages: [],*/
@@ -192,8 +192,8 @@
                   });
                 }
                 else{
-                    /*this.myMessages.push({ time: time })
-                    this.myMessages.push({ content: message })*/
+                    this.myMessages.push({ time: time })
+                    this.myMessages.push({ content: message })
                     /*this.myMessages.push({ reply: message })*/
                     this.process(message)
                     /*this.status = "1"*/
