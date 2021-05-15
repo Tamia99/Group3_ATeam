@@ -127,8 +127,13 @@
                 isReloadData:true,
                 textarea: '',
                 myMessages: [
+<<<<<<< HEAD
                   // {time: "testtime"},
                   // {content: 'Testcontent'},
+=======
+                 /* {time: "testtime"},
+                  {content: 'Testcontent'},*/
+>>>>>>> 851b56d2f639c69fa8706efa855cb5c07d5217cc
                   {reply:"Welcome to the Smart House Recommendation Assistant"},
                   {reply: "Do you need us to recommend suitable housing information for you?"}],
                 /*myMessages: [],*/
