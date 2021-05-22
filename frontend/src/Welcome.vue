@@ -2,7 +2,7 @@
 <div>
     <el-carousel style=" margin-top:0%!important">
       <el-carousel-item v-for="item in imgList" :key="item.name" style="height:600px; margin-top:0%!important">
-        <img :src="item.src" style="height:83%;width:100%;" alt="图片丢失了" :title="item.title" />
+        <img :src="item.src" style="height:83%;width:100%;" alt="image lost" :title="item.title" />
         
       </el-carousel-item>
       
@@ -12,7 +12,7 @@
     
     <div class="cards1">
       
-          <el-card style="width:30%!important; margin-left:0%; margin-top:5%;" @click.native="route1">
+          <el-card class="welcard" id="card1" @click.native="route1">
             <img src="./components/chat.jpg" class="image" style="width:100%; height:100%;">
             <div style="padding-top: 15px;">
                 <nobr style="font-weight:bold; font-size:15px; margin-bottom:20%!important">Smart Chatting Assistant</nobr><br>
@@ -23,7 +23,7 @@
             </div>
         </el-card>
 
-        <el-card style="width:30%!important; margin-left:33%; margin-top:-31.2%;" @click.native="route2">
+        <el-card class="welcard" id="card2" @click.native="route2">
             <img src="./components/pic4.jpg" class="image" style="width:100%; height:100%;">
             <div style="padding-top: 15px;">
                 <nobr style="font-weight:bold; font-size:15px; margin-bottom:20%!important">Recommendations for you</nobr><br>
@@ -34,7 +34,7 @@
             </div>
         </el-card>
 
-        <el-card style="width:30%!important; margin-left:66%; margin-top:-31.2%;" @click.native="route3">
+        <el-card class="welcard" id="card3" @click.native="route3">
             <img src="./components/allhouses3.jpg" class="image" style="width:100%; height:100%;">
             <div style="padding-top: 15px;">
                 <nobr style="font-weight:bold; font-size:15px; margin-bottom:20%!important">Various kinds of Homes</nobr><br>
@@ -88,6 +88,31 @@
 
 .clicking{
   color: rgb(12, 163, 209);
+}
+/*.welcard{
+  height: 450px;
+  !*margin-top: 20px;*!
+  width: 200px;
+  !*margin-left: 200px;*!
+  !*width:30%!important;*!
+  !*margin-left:66%;*!
+  !*margin-top:-31.2%;*!
+}*/
+#card1{
+  width:30%!important;
+  height: 10%;
+  margin-left:80px;
+  margin-top:30px;
+}
+#card2{
+  width:30%!important;
+  margin-left:550px;
+  margin-top:-300px;
+}
+#card3{
+  width:30%!important;
+  margin-left:66%;
+  margin-top:-31.2%;
 }
 
 </style>
