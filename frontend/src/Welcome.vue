@@ -100,7 +100,7 @@
               imgList: [
                   // {
                   // name: "1",
-                  // src: require("@/assets/pic-card.png"),
+                  // src: require("@/assets/pic-card.jpg"),
                   // title: "Comfortable Environment"
                   // },
                   {
