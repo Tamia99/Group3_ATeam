@@ -47,7 +47,7 @@
     </div>
 
     <el-card style="width:100%!important;margin-top:45%">
-            <img src="./components/pic-card.png" class="image" style="width:100%; height:100%;">
+            <img src="./components/pic-card.jpg" class="image" style="width:100%; height:100%;">
         
         </el-card>
     
@@ -105,27 +105,27 @@
                   // },
                   {
                   name: "2",
-                  src: require("@/assets/zmd-1.png"),
+                  src: require("@/assets/zmd-1.jpg"),
                   title: "Comfortable Environment"
                   },
                   {
                   name: "3",
-                  src: require("@/assets/zmd-2.png"),
+                  src: require("@/assets/zmd-2.jpg"),
                   title: "Convenient to Work"
                   },
                   {
                   name: "4",
-                  src: require("@/assets/zmd-3.png"),
+                  src: require("@/assets/zmd-3.jpg"),
                   title: "Safe and Assured"
                   },
                   {
                   name: "5",
-                  src: require("@/assets/zmd-4.png"),
+                  src: require("@/assets/zmd-4.jpg"),
                   title: "Prosperous Surroundings"
                   },
                   {
                   name: "6",
-                  src: require("@/assets/zmd-5.png"),
+                  src: require("@/assets/zmd-5.jpg"),
                   title: "Flexible Decoration Style"
                   }
               ],
