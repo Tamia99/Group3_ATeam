@@ -7,6 +7,7 @@ import locale from 'element-ui/lib/locale/lang/en'
 import Vuex from 'vuex'
 import store from './vuex/store'
 import '../theme/index.css'
+import 'lib-flexible/flexible'
 /*import 'element-theme-chalk'*/
 
 Vue.config.productionTip = false

@@ -163,7 +163,7 @@
       methods:{
         getSimilar(id){
           this.loading1 = true
-          const path = 'http://82.156.131.169:5000/api/recommendById'
+          const path = 'http://localhost:8080/api/recommendById'
           /*let data = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 2, -1, -1, -1]*/
           let data = [id]
                 axios.post(path, data)
@@ -455,7 +455,7 @@
         },
         getList(){
             this.loading = true
-            const path = 'http://82.156.131.169:5000/api/allHouses'
+            const path = 'http://localhost:8080/api/allHouses'
             let data = [this.values,this.matchn]
             axios.post(path,data)
                 .then(response => {

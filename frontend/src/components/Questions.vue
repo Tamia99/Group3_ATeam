@@ -700,7 +700,7 @@
                 console.log(value);
             },
             realrecommend(data){
-              const path = 'http://82.156.131.169:5000/api/recommend'
+              const path = 'http://localhost:8080/api/recommend'
                 axios.post(path, data)
                     .then(response => {
                        /* alert("successful submission")*/

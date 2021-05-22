@@ -1,3 +1,4 @@
+# coding=utf-8
 DIALECT = 'mysql'
 DRIVER = 'pymysql'
 USERNAME = 'root'

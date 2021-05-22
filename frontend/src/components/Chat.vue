@@ -205,7 +205,7 @@
 
             },
             process(message){
-                const path = 'http://82.156.131.169:5000/api/nlp'
+                const path = 'http://localhost:8080/api/inlp'
                 let data = [message,this.processNumber,this.currentProcess]
                 axios.post(path, data)
                     .then(response => {

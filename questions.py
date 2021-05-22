@@ -1,3 +1,4 @@
+# coding=utf-8
 questionList = [
     "Do you need us to recommend suitable housing information for you?",
     "Bye!",

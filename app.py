@@ -1,4 +1,4 @@
-
+# coding=utf-8
 from flask import Flask, render_template, jsonify, request, json, Response
 from flask_cors import CORS
 from random import *
@@ -64,7 +64,7 @@ def getAll():
 
 
 
-@app.route('/api/nlp',methods=["POST"])
+@app.route('/api/inlp',methods=["POST","GET"])
 def process():
     m = eval(str(request.data, encoding='utf-8'))
     print("message=",m)
@@ -79,4 +79,4 @@ def process():
 # print(nlp.preprocessing())
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host = "0.0.0.0",debug=True)
