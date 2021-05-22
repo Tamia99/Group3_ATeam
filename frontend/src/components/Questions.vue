@@ -33,7 +33,7 @@
 
         <h1>Questions Page</h1><br>
         <!--<p>{{this.message}}</p>-->
-        <el-form ref="form" :model="form" label-width="80px">
+        <el-form ref="form" :model="form"  label-width="80px">
             <el-form-item >
                 <span>Q1 Please identifies the general zoning classification.</span><br>
                 <el-select v-model="form.classification" placeholder="please choose">
@@ -45,9 +45,9 @@
                     </el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="">
+            <el-form-item label=""  prop="size" :rules="[{ type: 'number',  message: 'Only numbers allowed!' }]">
                 <span>Q2 What size of house do you want?(sqft)</span>
-                <el-input v-model="form.inputSize" placeholder="please enter"></el-input>
+                <el-input v-model.number="form.inputSize" placeholder="please enter" ></el-input>
             </el-form-item>
             <el-form-item>
                 <span>Q3 Please choose the flatness property.</span><br>
@@ -252,6 +252,11 @@
                 information:[],
                 visible:undefined,
                 // active: 0,
+                rules:{
+                   size: [
+                       { type: 'number',  message: 'Only numbers allowed!', trigger: 'change' }
+                    ],
+                },
                 form: {
                     classification:"",
                     inputSize:"",
@@ -695,7 +700,7 @@
                 console.log(value);
             },
             realrecommend(data){
-              const path = 'http://localhost:5000/api/recommend'
+              const path = 'http://82.156.131.169:5000/api/recommend'
                 axios.post(path, data)
                     .then(response => {
                        /* alert("successful submission")*/

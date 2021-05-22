@@ -127,13 +127,9 @@
                 isReloadData:true,
                 textarea: '',
                 myMessages: [
-<<<<<<< HEAD
                   // {time: "testtime"},
                   // {content: 'Testcontent'},
-=======
-                 /* {time: "testtime"},
-                  {content: 'Testcontent'},*/
->>>>>>> 851b56d2f639c69fa8706efa855cb5c07d5217cc
+
                   {reply:"Welcome to the Smart House Recommendation Assistant"},
                   {reply: "Do you need us to recommend suitable housing information for you?"}],
                 /*myMessages: [],*/
@@ -192,8 +188,8 @@
                 if(message.match(/^[ ]+$/)||message===""){
                     /*alert("invalid null message")*/
                   this.$notify.error({
-                    message: 'Invalid null message,please try again',
-                    duration: 2000
+                    message: 'Invalid null message, please try again',
+                    duration: 20000
                   });
                 }
                 else{
@@ -205,11 +201,11 @@
                     /*this.$store.commit("newStatus",this.status)*/
                 }
                 this.textarea = ''
-                this.randomNumber = this.getRandomFromBackend()
+                /*this.randomNumber = this.getRandomFromBackend()*/
 
             },
             process(message){
-                const path = 'http://localhost:5000/api/nlp'
+                const path = 'http://82.156.131.169:5000/api/nlp'
                 let data = [message,this.processNumber,this.currentProcess]
                 axios.post(path, data)
                     .then(response => {
@@ -299,7 +295,7 @@
                           that.textarea = ""
                           that.status = true
                           /*alert("1")*/
-                        },8000);
+                        },10000);
                       }).catch(() => {
                         this.dialogVisible = true
                     });
@@ -323,7 +319,7 @@
                           that.textarea = ""
                           that.status = true
                           /*alert("1")*/
-                        },8000);
+                        },10000);
                 }
                 /*this.dialogVisible = false*/
 

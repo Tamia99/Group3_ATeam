@@ -58,14 +58,16 @@
                 width="80%"
                 :before-close="handleClose"
                 >
-                <Detail :message = "thisHouse"></Detail>
+                <Detail  :message = "thisHouse"></Detail>
                 <!-- dodgerblue -->
                 <p style="font-weight:bold; font-size:18px; color:rgb(71, 144, 218)">Similar Homes:</p>
-                <el-col :span="6" v-for="item in similar " :key="item.id">
+                <el-row v-loading="loading1">
+                <el-col  :span="6" v-for="item in similar " :key="item.id">
                   <el-card :body-style="{ paddingLeft: '15px',marginLeft:'0px'}" shadow ="hover" @click.native = "openDetail(item.id)" class="cards1">
                     <img :src="item.pic" class="image">
                     <!-- <span>{{item.id}}</span> -->
                     <br>
+
                      <h2>{{item.price}}</h2>
                     <span>{{ item.room }}</span>
                     <br>
@@ -73,7 +75,7 @@
                     <br>
                     <span>{{ item.type }}</span>
                   </el-card>
-                </el-col>
+                </el-col></el-row>
                 <!--<el-button @click="similar()">View 10 similar houses</el-button>-->
             </el-dialog>
             </div>
@@ -117,6 +119,7 @@
             thisHouse:[],
             values:"",
             loading: true,
+            loading1:true,
             options: [{
               value: 1,
               label: 'price(High to low)'
@@ -159,7 +162,8 @@
       },*/
       methods:{
         getSimilar(id){
-          const path = 'http://localhost:5000/api/recommendById'
+          this.loading1 = true
+          const path = 'http://82.156.131.169:5000/api/recommendById'
           /*let data = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 2, -1, -1, -1]*/
           let data = [id]
                 axios.post(path, data)
@@ -168,6 +172,7 @@
                         let all = response.data.result
                         this.similar = this.dealdata(all)
                         this.similar = this.similar.slice(1,9)
+                        this.loading1 = false
                         /*alert("successful submission")*/
                     })
                     .catch((error) => {
@@ -445,10 +450,12 @@
                         houses.push({id:ID,price:p,room:r,neighborhood:n,type:t,pic:src})
                         i++
                     }
+          this.loading = false
           return houses
         },
         getList(){
-            const path = 'http://localhost:5000/api/allHouses'
+            this.loading = true
+            const path = 'http://82.156.131.169:5000/api/allHouses'
             let data = [this.values,this.matchn]
             axios.post(path,data)
                 .then(response => {
@@ -530,6 +537,17 @@
   overflow-x:hidden;
   margin-left: -13.2%;
 }
+.el-row {
+    margin-bottom: 20px;
+    display:flex;
+    flex-wrap: wrap;
+  }
+.el-row  .el-card {
+    min-width: 100%;
+    height: 100%;
+    margin-right: 20px;
+    transition: all .5s;
+  }
 
 
 </style>
